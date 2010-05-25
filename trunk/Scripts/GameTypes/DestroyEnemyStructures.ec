@@ -37,21 +37,22 @@ mission "translateGameTypeDestroyStructures"{
 		TECHWAR_MONEY  = 1000000000;
 
 		//comboCashType
-		MINEFORMONEY    = 0;
-		MINEFORMONEY_XL = 1;
-		CR15000         = 2;
-		CR20000         = 3;
-		CR25000         = 4;
-		CR30000         = 5;
-		CR40000         = 6;
-		TECHWAR         = 7;
+		MINE_FOR_MONEY    = 0;
+		MINE_FOR_MONEY_XL = 1;
+		MINE_FOREVER      = 2;
+		CR15000           = 3;
+		CR20000           = 4;
+		CR25000           = 5;
+		CR30000           = 6;
+		CR40000           = 7;
+		TECHWAR           = 8;
 
 		//comboResearchTime
 		RESEARCH_1X      = 0;
 		RESEARCH_2X      = 1;
 		RESEARCH_4X      = 2;
 		RESEARCH_8X      = 3;
-		RESEARCH_ALIENS  = 4;
+		RESEARCH_ENDLESS = 4;
 		RESEARCH_TECHWAR = 5;
 
 		//comboResearchLimit
@@ -85,8 +86,9 @@ mission "translateGameTypeDestroyStructures"{
 	int nGetBottom2;          //GetBottom()/2, better performance
 
 	enum comboCashType{
-		"translateScriptMineForMoney", //MINEFORMONEY
-		"XL",                          //MINEFORMONEY_XL
+		"translateScriptMineForMoney", //MINE_FOR_MONEY
+		"XL",                          //MINE_FOR_MONEY_XL
+		"Endless Resources",           //MINE_FOREVER
 		"15000 CR/min",                //CR15000
 		"20000 CR/min",                //CR20000
 		"25000 CR/min",                //CR25000
@@ -102,7 +104,7 @@ mission "translateGameTypeDestroyStructures"{
 		"translateScript2xfaster",   //RESEARCH_2X
 		"translateScript4xfaster",   //RESEARCH_4X
 		"translateScript8xfaster",   //RESEARCH_8X
-		"translateEditorAliens",     //RESEARCH_ALIENS
+		"translateEditorAliens",     //RESEARCH_ENDLESS
 		"TechWar",                   //RESEARCH_TECHWAR
 	multi:
 		"translateScriptResearchTime"
@@ -319,7 +321,7 @@ mission "translateGameTypeDestroyStructures"{
 		nMaxDistance=DEFAULT_DISTANCE;
 		nMaxPossibleDistance=Distance(GetLeft(), GetTop(), nGetRight, nGetBottom);
 
-		if(comboCashType==MINEFORMONEY || comboCashType==MINEFORMONEY_XL){
+		if(comboCashType==MINE_FOR_MONEY || comboCashType==MINE_FOR_MONEY_XL || comboCashType==MINE_FOREVER){
 			bHasTrade=true;
 		}
 		if(comboResearchLimit==RESEARCH_ALL || comboResearchLimit==RESEARCH_NO_BOMBS){
@@ -339,10 +341,12 @@ mission "translateGameTypeDestroyStructures"{
 			bImba=false;
 		}
 
-		if(comboCashType==MINEFORMONEY){
+		if(comboCashType==MINE_FOR_MONEY){
 			ResourcesPerContainer(2);
-		}else if(comboCashType==MINEFORMONEY_XL){
+		}else if(comboCashType==MINE_FOR_MONEY_XL){
 			ResourcesPerContainer(1);
+		}else if(comboCashType==MINE_FOREVER){
+			ResourcesPerContainer(-10);
 		}else if(comboCashType==CR15000){
 			nCashRate=15000;
 		}else if(comboCashType==CR20000){
@@ -361,7 +365,7 @@ mission "translateGameTypeDestroyStructures"{
 			SetTimeDivider(4);
 		}else if(comboResearchTime==RESEARCH_8X){
 			SetTimeDivider(8);
-		}else if(comboResearchTime==RESEARCH_ALIENS){
+		}else if(comboResearchTime==RESEARCH_ENDLESS){
 			SetTimeDivider(65535);
 		}
 
@@ -835,6 +839,10 @@ mission "translateGameTypeDestroyStructures"{
 
 				rPlayer.EnableMilitaryUnitsLimit(false);
 				rPlayer.EnableCommand(commandSoldBuilding, true);
+				if(comboCashType==MINE_FOREVER){
+					rPlayer.EnableCommand(commandBuildTrench, false);
+					rPlayer.EnableCommand(commandBuildWall, false);
+				}
 				if(comboUnitsLimit==UNITS_NO_IMBA){
 					rPlayer.EnableCommand(commandBuildTrench, false);
 				}
@@ -980,7 +988,7 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	event RemoveResources(){
-		if(comboCashType!=MINEFORMONEY && comboCashType!=MINEFORMONEY_XL){
+		if(comboCashType!=MINE_FOR_MONEY && comboCashType!=MINE_FOR_MONEY_XL && comboCashType!=MINE_FOREVER){
 			true;
 		}else{
 			false;
@@ -1126,7 +1134,7 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	command Initialize(){
-		comboCashType      = MINEFORMONEY;
+		comboCashType      = MINE_FOR_MONEY;
 		comboResearchTime  = RESEARCH_2X;
 		comboResearchLimit = RESEARCH_ALL;
 		comboUnitsLimit    = UNITS_ALL;
