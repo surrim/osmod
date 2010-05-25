@@ -375,6 +375,7 @@ mission "translateGameTypeDestroyStructures"{
 				bIsHuman=IsBot(rPlayer)^1;
 				if(!bIsHuman){
 					bHasBots=true;
+					rPlayer.EnableAIFeatures(aiRejectAlliance, true); //disable ally
 				}
 
 				//researches
@@ -851,6 +852,8 @@ mission "translateGameTypeDestroyStructures"{
 				nStartingPointX=rPlayer.GetStartingPointX();
 				nStartingPointY=rPlayer.GetStartingPointY();
 				if(
+					rPlayer.GetNumberOfBuildings()
+					||
 					(
 						 IsEmptyPoint(nStartingPointX,   nStartingPointY+1)
 						+IsEmptyPoint(nStartingPointX+1, nStartingPointY+1)
@@ -868,7 +871,7 @@ mission "translateGameTypeDestroyStructures"{
 						rPlayer.SetMoney(DEFAULT_MONEY);
 					}
 					rPlayer.SetMaxDistance(nMaxDistance);
-					if(comboStartingUnits==BUILDER_ONLY){
+					if(!rPlayer.GetNumberOfBuildings()){
 						rPlayer.CreateDefaultUnit(nStartingPointX, nStartingPointY, 0);
 					}
 					rPlayer.LookAt(nStartingPointX, nStartingPointY, 6, 0, 20, 0);
@@ -905,25 +908,25 @@ mission "translateGameTypeDestroyStructures"{
 		nD34=FindTeamSize(3, nD23);
 
 		//create teams
-		if(nD12-nD23>nD23-nD34){
+		if(nD12+nD34>2*nD23){
 			CreateTeams(nD23); //2 teams
 		}else{
 			CreateTeams(nD34); //3 teams
 		}
 
-		SetTimer(0, 5*20); //check victory
-		SetTimer(1,   20); //display time
+		SetTimer(0, 100); //check victory
+		SetTimer(1, 20); //display time
 		if(nMaxDistance<nMaxPossibleDistance){
-			SetTimer(2, 10*20); //increase max distance
+			SetTimer(2, 200); //increase max distance
 		}
 		if(bHasBots){
-			SetTimer(3, 60*20); //find new enemies
+			SetTimer(3, 1200); //find new enemies
 		}
 		if(!bHasTrade){
 			if(comboCashType==TECHWAR){
-				SetTimer(4,    20); //techwar money
+				SetTimer(4, 20); //techwar money
 			}else{
-				SetTimer(5, 60*20); //uncle sam money
+				SetTimer(5, 1200); //uncle sam money
 			}
 		}
 
