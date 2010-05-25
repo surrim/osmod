@@ -255,7 +255,7 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	function int IsEmptyPoint(int x, int y){
-		if(x>=17 && x<nGetRight-18 && y>=17 && y<nGetBottom-18 && GetUnit(x, y, 0)==null){
+		if(x>=17 && x<nGetRight-17 && y>=17 && y<nGetBottom-17 && GetUnit(x, y, 0)==null){
 			return true;
 		}
 		return false;
@@ -844,10 +844,14 @@ mission "translateGameTypeDestroyStructures"{
 				nStartingPointY=rPlayer.GetStartingPointY();
 				if(
 					(
-						 IsEmptyPoint(nStartingPointX,   nStartingPointY+1)+IsEmptyPoint(nStartingPointX+1, nStartingPointY+1)
-						+IsEmptyPoint(nStartingPointX+1, nStartingPointY  )+IsEmptyPoint(nStartingPointX+1, nStartingPointY-1)
-						+IsEmptyPoint(nStartingPointX,   nStartingPointY-1)+IsEmptyPoint(nStartingPointX-1, nStartingPointY-1)
-						+IsEmptyPoint(nStartingPointX-1, nStartingPointY  )+IsEmptyPoint(nStartingPointX-1, nStartingPointY+1)
+						 IsEmptyPoint(nStartingPointX,   nStartingPointY+1)
+						+IsEmptyPoint(nStartingPointX+1, nStartingPointY+1)
+						+IsEmptyPoint(nStartingPointX+1, nStartingPointY  )
+						+IsEmptyPoint(nStartingPointX+1, nStartingPointY-1)
+						+IsEmptyPoint(nStartingPointX,   nStartingPointY-1)
+						+IsEmptyPoint(nStartingPointX-1, nStartingPointY-1)
+						+IsEmptyPoint(nStartingPointX-1, nStartingPointY  )
+						+IsEmptyPoint(nStartingPointX-1, nStartingPointY+1)
 					)>4
 				){ //is player
 					if(comboCashType==TECHWAR){
@@ -1070,7 +1074,7 @@ mission "translateGameTypeDestroyStructures"{
 		rNewEnemyBuildings=-1;
 		for(i=0;i<15;++i){
 			rPlayer=GetPlayer(i);
-			if(IsActivePlayer(rPlayer)){
+			if(IsActivePlayer(rPlayer) && IsBot(rPlayer)){
 				for(j=0;j<15;++j){
 					rPlayer2=GetPlayer(j);
 					if(IsActivePlayer(rPlayer2) && rPlayer!=rPlayer2 && !rPlayer.IsAlly(rPlayer2)){
