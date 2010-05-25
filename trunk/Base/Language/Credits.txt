@@ -1,0 +1,20 @@
+group OSMod Project Leader
+{
+surrim
+}
+
+group OSMod Testteam
+{
+meisterlampe
+}
+
+group OSMod Scripts
+{
+surrim (AIPlayers, GameTypes, Units)
+}
+
+group OSMod Information
+{
+www.surrim.de
+ask surrim@arcor.de for SVN access
+}
