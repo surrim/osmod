@@ -447,9 +447,6 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WCH2", true); //Upg: MGs
 					EnableResearch(rPlayer, "RES_EDWAA1", true); //AA Gun
 					EnableResearch(rPlayer, "RES_ED_ACH2", bHasAir); //Upg: Helikopter-MGs
-					EnableResearch(rPlayer, "RES_MCH2", true); //Upg: MG-Kugeln (Schaden: 20)
-					EnableResearch(rPlayer, "RES_MCH3", true); //Upg: MG-Kugeln (Schaden: 25)
-					EnableResearch(rPlayer, "RES_MCH4", true); //Upg: MG-Kugeln (Schaden: 30)
 					EnableResearch(rPlayer, "RES_ED_WCA2", true); //Upg: Geschütz
 					EnableResearch(rPlayer, "RES_ED_WHC1", bHasBig); //Schweres Geschütz
 					EnableResearch(rPlayer, "RES_ED_WHC2", bHasBig); //Upg: Schweres Geschütz
@@ -477,12 +474,6 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_AMR2", bHasBig&bHasAir); //Upg: Schwerer Helikopter-Raketenwerfer
 					EnableResearch(rPlayer, "RES_ED_WSO1", bHasBig); //Stalin Orgel
 					EnableResearch(rPlayer, "RES_ED_WSO2", bHasBig); //Upg: Stalin Orgel II
-					EnableResearch(rPlayer, "RES_MMR2", bHasBig); //Upg: Schwere Rakete (Schaden: 45)
-					EnableResearch(rPlayer, "RES_MMR3", bHasBig); //Upg: Schwere Rakete (Schaden: 50)
-					EnableResearch(rPlayer, "RES_MMR4", bHasBig); //Upg: Schwere Rakete (Schaden: 60)
-					EnableResearch(rPlayer, "RES_MSR2", true); //Upg: Rakete (Schaden: 25)
-					EnableResearch(rPlayer, "RES_MSR3", true); //Upg: Rakete (Schaden: 30)
-					EnableResearch(rPlayer, "RES_MSR4", true); //Upg: Rakete (Schaden: 35)
 					EnableResearch(rPlayer, "RES_EDWAN1", bIsHuman); //AntiRakete
 					EnableResearch(rPlayer, "RES_ED_WSL1", true); //Lasergeschütz
 					EnableResearch(rPlayer, "RES_ED_WSL2", true); //Upg: Lasergeschütz
@@ -494,9 +485,9 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WHHLA1", bHasBig&bHasAir); //Heavy Air Laser Cannon
 					EnableResearch(rPlayer, "RES_ED_WHHLA2", bHasBig&bHasAir); //Upg: Heavy Air Laser Cannon II
 					EnableResearch(rPlayer, "RES_ED_WHHLA3", bHasBig&bHasAir); //Upg: Heavy Air Laser Cannon III
-					EnableResearch(rPlayer, "RES_ED_WHLA1", bHasBig&bHasAir); //Heavy Air Laser Cannon
-					EnableResearch(rPlayer, "RES_ED_WHLA2", bHasBig&bHasAir); //Upg: Heavy Air Laser Cannon II
-					EnableResearch(rPlayer, "RES_ED_WHLA3", bHasBig&bHasAir); //Upg: Heavy Air Laser Cannon III
+					EnableResearch(rPlayer, "RES_ED_WHLA1", bHasAir); //Air Laser Cannon
+					EnableResearch(rPlayer, "RES_ED_WHLA2", bHasAir); //Upg: Air Laser Cannon II
+					EnableResearch(rPlayer, "RES_ED_WHLA3", bHasAir); //Upg: Air Laser Cannon III
 					EnableResearch(rPlayer, "RES_ED_WLAA1", true); //AA Laser Cannon
 					EnableResearch(rPlayer, "RES_ED_WLAA2", true); //Upg: AA Laser Cannon II
 					EnableResearch(rPlayer, "RES_ED_WSI1", true); //Ionengeschütz
