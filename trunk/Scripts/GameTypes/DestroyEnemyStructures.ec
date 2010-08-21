@@ -159,7 +159,6 @@ mission "translateGameTypeDestroyStructures"{
 	function int DisablePlayer(player rPlayer){
 		rPlayer.SetMaxDistance(0);
 		rPlayer.EnableAI(false);
-		rPlayer.EnableAIFeatures(aiBuildBuildings, false);
 		rPlayer.EnableCommand(commandBuildBuilding, false);
 		mToKill=mToKill|rPlayer.GetIFF();
 	}
