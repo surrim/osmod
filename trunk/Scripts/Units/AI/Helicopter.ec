@@ -16,10 +16,8 @@
  * along with OSMod.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-aircraft "translateScriptNameAircraft"
-{
-    consts
-    {
+aircraft "translateScriptNameAircraft"{
+    consts{
         nonAttack=0;
         movingOnPosition=1;
         attacking=2;
@@ -47,6 +45,7 @@ aircraft "translateScriptNameAircraft"
         inRangeBadHit = 3; //w zasiegu strzalu ale nie mozna trafic (cos zaslania)
         inRangeGoodHit = 4;
     }
+    
     unit m_uTarget;
     int  m_nTargetGx;
     int  m_nTargetGy;
@@ -64,7 +63,6 @@ aircraft "translateScriptNameAircraft"
     unit m_uSpecialUnit;
     int  m_nState;
     int  m_bNeedReload;
-
 
     enum lights
     {
@@ -90,14 +88,6 @@ multi:
         "translateCommandStateStaticAttack",
 multi:
         "translateCommandStateAttackMode"
-    }
-
-    enum traceMode
-    {
-        "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
-multi:
-        "translateCommandStateTraceMode"
     }
 
     state Nothing;
@@ -161,19 +151,16 @@ multi:
         {
             if(GetCannonType(0)==cannonTypeBomb)//bombowiec
             {
-                if(traceMode)   TraceD("bombowiec                                                  \n");
                 if(GetLocationX()==m_nTargetGx && GetLocationY()==m_nTargetGy)//nad celem
                 {
                     if (IsMoving())
                     {
-                        if(traceMode) TraceD("CallStopMoving                         \n");
                         CallStopMoving();
                     }
                     return true;
                 }
                 else
                 {
-                    if(traceMode)   TraceD("GoToTarget: Target not in range                               \n");
                     CallMoveToPoint(m_nTargetGx,m_nTargetGy,0);
                     return false;
                 }
@@ -186,10 +173,8 @@ multi:
 
             if (nRangeMode == inRangeGoodHit)
             {
-            /*if(traceMode) TraceD("In range                         \n");
-            if (IsMoving())
+            /*if (IsMoving())
             {
-            if(traceMode) TraceD("CallStopMoving                         \n");
             CallStopMoving();
             }*/
                 return true;
@@ -197,16 +182,11 @@ multi:
 
             if(nRangeMode == inRangeBadAngleAlpha) //w zasiegu ale trzeba odwrocic czolg
             {
-                if(traceMode)     TraceD("Rotating tank:");
-                if (IsMoving())
-                {
-
-                    if(traceMode) TraceD("CallStopMoving                         \n");
+                if (IsMoving()){
                     CallStopMoving();
                 }
                 else
                 {
-                    if(traceMode) TraceD("CallTurnToAngle                         \n");
                     if(bAttackOnPoint)
                         CallTurnToAngle(GetCannonAngleToPoint(0,m_nTargetGx,m_nTargetGy,m_nTargetLz));
                     else
@@ -217,7 +197,6 @@ multi:
 
             if(nRangeMode == inRangeBadHit)
             {
-                if(traceMode) TraceD("Zaslanianie                         \n");
                 nDx = m_nTargetGx - m_nTargetGy + GetLocationY();
                 nDy = m_nTargetGy + m_nTargetGx - GetLocationX();
                 CallMoveLowToPoint(nDx, nDy, 0);
@@ -226,7 +205,6 @@ multi:
             }
             if(nRangeMode == inRangeBadAngleBeta)
             {
-                if(traceMode) TraceD("Zla beta                         \n");
                 if(GetLocationX()==m_uTarget.GetLocationX() && GetLocationX()==m_uTarget.GetLocationX())
                     CallMoveToPoint(GetLocationX()+3,GetLocationY(), 0);
                 else
@@ -238,20 +216,11 @@ multi:
             nDx = GetLocationX()-m_nTargetGx;
             nDy = GetLocationY()-m_nTargetGy;
             CallMoveLowToPoint(m_nTargetGx+(((GetCannonShootRange(0)-1)*nDx)/nDistance),m_nTargetGy+(((GetCannonShootRange(0)-1)*nDy)/nDistance),0);
-            if(traceMode)
-            {
-                TraceD("Target not in range dist=");
-                TraceD(nDistance);
-                TraceD(",  rMode=");
-                TraceD(nRangeMode);
-                TraceD("                          \n");
-            }
             return false;
         }
 
         if(m_nAttackPhase==nonAttack)
         {
-            if(traceMode)     TraceD("nonAttack                              \n");
             nDx=GetLocationX()-m_nTargetGx;
             nDy=GetLocationY()-m_nTargetGy;
 
@@ -272,7 +241,6 @@ multi:
         }
         if(m_nAttackPhase==movingOnPosition)
         {
-            if(traceMode)     TraceD("movingOnPosition                              \n");
             if(!IsMoving() || (m_nAttackGx==GetLocationX()&& m_nAttackGy==GetLocationY()))
             {
                 CallMoveLowToPoint(2*m_nTargetGx - m_nAttackGx, 2*m_nTargetGy - m_nAttackGy, 0);
@@ -282,9 +250,7 @@ multi:
         }
         if(m_nAttackPhase==attacking)
         {
-            if(traceMode)     TraceD("attacking: ");
             nDistance = Distance(m_nAttackGx,m_nAttackGy,GetLocationX(),GetLocationY());
-            if(traceMode) {   TraceD(nDistance);TraceD("                \n");}
             if((GetCannonType(0)!=cannonTypeBomb && nDistance>4) || nDistance>8)
             {
                 nDx = (m_nTargetGx - m_nAttackGx);
@@ -299,9 +265,7 @@ multi:
         }
         /*if(m_nAttackPhase==evacuating)
         {
-        if(traceMode)     TraceD("evacuating: ");
         nDistance = Distance(m_nTargetGx,m_nTargetGy,GetLocationX(),GetLocationY());
-        if(traceMode) {   TraceD(nDistance);TraceD("                \n");}
         if(!IsMoving() || nDistance>3)
         {
         m_nAttackPhase=nonAttack;
@@ -325,7 +289,6 @@ multi:
         }
         if(nRangeMode == inRangeBadAngleAlpha) //w zasiegu ale trzeba odwrocic czolg
         {
-            if(traceMode)   TraceD("Rotating aircraft:");
             CallTurnToAngle(GetCannonAngleToTarget(0,m_uTarget));
             return true;
         }
@@ -369,8 +332,6 @@ multi:
 
     state Nothing
     {
-        if(traceMode)TraceD("N                                                 \n");
-
         if(movementMode==1) return HoldPosition;
 
         if(CheckAmmo())return MovingForGetSupply;
@@ -395,8 +356,6 @@ multi:
     //----------------------------------------------------
     state HoldPosition
     {
-        if(traceMode)TraceD("HP                                                 \n");
-
         if(CheckAmmo())return MovingForGetSupply;
 
         if(m_uTarget)
@@ -411,7 +370,6 @@ multi:
             {
                 if(TargetInRange())
                 {
-                    if(traceMode)TraceD("HP Fire!!!                                                \n");
                     CannonFireToTarget(-1, m_uTarget, -1);
                     return HoldPosition;
                 }
@@ -436,15 +394,12 @@ multi:
     {
         int nDistance;
 
-        if(traceMode)TraceD("AA                                                \n");
-
         if(CheckAmmo())return MovingForGetSupply;
 
         // pozostawaj w okolicach punktu
         nDistance = Distance(m_nStayGx,m_nStayGy,GetLocationX(),GetLocationY());
         if( nDistance > 18)
         {
-            if(traceMode)TraceD("nDistance: > 12 !!!!!                                                \n  ");
             SetTarget(null);
             m_nAttackPhase=nonAttack;
             CallMoveToPoint(m_nStayGx, m_nStayGy, m_nStayLz);
@@ -464,7 +419,6 @@ multi:
             m_nTargetGy = m_uTarget.GetLocationY();
             if(AttackRun(0))
             {
-                if(traceMode)TraceD("AA    Fire!!!!                                           \n");
                 CannonFireToTarget(-1, m_uTarget, 2);
             }
             return AutoAttacking;
@@ -498,7 +452,6 @@ multi:
     //--------------------------------------------------------------------------
     state AttackingPoint
     {
-        if(traceMode)TraceD("AG                                                \n");
         if(CheckAmmo())return MovingForGetSupply;
         if(AttackRun(1))
             CannonFireGround(-1, m_nTargetGx, m_nTargetGy, 0, 2);
@@ -507,7 +460,6 @@ multi:
     //----------------------------------------------------
     state Attacking
     {
-        if(traceMode)TraceD("A                                                \n");
         if(CheckAmmo())return MovingForGetSupply;
         if (m_uTarget.IsLive())
         {
@@ -539,12 +491,10 @@ multi:
     {
         if (IsMoving())
         {
-            if(traceMode)   TraceD("Moving                                                \n");
             return Moving;
         }
         else
         {
-            if(traceMode) TraceD("Moving -> N                                           \n");
             EndState();
             return Nothing;
         }
@@ -593,7 +543,6 @@ multi:
     //--------------------------------------------------------------------------
     state Escort
     {
-        if(traceMode)TraceD("Escort                                                 \n");
         if(CheckAmmo())return MovingForGetSupply;
         if(m_uTarget)
         {
@@ -634,7 +583,6 @@ multi:
         m_nTargetLz = m_uSpecialUnit.GetLocationZ();
         if(Distance(m_nTargetGx,m_nTargetGy,GetLocationX(),GetLocationY()) > 0)
         {
-            if(traceMode) TraceD("Escort: updating position                                                \n  ");
             CallMoveToPoint(m_nTargetGx, m_nTargetGy, m_nTargetLz);
             return Escort;
         }
@@ -773,7 +721,6 @@ multi:
     //********************************************************
     command Initialize()
     {
-        traceMode = 0;
         movementMode = 0;
         attackMode = 1;
         SetCannonFireMode(-1, disableFire);
@@ -930,20 +877,6 @@ multi:
         m_nTargetLz = GetEntranceZ(uEntrance);
         state StartMoving;
     }
-
-    //--------------------------------------------------------------------------
-    /*  command UserOneParam9(int nMode) button traceMode priority 255
-    {
-    if (nMode == -1)
-    {
-    traceMode = (traceMode + 1) % 2;
-    }
-    else
-    {
-    assert(nMode == 0);
-    traceMode = nMode;
-    }
-    }*/
 
     //for flyables
     command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31

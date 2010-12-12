@@ -34,15 +34,6 @@ multi:
         "translateCommandStateLightsMode"
     }
 
-    enum traceMode
-    {
-        "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
-multi:
-        "translateCommandStateTraceMode"
-    }
-
-
     unit m_uTarget;
     int  m_nTargetGx;
     int  m_nTargetGy;
@@ -131,12 +122,9 @@ multi:
         int i;
         int nFindTarget;
 
-        if(traceMode)   TraceD("F");
-
         //m_uTarget = GetAttacker(-1);
         //ClearAttacker(-1);
 
-        if(traceMode)   TraceD(".");
         if(!m_uTarget)
         {
             for(i=0;i<GetUnitsCount() && !m_uTarget;i=i+1)
@@ -161,15 +149,12 @@ multi:
                 if (m_uTarget != null) SetLeader(i);
             }
         }
-        if(traceMode)   TraceD(".");
         if (m_uTarget != null)
         {
-            if(traceMode)     TraceD("-> A                        \n");
             bAuto=true;
             PrepareAttack(m_uTarget);
             return Attacking;
         }
-        if(traceMode)   TraceD(".                             \n");
 
         return FirstState,20;
     }
@@ -178,13 +163,10 @@ multi:
     {
               int i;
               int nFindTarget;
-        if(traceMode)   TraceD("N");
         m_uTarget = GetAttacker(-1);
         ClearAttacker(-1);
-        if(traceMode)   TraceD(".");
         if(!m_uTarget)
         {
-            if(traceMode)     TraceD("  FT");
                         for(i=0;i<GetUnitsCount() && !m_uTarget;i=i+1)
             {
                 nFindTarget = 0;
@@ -211,20 +193,16 @@ multi:
                 if (m_uTarget != null)
                                 {
                                     SetLeader(i);
-                                    if(traceMode)   TraceD(i);
                                 }
             }
 
         }
-        if(traceMode)   TraceD(".");
         if (m_uTarget != null)
         {
-            if(traceMode)     TraceD("-> A                        \n");
             bAuto=true;
             PrepareAttack(m_uTarget);
             return Attacking;
         }
-        if(traceMode)   TraceD(".                             \n");
         return Nothing,20;
     }
     //--------------------------------------------------------------------------
@@ -261,21 +239,17 @@ multi:
             m_uTarget = FindTarget(0,nFindTarget,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
             if (m_uTarget != null)
             {
-                if(traceMode)   TraceD("M -> A                        \n");
                 bAuto=true;
                 PrepareAttack(m_uTarget);
                 return Attacking;
             }
         }
-        if(traceMode)   TraceD("M");
         if (IsMoving())
         {
-            if(traceMode)     TraceD("                             \n");
             return Moving;
         }
         else
         {
-            if(traceMode)     TraceD("-stop                             \n");
             bOnTheWay=false;
             EndState();
             return Nothing;
@@ -284,7 +258,6 @@ multi:
     //--------------------------------------------------------------------------
     state AttackingPoint
     {
-        if(traceMode)   TraceD("AP                       \n");
         if(GoToPoint())
         {
             return AttackingPoint;
@@ -298,24 +271,19 @@ multi:
     //----------------------------------------------------
     state Attacking
     {
-        if(traceMode)   TraceD("A");
         if (m_uTarget.IsLive())
         {
             if(bAuto && DistanceTo(m_uTarget.GetLocationX(),m_uTarget.GetLocationY())>20)
             {
-                if(traceMode)   TraceD("- out of distance");
                 m_uTarget=null;
                 EndAttack();
                 if(bOnTheWay)
                 {
                     CallMoveToPoint(m_nTargetGx, m_nTargetGy, m_nTargetLz);
-                                        if(traceMode)   TraceD(" ->M                     \n");
                     return StartMoving;
                 }
-                                if(traceMode)   TraceD(" ->N                     \n");
                 return Nothing;
             }
-                        if(traceMode)   TraceD("                      \n");
                         PrepareAttack(m_uTarget);
             return Attacking,80;
         }
@@ -416,19 +384,6 @@ multi:
         NextCommand(false);
     }
     //--------------------------------------------------------------------------
-    command UserOneParam9(int nMode) button traceMode priority 255
-    {
-    if (nMode == -1)
-    {
-    traceMode = (traceMode + 1) % 2;
-    }
-    else
-    {
-    assert(nMode == 0);
-    traceMode = nMode;
-    }
-    }
-    //--------------------------------------------------------------------------
     command SpecialChangeUnitsScript() button "translateCommandChangeScript" description "translateCommandChangeScriptDescription" hotkey priority 254
     {
         //special command - no implementation
@@ -458,7 +413,6 @@ multi:
     command Initialize()
     {
         bAuto=false;
-        traceMode = 0;
         bOnTheWay=false;
         m_bFindAndDestroyWalls=0;
         SetCannonFireMode(-1,-1, enableFire);

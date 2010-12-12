@@ -67,14 +67,6 @@ multi:
         "translateCommandStateLightsMode"
     }
 
-    enum traceMode
-    {
-        "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
-multi:
-        "translateCommandStateTraceMode"
-    }
-
     enum repairMode
     {
         "translateCommandStateDontRepair",
@@ -136,20 +128,17 @@ multi:
             StartEnumTargetsArray();
             for(i=0;i<nTargetsCount;i=i+1)
             {
-                                if(traceMode)   TraceD(".");
                 newTarget = GetNextTarget();
 
                 if(!newTarget.IsFroozen() &&
                                     CanBeRepaired(newTarget))
                                 {
-                                    if(traceMode)   TraceD(":");
                           m_nMoveToX = GetOperateOnTargetLocationX(newTarget);
                       m_nMoveToY = GetOperateOnTargetLocationY(newTarget);
                         m_nMoveToZ = GetOperateOnTargetLocationZ(newTarget);
 
                                     if(IsGoodPointForOperateOnTarget(newTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))
                                     {
-                                            if(traceMode)   TraceD("!");
                                             EndEnumTargetsArray();
                                             SetCurrentTarget(newTarget);
                                             return true;
@@ -177,7 +166,6 @@ multi:
 
         if(nTargetsCount!=0)
         {
-            if(traceMode)   TraceD("T>0                           \n");
             StartEnumTargetsArray();
             for(i=0;i<nTargetsCount;i=i+1)
             {
@@ -228,11 +216,9 @@ multi:
 
     state Nothing
     {
-                if(traceMode)   TraceD("N");
 
                 if(IsMoving())
                 {
-                    if(traceMode)   TraceD(" IsMoving                    \n");
                     return Nothing;
                 }
                 if(InPlatoon())
@@ -249,16 +235,13 @@ multi:
 
                 m_nCurrOperation = operationRepair;
                 CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                if(traceMode)   TraceD("-> MTT                           \n");
                 return MovingToTarget;
             }
         }
         if(captureMode)
         {
-            if(traceMode)   TraceD("captureMode                           \n");
             if(FindTargetToCapture())
             {
-                if(traceMode)   TraceD("Target found                           \n");
                 m_nCurrOperation = operationCapture;
                 CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
                 return MovingToTarget;
@@ -266,12 +249,10 @@ multi:
         }
                 if(InPlatoon())
         {
-                    if(traceMode)   TraceD(" IP                          \n");
                     return Nothing;
         }
                 if(m_nStayX && (GetLocationX()!=m_nStayX || GetLocationY()!=m_nStayY ||GetLocationZ()!=m_nStayZ))
                 {
-                    if(traceMode)   TraceD("-> M                           \n");
                     SetCurrentTarget(null);
                     m_nMoveToX = m_nStayX;
                     m_nMoveToY = m_nStayY;
@@ -279,7 +260,6 @@ multi:
                 CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
                     return StartMoving;
                 }
-                if(traceMode)   TraceD("                           \n");
         return Nothing;
     }
 
@@ -822,18 +802,4 @@ multi:
     {
         //special command - no implementation
     }
-    //--------------------------------------------------------------------------
-/*    command UserOneParam9(int nMode) button traceMode priority 255
-    {
-                if (nMode == -1)
-                {
-                        traceMode = (traceMode + 1) % 2;
-                }
-                else
-                {
-                        assert(nMode == 0);
-                        traceMode = nMode;
-                }
-    }*/
-
 }

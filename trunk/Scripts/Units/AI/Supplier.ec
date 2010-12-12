@@ -27,13 +27,6 @@ multi:
         "translateCommandStateLightsMode"
     }
 
-    enum traceMode
-    {
-        "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
-multi:
-        "translateCommandStateTraceMode"
-    }
     int m_nMoveToX;
     int m_nMoveToY;
     int m_nMoveToZ;
@@ -93,7 +86,6 @@ multi:
     //--------------------------------------------------------------------------
     state Moving
     {
-        if(traceMode)TraceD("state Moving                                                \n");
         if (IsMoving())
         {
             return Moving;
@@ -107,7 +99,6 @@ multi:
 
     state MovingToAssemblyPoint
     {
-        if(traceMode)TraceD("state MovingToAssemblyPoint                                \n");
         if (IsMoving())
         {
             return MovingToAssemblyPoint;
@@ -125,7 +116,6 @@ multi:
         int nPosZ;
         if (IsMoving())
         {
-            if(traceMode)TraceD("M -> SC                                                \n");
                         nPosX = GetLocationX();
             nPosY = GetLocationY();
             nPosZ = GetLocationZ();
@@ -139,16 +129,13 @@ multi:
             nPosX = GetLocationX();
             nPosY = GetLocationY();
             nPosZ = GetLocationZ();
-            if(traceMode)TraceD("M -> SC                                                \n");
             if ((nPosX == m_nMoveToX) && (nPosY == m_nMoveToY) && (nPosZ == m_nMoveToZ))
             {
-                if(traceMode)TraceD("M -> SC OK                                               \n");
                 CallLoadAmmo();
                 return LoadingAmmo;
             }
             else
             {
-                if(traceMode)TraceD("M -> SC Again                                                \n");
                 //CallMoveAndLandToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
                                 CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
                 return MovingToSupplyCenter;
@@ -180,33 +167,28 @@ multi:
             }
 
             //XXXMD zrobic gonienie czolgu
-            if(traceMode)TraceD("state MovingToObjectForSupply 1                               \n");
             return MovingToObjectForSupply;
         }
         else
         {
             if (IsInGoodCurrentPutSupplyLocation())
             {
-                if(traceMode)TraceD("state MovingToObjectForSupply 2                               \n");
                 CallPutAmmo();
                 return PuttingAmmo;
             }
             else
             {
-                if(traceMode)TraceD("state MovingToObjectForSupply 3                               \n");
                 //nie jest w dobrym miejscu
                 if (CanCurrentObjectBeSupplied())
                 {
                     m_nMoveToX = GetCurrentPutSupplyPositionX();
                     m_nMoveToY = GetCurrentPutSupplyPositionY();
                     m_nMoveToZ = GetCurrentPutSupplyPositionZ();
-                    if(traceMode)TraceD("state MovingToObjectForSupply 4                               \n");
                     CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
                     return MovingToObjectForSupply;
                 }
                 else
                 {
-                    if(traceMode)TraceD("state MovingToObjectForSupply - Can't be supplied\n");
                     //nie mozna do niego dojechac (pod ziemia), lub zabity - biezemy nastepnego
                     bIsEnd = false;
                     do
@@ -447,7 +429,6 @@ multi:
 
     command SetTransporterSupplyCenter(unit uSupplyCenter) hidden button "translateCommandSetSupplyCntr"
     {
-        if(traceMode)TraceD("command SetTransporterSupplyCenter                      \n");
         if (GetSupplyCenterBuilding() != uSupplyCenter)
         {
             if (SetSupplyCenterBuilding(uSupplyCenter))
@@ -486,7 +467,6 @@ multi:
     //komenda wydawana tylko przez budynek supplyCenter
     command MoveToSupplyCenterForLoading()
     {
-        if(traceMode)TraceD("command MoveToSupplyCenterForLoading\n");
         if (!HaveObjectsForSupply() && (state != LoadingAmmo))
         {
             m_nMoveToX = GetSupplyCenterLoadPositionX();
@@ -551,18 +531,4 @@ multi:
         }
         SetLightsMode(lights);
     }
-
-    //--------------------------------------------------------------------------
-    /*    command UserOneParam9(int nMode) hidden button traceMode priority 255
-    {
-    if (nMode == -1)
-    {
-    traceMode = (traceMode + 1) % 2;
-    }
-    else
-    {
-    assert(nMode == 0);
-    traceMode = nMode;
-    }
-    }*/
 }

@@ -40,13 +40,6 @@ multi:
         "translateCommandStateLightsMode"
     }
 
-    enum traceMode
-    {
-        "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
-multi:
-        "translateCommandStateTraceMode"
-    }
     //********************************************************
     //********* F U N C T I O N S ****************************
     //********************************************************
@@ -84,7 +77,6 @@ multi:
                 m_nSpecialCounter = (m_nSpecialCounter+1)%16;
             else
                 m_nSpecialCounter = 0;
-            if(traceMode)TraceD("R                                                 \n");
             return Retreat;
         }
 
@@ -92,17 +84,14 @@ multi:
         {
             if(IsMoving())
                 CallStopMoving();
-            if(traceMode)TraceD("R->N                                                 \n");
             return Nothing;
         }
         CallMoveToPoint(2*GetLocationX()-uTarget.GetLocationX(),2*GetLocationY() - uTarget.GetLocationY(),GetLocationZ());
-        if(traceMode)TraceD("R u                                                \n");
         return Retreat;
     }
     //-------------------------------------------------------
     state Nothing
     {
-        if(traceMode)TraceD("N                                                 \n");
         return Nothing;
     }
     //--------------------------------------------------------------------------
@@ -115,12 +104,10 @@ multi:
     {
         if (IsMoving())
         {
-            if(traceMode)   TraceD("Moving                                                \n");
             return Moving;
         }
         else
         {
-            if(traceMode) TraceD("Moving -> N                                           \n");
             EndState();
             return Nothing;
         }
@@ -148,9 +135,6 @@ multi:
     {
         int nTargetGx;
         int nTargetGy;
-        if(traceMode)
-            TraceD("Escort                                                 \n");
-
         if(!m_uSpecialUnit.IsLive())
         {
             m_uSpecialUnit=null;
@@ -167,8 +151,6 @@ multi:
         nTargetGy = m_uSpecialUnit.GetLocationY()+m_nSpecialGy;
         if(Distance(nTargetGx,nTargetGy,GetLocationX(),GetLocationY()) > 0)
         {
-            if(traceMode)
-                TraceD("Escort: updating position                                                \n  ");
             CallMoveToPoint(nTargetGx, nTargetGy, m_uSpecialUnit.GetLocationZ());
             return Escort;
         }
@@ -272,7 +254,6 @@ multi:
         m_nStayGx = GetLocationX();
         m_nStayGy = GetLocationY();
         m_nStayLz = GetLocationZ();
-        traceMode = 0;
     }
     //--------------------------------------------------------------------------
     command Uninitialize()
@@ -372,16 +353,4 @@ multi:
         //special command - no implementation
     }
     //--------------------------------------------------------------------------
-    /*    command UserOneParam9(int nMode) hidden button traceMode priority 255
-    {
-    if (nMode == -1)
-    {
-    traceMode = (traceMode + 1) % 2;
-    }
-    else
-    {
-    assert(nMode == 0);
-    traceMode = nMode;
-    }
-    }*/
 }
