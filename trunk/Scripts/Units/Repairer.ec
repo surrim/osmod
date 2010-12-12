@@ -37,34 +37,11 @@ repairer "translateScriptNameRepairer"{
 
 		MAX_DISTANCE_FOR_AUTOMODE = 8;
 
-		findTargetWaterUnit    =  1;
-		findTargetFlyingUnit   =  2;
-		findTargetNormalUnit   =  4;
-		findTargetBuildingUnit =  8;
-		findTargetAnyUnit      = 15;
-
-		//typ rasy (jakich IFF'ow szukamy
-		findEnemyUnit   = 1;
-		findAllyUnit    = 2;
-		findNeutralUnit = 4;
-		findOurUnit		 = 8;
-
-		//kryterium szukania
-		findDisabledUnit	= 8;
-		findDamagedUnit	=16;
-
-		//typ szukanego obiektu
-		findDestinationCivilUnit    =  1;
-		findDestinationArmedUnit    =  2;
-		findDestinationRepairerUnit =  4;
-		findDestinationSupplyUnit   =  8;
-		findDestinationAnyUnit      = 15;
-
 		//nOperation
-		operationRepair  = 0;
-		operationCapture = 1;
-		operationRepaint = 2;
-		operationUpgrade = 3;
+		OPERATION_REPAIR  = 0;
+		OPERATION_CAPTURE = 1;
+		OPERATION_REPAINT = 2;
+		OPERATION_UPGRADE = 3;
 	}
 
 	int nMoveToX;
@@ -220,21 +197,21 @@ repairer "translateScriptNameRepairer"{
 
 		if(comboAutoRepairMode==AUTOREPAIR_ON){
 			if(FindTargetToRepair()){
-				nOperation=operationRepair;
+				nOperation=OPERATION_REPAIR;
 				CallMoveToPointForce(nMoveToX, nMoveToY, nMoveToZ);
 				return MovingToTarget;
 			}
 		}
 		if(comboAutoCaptureMode==AUTOCAPTURE_ON){
 			if(FindTargetToCapture()){
-				nOperation=operationCapture;
+				nOperation=OPERATION_CAPTURE;
 				CallMoveToPointForce(nMoveToX, nMoveToY, nMoveToZ);
 				return MovingToTarget;
 			}
 		}
 		if(comboAutoUpgradeMode==AUTOUPGRADE_ON){
 			if(FindTargetToUpgrade()){
-				nOperation=operationUpgrade;
+				nOperation=OPERATION_UPGRADE;
 				CallMoveToPointForce(nMoveToX, nMoveToY, nMoveToZ);
 				return MovingToTarget;
 			}
@@ -265,10 +242,10 @@ repairer "translateScriptNameRepairer"{
 		if(IsMoving()){
 			if(
 				!uTarget.IsFroozen() &&
-				(nOperation==operationRepair && CanBeRepaired(uTarget)) ||
-				(nOperation==operationCapture && CanBeConverted(uTarget)) ||
-				(nOperation==operationRepaint && CanBeRepainted(uTarget)) ||
-				(nOperation==operationUpgrade && CanBeUpgraded(uTarget))
+				(nOperation==OPERATION_REPAIR && CanBeRepaired(uTarget)) ||
+				(nOperation==OPERATION_CAPTURE && CanBeConverted(uTarget)) ||
+				(nOperation==OPERATION_REPAINT && CanBeRepainted(uTarget)) ||
+				(nOperation==OPERATION_UPGRADE && CanBeUpgraded(uTarget))
 			){
 				if(!IsGoodPointForOperateOnTarget(uTarget, nMoveToX, nMoveToY, nMoveToZ)){ //target has moved
 					nMoveToX=GetOperateOnTargetLocationX(uTarget);
@@ -279,14 +256,14 @@ repairer "translateScriptNameRepairer"{
 						return MovingToTarget;
 					}
 					//unable to find operation point for target
-					nOperation=operationRepair;
+					nOperation=OPERATION_REPAIR;
 					CallStopMoving();
 					SetTarget(null);
 					NextCommand(true);
 					return Nothing;
 				}
 			}else{
-				nOperation=operationRepair;
+				nOperation=OPERATION_REPAIR;
 				CallStopMoving();
 				SetTarget(null);
 				NextCommand(true);
@@ -294,9 +271,8 @@ repairer "translateScriptNameRepairer"{
 			}
 			return MovingToTarget;
 		}
-		//sprawdzic czy w punkcie w ktorym jestesmy mozemy zaczac naprawe
 		if(IsInGoodPointForOperateOnTarget(uTarget)){
-			if(nOperation==operationRepair){
+			if(nOperation==OPERATION_REPAIR){
 				if(CanBeRepaired(uTarget)){
 					CallRepair(uTarget);
 					return Repairing;
@@ -305,7 +281,7 @@ repairer "translateScriptNameRepairer"{
 				NextCommand(true);
 				return Nothing;
 			}
-			if(nOperation==operationCapture){
+			if(nOperation==OPERATION_CAPTURE){
 				if(CanBeConverted(uTarget)){
 					CallConvert(uTarget);
 					return Converting;
@@ -314,7 +290,7 @@ repairer "translateScriptNameRepairer"{
 				NextCommand(true);
 				return Nothing;
 			}
-			if(nOperation==operationRepaint){
+			if(nOperation==OPERATION_REPAINT){
 				if(CanBeRepainted(uTarget)){
 					CallRepaint(uTarget, nRepaintSideColor);
 					return Repainting;
@@ -323,7 +299,7 @@ repairer "translateScriptNameRepairer"{
 				NextCommand(true);
 				return Nothing;
 			}
-			//assert nOperation==operationUpgrade;
+			//assert nOperation==OPERATION_UPGRADE;
 			if(CanBeUpgraded(uTarget)){
 				CallUpgrade(uTarget);
 				return Upgrading;
@@ -340,7 +316,7 @@ repairer "translateScriptNameRepairer"{
 			return MovingToTarget;
 		}
 		//unable to find operation point for target
-		nOperation=operationRepair;
+		nOperation=OPERATION_REPAIR;
 		CallStopMoving();
 		SetTarget(null);
 		NextCommand(true);
@@ -352,7 +328,6 @@ repairer "translateScriptNameRepairer"{
 			return Repairing, 5;
 		}
 		if(CanBeRepaired(uTarget)){
-			//z jakiegos powodu jeszcze go nie naprawilismy - odjechal ?
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
 			nMoveToZ=GetOperateOnTargetLocationZ(uTarget);
@@ -369,7 +344,6 @@ repairer "translateScriptNameRepairer"{
 			return Converting, 5;
 		}
 		if(CanBeConverted(uTarget)){
-			//z jakiegos powodu jeszcze go nie skonvertowaliœmy - odjechal ?
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
 			nMoveToZ=GetOperateOnTargetLocationZ(uTarget);
@@ -386,7 +360,6 @@ repairer "translateScriptNameRepairer"{
 			return Repainting, 5;
 		}
 		if(uTarget.IsLive() && (uTarget.GetSideColor()!=nRepaintSideColor)){
-			//z jakiegos powodu jeszcze go nie pomalowalismy - odjechal ?
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
 			nMoveToZ=GetOperateOnTargetLocationZ(uTarget);
@@ -403,7 +376,6 @@ repairer "translateScriptNameRepairer"{
 			return Upgrading, 5;
 		}
 		if(uTarget.IsLive() && CanBeUpgraded(uTarget)){
-			//z jakiegos powodu jeszcze go nie zubgradeowalismy - odjechal ?
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
 			nMoveToZ=GetOperateOnTargetLocationZ(uTarget);
@@ -441,7 +413,7 @@ repairer "translateScriptNameRepairer"{
 			}
 		}
 		if(nColor>nMaxColor){
-			for(nColor=0;nColor<nRepaintSideColor;nColor=nColor+1){
+			for(nColor=0;nColor<nRepaintSideColor;++nColor){
 				if(IsPlayer(nColor)){
 					nRepaintSideColor=nColor;
 					break;
@@ -462,7 +434,7 @@ repairer "translateScriptNameRepairer"{
 
 	command Repair(unit uUnitToRepair) hidden button "translateCommandRepair"{
 		if(CanBeRepaired(uUnitToRepair)){
-			nOperation=operationRepair;
+			nOperation=OPERATION_REPAIR;
 			SetTarget(uUnitToRepair);
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
@@ -477,7 +449,7 @@ repairer "translateScriptNameRepairer"{
 
 	command Convert(unit uUnitToConvert) hidden button "translateCommandCapture"{
 		if(CanBeConverted(uUnitToConvert)){
-			nOperation=operationCapture;
+			nOperation=OPERATION_CAPTURE;
 			SetTarget(uUnitToConvert);
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
@@ -492,7 +464,7 @@ repairer "translateScriptNameRepairer"{
 
 	command Repaint(unit uUnitToRepaint) button "translateCommandRepaint" description "translateCommandRepaintDescription" hotkey priority 100{
 		if(CanBeRepainted(uUnitToRepaint)){
-			nOperation=operationRepaint;
+			nOperation=OPERATION_REPAINT;
 			SetTarget(uUnitToRepaint);
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
@@ -507,7 +479,7 @@ repairer "translateScriptNameRepairer"{
 
 	command Upgrade(unit uUnitToUpgrade) button "translateCommandUpgrade" description "translateCommandUpgradeDescription" hotkey priority 99{
 		if(CanBeUpgraded(uUnitToUpgrade)){
-			nOperation=operationUpgrade;
+			nOperation=OPERATION_UPGRADE;
 			SetTarget(uUnitToUpgrade);
 			nMoveToX=GetOperateOnTargetLocationX(uTarget);
 			nMoveToY=GetOperateOnTargetLocationY(uTarget);
