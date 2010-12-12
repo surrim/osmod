@@ -101,7 +101,7 @@ echo.|wdcreator Work\WDFiles\OSMod.wd p "Work/Textures/*.tex"
 rd Work\Banners Work\Interface Work\Language Work\Meshes Work\Parameters Work\Scripts Work\Textures /s /q
 
 cd Work
-7z a  -r -t7z -mx9 ..\OSMod.7z
+7z a -r -t7z -mx9 ..\OSMod.7z
 cd ..
 
 rd Work /s /q
