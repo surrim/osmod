@@ -17,6 +17,17 @@
  */
 
 carrier "translateScriptNameContainerTransporter"{
+	consts{
+		//comboLights
+		LIGHTS_AUTO = 0;
+		LIGHTS_ON   = 1;
+		LIGHTS_OFF  = 2;
+
+		//nGetContainerFrom
+		MINE             = 0;
+		SINGLE_CONTAINER = 1;
+	}
+
 	int m_nMoveToX;
 	int m_nMoveToY;
 	int m_nMoveToZ;
@@ -26,12 +37,12 @@ carrier "translateScriptNameContainerTransporter"{
 	int m_nContainerX;
 	int m_nContainerY;
 	int m_nContainerZ;
-	int m_nGetContainerFrom; //0 - mine, 1 - single container
+	int nGetContainerFrom; //0 - mine, 1 - single container
 
-	enum lights{
-		"translateCommandStateLightsAUTO",
-		"translateCommandStateLightsON",
-		"translateCommandStateLightsOFF",
+	enum comboLights{
+		"translateCommandStateLightsAUTO", //LIGHTS_AUTO
+		"translateCommandStateLightsON",   //LIGHTS_ON
+		"translateCommandStateLightsOFF",  //LIGHTS_OFF
 	multi:
 		"translateCommandStateLightsMode"
 	}
@@ -58,11 +69,11 @@ carrier "translateScriptNameContainerTransporter"{
 	}
 
 	state Moving{
-	if(IsMoving()){
-		return Moving;
-	}
-	NextCommand(true);
-	return Nothing;
+		if(IsMoving()){
+			return Moving;
+		}
+		NextCommand(true);
+		return Nothing;
 	}
 
 	state MovingToContainerSource{
@@ -77,10 +88,9 @@ carrier "translateScriptNameContainerTransporter"{
 		nPosY=GetLocationY();
 		nPosZ=GetLocationZ();
 		if((nPosX==m_nCurrPutGetX) && (nPosY==m_nCurrPutGetY) && (nPosZ==m_nCurrPutGetZ)){
-			if(m_nGetContainerFrom==0){
+			if(nGetContainerFrom==MINE){
 				CallGetContainer();
-			}else{
-				assert m_nGetContainerFrom==1;
+			}else{ //nGetContainerFrom==SINGLE_CONTAINER;
 				CallGetSingleContainer(m_nContainerX, m_nContainerY, m_nContainerZ);
 			}
 			return GettingContainer;
@@ -115,15 +125,15 @@ carrier "translateScriptNameContainerTransporter"{
 			return GettingContainer;
 		}
 		if(HaveContainer()){
-			if(m_nGetContainerFrom==1){
+			if(nGetContainerFrom==SINGLE_CONTAINER){
 				uContainer=FindSingleContainer();
 				if(uContainer){
 					m_nContainerX=uContainer.GetLocationX();
 					m_nContainerY=uContainer.GetLocationY();
 					m_nContainerZ=uContainer.GetLocationZ();
-					m_nGetContainerFrom=1;
+					nGetContainerFrom=SINGLE_CONTAINER;
 				}else{
-					m_nGetContainerFrom=0;
+					nGetContainerFrom=MINE;
 				}
 			}
 			if(GetDestinationBuilding()!=null){
@@ -144,7 +154,7 @@ carrier "translateScriptNameContainerTransporter"{
 			}
 			return Nothing;
 		}
-		if(m_nGetContainerFrom==0){
+		if(nGetContainerFrom==MINE){
 			uBuilding=GetSourceBuilding();//aby sie upewnic czy zabity (i skasowac referencje w kodzie)
 			if(uBuilding==null){
 				uBuilding=FindContainerMineBuilding();
@@ -154,7 +164,7 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 				m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
 				m_nCurrPutGetZ=GetSourceBuildingTakeLocationZ();
-				m_nGetContainerFrom=0;
+				nGetContainerFrom=MINE;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				return MovingToContainerSource;
 			}
@@ -166,13 +176,13 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetContainerTakeLocationX(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetY=GetContainerTakeLocationY(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetZ=GetContainerTakeLocationZ(m_nContainerX, m_nContainerY, m_nContainerZ);
-				m_nGetContainerFrom=1;
+				nGetContainerFrom=SINGLE_CONTAINER;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				return MovingToContainerSource;
 			}
 			return Nothing;
 		}
-		assert m_nGetContainerFrom==1;
+		//nGetContainerFrom==SINGLE_CONTAINER;
 		uContainer=FindSingleContainer();
 		if(uContainer){
 			m_nContainerX=uContainer.GetLocationX();
@@ -181,7 +191,7 @@ carrier "translateScriptNameContainerTransporter"{
 			m_nCurrPutGetX=GetContainerTakeLocationX(m_nContainerX, m_nContainerY, m_nContainerZ);
 			m_nCurrPutGetY=GetContainerTakeLocationY(m_nContainerX, m_nContainerY, m_nContainerZ);
 			m_nCurrPutGetZ=GetContainerTakeLocationZ(m_nContainerX, m_nContainerY, m_nContainerZ);
-			m_nGetContainerFrom=1;
+			nGetContainerFrom=SINGLE_CONTAINER;
 			CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 			return MovingToContainerSource;
 		}
@@ -194,7 +204,7 @@ carrier "translateScriptNameContainerTransporter"{
 			m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 			m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
 			m_nCurrPutGetZ=GetSourceBuildingTakeLocationZ();
-			m_nGetContainerFrom=0;
+			nGetContainerFrom=MINE;
 			CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 			return MovingToContainerSource;
 		}
@@ -208,8 +218,8 @@ carrier "translateScriptNameContainerTransporter"{
 			return PuttingContainer;
 		}
 		if(!HaveContainer()){
-			if((m_nGetContainerFrom==1) && IsContainerInPoint(m_nContainerX, m_nContainerY, m_nContainerZ)){
-				m_nGetContainerFrom=1;
+			if((nGetContainerFrom==SINGLE_CONTAINER) && IsContainerInPoint(m_nContainerX, m_nContainerY, m_nContainerZ)){
+				nGetContainerFrom=SINGLE_CONTAINER;
 				m_nCurrPutGetX=GetContainerTakeLocationX(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetY=GetContainerTakeLocationY(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetZ=GetContainerTakeLocationZ(m_nContainerX, m_nContainerY, m_nContainerZ);
@@ -220,7 +230,7 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 				m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
 				m_nCurrPutGetZ=GetSourceBuildingTakeLocationZ();
-				m_nGetContainerFrom=0;
+				nGetContainerFrom=MINE;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				return MovingToContainerSource;
 			}
@@ -230,7 +240,7 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 				m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
 				m_nCurrPutGetZ=GetSourceBuildingTakeLocationZ();
-				m_nGetContainerFrom=0;
+				nGetContainerFrom=MINE;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				return MovingToContainerSource;
 			}
@@ -242,7 +252,7 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetContainerTakeLocationX(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetY=GetContainerTakeLocationY(m_nContainerX, m_nContainerY, m_nContainerZ);
 				m_nCurrPutGetZ=GetContainerTakeLocationZ(m_nContainerX, m_nContainerY, m_nContainerZ);
-				m_nGetContainerFrom=1;
+				nGetContainerFrom=SINGLE_CONTAINER;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				return MovingToContainerSource;
 			}
@@ -278,7 +288,7 @@ carrier "translateScriptNameContainerTransporter"{
 	}
 
 	command Initialize(){
-		m_nGetContainerFrom=0;
+		nGetContainerFrom=MINE;
 		SetCannonFireMode(-1, 1);
 		false;
 	}
@@ -291,7 +301,7 @@ carrier "translateScriptNameContainerTransporter"{
 
 	command SetContainerSource(unit uTarget) hidden button "translateCommandSetMine"{
 		SetSourceBuilding(uTarget);
-		m_nGetContainerFrom=0;
+		nGetContainerFrom=MINE;
 		if(!HaveContainer()){
 			m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 			m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
@@ -315,7 +325,7 @@ carrier "translateScriptNameContainerTransporter"{
 		m_nContainerX=uTarget.GetLocationX();
 		m_nContainerY=uTarget.GetLocationY();
 		m_nContainerZ=uTarget.GetLocationZ();
-		m_nGetContainerFrom=1;
+		nGetContainerFrom=SINGLE_CONTAINER;
 		if(!HaveContainer()){
 			m_nCurrPutGetX=GetContainerTakeLocationX(m_nContainerX, m_nContainerY, m_nContainerZ);
 			m_nCurrPutGetY=GetContainerTakeLocationY(m_nContainerX, m_nContainerY, m_nContainerZ);
@@ -348,7 +358,7 @@ carrier "translateScriptNameContainerTransporter"{
 				m_nCurrPutGetX=GetSourceBuildingTakeLocationX();
 				m_nCurrPutGetY=GetSourceBuildingTakeLocationY();
 				m_nCurrPutGetZ=GetSourceBuildingTakeLocationZ();
-				m_nGetContainerFrom=0;
+				nGetContainerFrom=MINE;
 				CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
 				state MovingToContainerSource;
 			}
@@ -381,14 +391,13 @@ carrier "translateScriptNameContainerTransporter"{
 		true;
 	}
 
-	command SetLights(int nMode) button lights priority 204{
+	command SetLights(int nMode) button comboLights description "translateCommandStateLightsModeDescription" hotkey priority 204{
 		if(nMode==-1){
-			lights=(lights+1)%3;
+			comboLights=(comboLights+1)%3;
 		}else{
-			assert(nMode==0);
-			lights=nMode;
+			comboLights=nMode;
 		}
-		SetLightsMode(lights);
+		SetLightsMode(comboLights);
 	}
 
 	command SpecialChangeUnitsScript() button "translateCommandChangeScript" description "translateCommandChangeScriptDescription" hotkey priority 254{
