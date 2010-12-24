@@ -665,7 +665,7 @@ tank "translateScriptNameTank"{
 		state Escort;
 	}
 
-	command HoldPosition() hidden button "translateCommandHoldPosition" description "translateCommandStopDescription" hotkey priority 20{
+	command HoldPosition() hidden button "translateCommandHoldPosition" description "translateCommandHoldPositionDescription" hotkey priority 20{
 		SetTarget(null);
 		StopCannonFire(-1);
 		nStayX=GetLocationX();
