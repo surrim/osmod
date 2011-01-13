@@ -1,0 +1,3386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>EarthC Documentation - Object Identifiers</title>
+		<link rel="shortcut icon" href="../favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+	</head>
+	<body>
+		<h1>Object Identfiers</h1>
+		<table>
+			<tr>
+				<td><a href="#Chasis_and_weapon_identifiers">Chassis and weapon</a>:</td>
+				<td><a href="#ED_chassis">ED</a></td>
+				<td><a href="#UCS_chassis">UCS</a></td>
+				<td><a href="#LC_chassis">LC </a></td>
+			</tr>
+			<tr>
+				<td><a href="#Building_identifiers">Buildings</a>:</td>
+				<td><a href="#ED_buildings">ED</a></td>
+				<td><a href="#UCS_buildings">UCS</a></td>
+				<td><a href="#LC_buildings">LC </a></td>
+			</tr>
+			<tr>
+				<td><a href="#Research_identifiers">Researches</a>:</td>
+				<td><a href="#ED_researches">ED</a></td>
+				<td><a href="#UCS_researches">UCS</a></td>
+				<td><a href="#LC_researches">LC</a></td>
+				<td><a href="#Neutral_researches">Neutral</a></td>
+			</tr>
+			<tr>
+				<td><a href="#Artifact_identifiers">Artifacts</a>:</td>
+				<td><a href="#Normal_artifacts">Normal</a></td>
+				<td><a href="#Special_artifacts">Special</a></td>
+			</tr>
+		</table>
+		
+		<p>
+			The tables below contains two columns. "Identifier" in first column is
+			special name representing some object which you can use as parameter for some
+			functions described below. "Name" in second column is language-specific
+			name for this object displayed in game. Names here are from English version of
+			The Moon Project. Names in other language versions are the same or very similar.
+			Numbers 1,2,3 at the end of identifiers are for upgrades of
+			chassis/weapons/researches.<br />
+			In The Moon Project there is a special research "RES_MISSION_PACK1_ONLY" used as
+			a preceding research for all "MP" researches. This research must be added at begin
+			of game for each player to enable new "MP" researches.
+		</p>
+		
+		<h2><a id="Chassis_and_weapon_identifiers">Chassis and weapon identifiers</a></h2>
+		<p>
+			This object identifiers can be used to create units from scripts with
+			function <a href="../player/CreateUnit.htm">player.CreateUnit</a>, or <a href="../player/CreateUnitEx.htm">player.CreateUnitEx</a>.<br />
+			You can only put valid weapon on valid chassis, if you are not sure which weapon
+			can be put on some chassis check it in &quot;Construction Center&quot;.
+		</p>
+		<table>
+			<tr>
+				<td><i>Identifier</i></td>
+				<td><i>Name</i></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="ED_chassis">ED chassis</a></b></td>
+			</tr>
+			<tr>
+				<td>EDUBU1</td>
+				<td>Gruz</td>
+			</tr>
+			<tr>
+				<td>EDUFAKE1</td>
+				<td>Fake TT</td>
+			</tr>
+			<tr>
+				<td>EDUFAKE2</td>
+				<td>Fake ZT</td>
+			</tr>
+			<tr>
+				<td>EDUFAKE3</td>
+				<td>Fake HT</td>
+			</tr>
+			<tr>
+				<td>EDUST1</td>
+				<td>TT 100 Pamir</td>
+			</tr>
+			<tr>
+				<td>EDUST2</td>
+				<td>TT 110 Pamir</td>
+			</tr>
+			<tr>
+				<td>EDUST3</td>
+				<td>TT 120 Pamir</td>
+			</tr>
+			<tr>
+				<td>EDUMI1</td>
+				<td>ZT 200 Minelayer</td>
+			</tr>
+			<tr>
+				<td>EDUMI2</td>
+				<td>ZT 210 Minelayer</td>
+			</tr>
+			<tr>
+				<td>EDUOH1</td>
+				<td>ZK Taiga</td>
+			</tr>
+			<tr>
+				<td>EDUMT1</td>
+				<td>ZT 100 Siberia</td>
+			</tr>
+			<tr>
+				<td>EDUMT2</td>
+				<td>ZT 101 Siberia</td>
+			</tr>
+			<tr>
+				<td>EDUMT3</td>
+				<td>ZT 102 Siberia</td>
+			</tr>
+			<tr>
+				<td>EDUSPY1</td>
+				<td>NEO</td>
+			</tr>
+			<tr>
+				<td>EDUMW1</td>
+				<td>TK 100 Caspian</td>
+			</tr>
+			<tr>
+				<td>EDUMW2</td>
+				<td>TK 110 Caspian</td>
+			</tr>
+			<tr>
+				<td>EDUMW3</td>
+				<td>TK 111 Caspian</td>
+			</tr>
+			<tr>
+				<td>EDUHW1</td>
+				<td>TL 70 Volga</td>
+			</tr>
+			<tr>
+				<td>EDUHW2</td>
+				<td>TL 80 Volga</td>
+			</tr>
+			<tr>
+				<td>EDUHT1</td>
+				<td>HT 400 Kruszchev</td>
+			</tr>
+			<tr>
+				<td>EDUHT2</td>
+				<td>HT 500 Kruszchev</td>
+			</tr>
+			<tr>
+				<td>EDUHT3</td>
+				<td>HT 600 Kruszchev</td>
+			</tr>
+			<tr>
+				<td>EDUBT1</td>
+				<td>HT 800 Ural</td>
+			</tr>
+			<tr>
+				<td>EDUBT2</td>
+				<td>HT 900 Ural</td>
+			</tr>
+			<tr>
+				<td>EDUSS1</td>
+				<td>ESS 30 Irkutsk</td>
+			</tr>
+			<tr>
+				<td>EDUSS2</td>
+				<td>ESS 40 Irkutsk</td>
+			</tr>
+			<tr>
+				<td>EDUSS3</td>
+				<td>ESS 50 Irkutsk</td>
+			</tr>
+			<tr>
+				<td>EDUBS1</td>
+				<td>ESS 200 Leviathan</td>
+			</tr>
+			<tr>
+				<td>EDUBS2</td>
+				<td>ESS 300 Leviathan</td>
+			</tr>
+			<tr>
+				<td>EDUA11</td>
+				<td>MI 106 Cossack</td>
+			</tr>
+			<tr>
+				<td>EDUA12</td>
+				<td>MI 107 Cossack</td>
+			</tr>
+			<tr>
+				<td>EDUA21</td>
+				<td>MI 140 Grozny</td>
+			</tr>
+			<tr>
+				<td>EDUA22</td>
+				<td>MI 150 Grozny</td>
+			</tr>
+			<tr>
+				<td>EDUA31</td>
+				<td>MI 200 Han</td>
+			</tr>
+			<tr>
+				<td>EDUA32</td>
+				<td>MI 210 Han</td>
+			</tr>
+			<tr>
+				<td>EDUA41</td>
+				<td>MI 300 Thor</td>
+			</tr>
+			<tr>
+				<td>EDUA42</td>
+				<td>MI 310 Thor</td>
+			</tr>
+			<tr>
+				<td>EDUAS1</td>
+				<td>MI 27 Boyar</td>
+			</tr>
+			<tr>
+				<td>EDUMM11</td>
+				<td>Truck</td>
+			</tr>
+			<tr>
+				<td>EDUMM21</td>
+				<td>Truck</td>
+			</tr>
+			<tr>
+				<td>EDUMM31</td>
+				<td>Heavy Tank</td>
+			</tr>
+			<tr>
+				<td>EDUMM41</td>
+				<td>Tank</td>
+			</tr>
+			<tr>
+				<td>EDUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>EDUSTEALTH</td>
+				<td>STEALTH</td>
+			</tr>
+			<tr>
+				<td>EDUSPECIAL</td>
+				<td>Ruslan</td>
+			</tr>
+			<tr>
+				<td>EDUSM1</td>
+				<td>Kiev</td>
+			</tr>
+			<tr>
+				<td>EDUSM2</td>
+				<td>Kiev II</td>
+			</tr>
+			<tr>
+				<td>EDUCTF</td>
+				<td>CTF Flag</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>ED weapons</b></td>
+			</tr>
+			<tr>
+				<td>EDWMM21</td>
+				<td>150 mm Cannon (for EDUMM21)</td>
+			</tr>
+			<tr>
+				<td>EDWMM31</td>
+				<td>105 mm Cannon (for EDUMM31)</td>
+			</tr>
+			<tr>
+				<td>EDWMM41</td>
+				<td>105 mm Cannon (for EDUMM41)</td>
+			</tr>
+			<tr>
+				<td>EDWMM42</td>
+				<td>105 mm Cannon (for EDUMM41)</td>
+			</tr>
+			<tr>
+				<td>EDWCH1</td>
+				<td>20 mm Chaingun</td>
+			</tr>
+			<tr>
+				<td>EDWCH2</td>
+				<td>20 mm Double Chaingun</td>
+			</tr>
+			<tr>
+				<td>EDWCA1</td>
+				<td>105 mm Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWCA2</td>
+				<td>105 mm Double Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWSR1AB</td>
+				<td>Rocket Launcher (for Pamir)</td>
+			</tr>
+			<tr>
+				<td>EDWSR2AB</td>
+				<td>Double Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>EDWSR1</td>
+				<td>Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>EDWSR2</td>
+				<td>Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWSR3</td>
+				<td>Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>EDWSL1</td>
+				<td>Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWSL2</td>
+				<td>Laser Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWSL3</td>
+				<td>Laser Cannon upg.2</td>
+			</tr>
+			<tr>
+				<td>EDWSI1</td>
+				<td>Ion Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWSI2</td>
+				<td>Ion Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWHC1</td>
+				<td>120 mm Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWHC2</td>
+				<td>120 mm Double Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWMR1</td>
+				<td>Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>EDWMR2</td>
+				<td>Heavy Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWMR3</td>
+				<td>Heavy Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>EDWHCShip1</td>
+				<td>120 mm Artillery</td>
+			</tr>
+			<tr>
+				<td>EDWHCShip2</td>
+				<td>120 mm Double Artillery</td>
+			</tr>
+			<tr>
+				<td>EDWMRShip1</td>
+				<td>Long Range Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>EDWMRShip2</td>
+				<td>Long Range Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWMRShip3</td>
+				<td>Long Range Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>EDWHR1</td>
+				<td>Ballistic Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>EDWHL1</td>
+				<td>Heavy Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>EDWHL2</td>
+				<td>Heavy Laser Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWHL3</td>
+				<td>Heavy Laser Cannon upg.2</td>
+			</tr>
+			<tr>
+				<td>EDWHI1</td>
+				<td>Ion Cannon (heavy tank)</td>
+			</tr>
+			<tr>
+				<td>EDWHI2</td>
+				<td>Ion Cannon upg. (heavy tank)</td>
+			</tr>
+			<tr>
+				<td>EDWAC1</td>
+				<td>20 mm Chaingun (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAC2</td>
+				<td>20 mm Double Chaingun (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAR1</td>
+				<td>Rocket Launcher upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAR2</td>
+				<td>Rocket Launcher upg.2 (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAMR1</td>
+				<td>Heavy Rocket Launcher (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAMR2</td>
+				<td>Heavy Rocket Launcher upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>EDWAB1</td>
+				<td>Bomb Bay (3 bombs)</td>
+			</tr>
+			<tr>
+				<td>EDWAB2</td>
+				<td>Bomb Bay (5 bombs)</td>
+			</tr>
+			<tr>
+				<td>EDCAA1</td>
+				<td>AA Gun</td>
+			</tr>
+			<tr>
+				<td>EDWSPECIAL</td>
+				<td>AAR</td>
+			</tr>
+			<tr>
+				<td>EDWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>EDWAA1</td>
+				<td>AA Gun</td>
+			</tr>
+			<tr>
+				<td>EDWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>EDWEQ2</td>
+				<td>Earthquake gen.upg.1</td>
+			</tr>
+			<tr>
+				<td>EDWSHR1</td>
+				<td>Nuclear warheads</td>
+			</tr>
+			<tr>
+				<td>EDWSHR2</td>
+				<td>Nuclear warheads upg.1</td>
+			</tr>
+			<tr>
+				<td>EDCART</td>
+				<td>Artillery (building)</td>
+			</tr>
+			<tr>
+				<td>EDWART</td>
+				<td>Artillery (ship)</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>ED special equipment</b></td>
+			</tr>
+			<tr>
+				<td>EDSCA1</td>
+				<td>Carrier</td>
+			</tr>
+			<tr>
+				<td>EDSACA1</td>
+				<td>Container Hook</td>
+			</tr>
+			<tr>
+				<td>EDSCREAMER1</td>
+				<td>Noise Generator</td>
+			</tr>
+			<tr>
+				<td>EDSCREAMER2</td>
+				<td>Noise Generator upg.1</td>
+			</tr>
+			<tr>
+				<td>EDSCREAMER3</td>
+				<td>Noise Generator upg.2</td>
+			</tr>
+			<tr>
+				<td>EDREPAIR1</td>
+				<td>Repairer</td>
+			</tr>
+			<tr>
+				<td>EDREPAIR2</td>
+				<td>Repairer upg.1</td>
+			</tr>
+			<tr>
+				<td>EDREPAIR3</td>
+				<td>Repairer upg.2</td>
+			</tr>
+			<tr>
+				<td>EDBANNER</td>
+				<td>Banner</td>
+			</tr>
+			<tr>
+				<td>EDSUT</td>
+				<td>Transport hook</td>
+			</tr>
+			<tr>
+				<td>EDSBC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="UCS_chassis">UCS chassis</a></b></td>
+			</tr>
+			<tr>
+				<td>UCSUBU1</td>
+				<td>Mammoth</td>
+			</tr>
+			<tr>
+				<td>UCSUMI1</td>
+				<td>Minelayer</td>
+			</tr>
+			<tr>
+				<td>UCSUMI2</td>
+				<td>Minelayer II</td>
+			</tr>
+			<tr>
+				<td>UCSUSL1</td>
+				<td>Tiger</td>
+			</tr>
+			<tr>
+				<td>UCSUSL2</td>
+				<td>Tiger II</td>
+			</tr>
+			<tr>
+				<td>UCSUSL3</td>
+				<td>Tiger III</td>
+			</tr>
+			<tr>
+				<td>UCSUML1</td>
+				<td>Spider</td>
+			</tr>
+			<tr>
+				<td>UCSUML2</td>
+				<td>Spider II</td>
+			</tr>
+			<tr>
+				<td>UCSUML3</td>
+				<td>Spider III</td>
+			</tr>
+			<tr>
+				<td>UCSUHL1</td>
+				<td>Panther</td>
+			</tr>
+			<tr>
+				<td>UCSUHL2</td>
+				<td>Panther II</td>
+			</tr>
+			<tr>
+				<td>UCSUHL3</td>
+				<td>Panther III</td>
+			</tr>
+			<tr>
+				<td>UCSUBL1</td>
+				<td>Jaguar</td>
+			</tr>
+			<tr>
+				<td>UCSUBL2</td>
+				<td>Jaguar II</td>
+			</tr>
+			<tr>
+				<td>UCSU4L1</td>
+				<td>Grizzly</td>
+			</tr>
+			<tr>
+				<td>UCSU4L2</td>
+				<td>Grizzly II</td>
+			</tr>
+			<tr>
+				<td>UCSU4L3</td>
+				<td>Grizzly III</td>
+			</tr>
+			<tr>
+				<td>UCSUSS1</td>
+				<td>Shark</td>
+			</tr>
+			<tr>
+				<td>UCSUSS2</td>
+				<td>Shark II</td>
+			</tr>
+			<tr>
+				<td>UCSUSS3</td>
+				<td>Shark III</td>
+			</tr>
+			<tr>
+				<td>UCSUBS1</td>
+				<td>Hydra</td>
+			</tr>
+			<tr>
+				<td>UCSUBS2</td>
+				<td>Hydra II</td>
+			</tr>
+			<tr>
+				<td>UCSUBS3</td>
+				<td>Hydra III</td>
+			</tr>
+			<tr>
+				<td>UCSUA11</td>
+				<td>Gargoyle</td>
+			</tr>
+			<tr>
+				<td>UCSUA12</td>
+				<td>Gargoyle II</td>
+			</tr>
+			<tr>
+				<td>UCSUA13</td>
+				<td>Gargoyle III</td>
+			</tr>
+			<tr>
+				<td>UCSUA21</td>
+				<td>Bat</td>
+			</tr>
+			<tr>
+				<td>UCSUA22</td>
+				<td>Bat II</td>
+			</tr>
+			<tr>
+				<td>UCSUA31</td>
+				<td>Dragon</td>
+			</tr>
+			<tr>
+				<td>UCSUA32</td>
+				<td>Dragon II</td>
+			</tr>
+			<tr>
+				<td>UCSUAS1</td>
+				<td>Condor</td>
+			</tr>
+			<tr>
+				<td>UCSUOH1</td>
+				<td>Harvester</td>
+			</tr>
+			<tr>
+				<td>UCSUOH2</td>
+				<td>Harvester II</td>
+			</tr>
+			<tr>
+				<td>UCSUOH3</td>
+				<td>Harvester III</td>
+			</tr>
+			<tr>
+				<td>UCSUAH1</td>
+				<td>Harvester IV</td>
+			</tr>
+			<tr>
+				<td>UCSUAH2</td>
+				<td>Harvester V</td>
+			</tr>
+			<tr>
+				<td>UCSUAH3</td>
+				<td>Harvester VI</td>
+			</tr>
+			<tr>
+				<td>UCSUCS</td>
+				<td>Cargo Salamander</td>
+			</tr>
+			<tr>
+				<td>UCSUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>UCSUSM1</td>
+				<td>Orca</td>
+			</tr>
+			<tr>
+				<td>UCSUSM2</td>
+				<td>Orca II</td>
+			</tr>
+			<tr>
+				<td>UCSUCTF</td>
+				<td>CTF Flag</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>UCS weapons</b></td>
+			</tr>
+			<tr>
+				<td>UCSWTCH1</td>
+				<td>20 mm Chaingun (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTCH2</td>
+				<td>20 mm Chaingun upg.1 (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSP1</td>
+				<td>Plasma Cannon (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSP2</td>
+				<td>Plasma Cannon upg.1 (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSR1</td>
+				<td>Rocket Launcher (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSR2</td>
+				<td>Rocket Launcher upg.1 (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSR3</td>
+				<td>Rocket Launcher upg.2 (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWBMR1</td>
+				<td>Heavy Rocket Launcher (Panter/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBMR2</td>
+				<td>Heavy Rocket Launcher upg.1 (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBMR3</td>
+				<td>Heavy Rocket Launcher upg.2 (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBSR1</td>
+				<td>Rocket Launcher (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBSR2</td>
+				<td>Rocket Launcher upg.1 (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBSR3</td>
+				<td>Rocket Launcher upg.2 (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBHP1</td>
+				<td>Heavy Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>UCSWBHP2</td>
+				<td>Heavy Plasma Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>UCSWBHP3</td>
+				<td>Heavy Plasma Cannon upg.2</td>
+			</tr>
+			<tr>
+				<td>UCSWSCH1</td>
+				<td>20 mm chaingun (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSCH2</td>
+				<td>20 mm chaingun (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSG1</td>
+				<td>Grenade Launcher (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSG2</td>
+				<td>Grenade Launcher (Tiger)</td>
+			</tr>
+			<tr>
+				<td>UCSWBHG1</td>
+				<td>Grenade Launcher (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWBHG2</td>
+				<td>Grenade Launcher (Panther/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWSSP1</td>
+				<td>Plasma Cannon (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSSP2</td>
+				<td>Plasma Cannon (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSSR1</td>
+				<td>Rocket Launcher (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSSR2</td>
+				<td>Rocket Launcher (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSSR3</td>
+				<td>Rocket Launcher (Spider)</td>
+			</tr>
+			<tr>
+				<td>UCSWSMR1</td>
+				<td>Heavy Rocket Launcher (Spider/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWSMR2</td>
+				<td>Heavy Rocket Launcher (Spider/Jaguar)</td>
+			</tr>
+			<tr>
+				<td>UCSWDSR1</td>
+				<td>Rocket Launcher (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDSR2</td>
+				<td>Rocket Launcher (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDSR3</td>
+				<td>Rocket Launcher (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDMR1</td>
+				<td>Heavy Rocket Launcher (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDMR2</td>
+				<td>Heavy Rocket Launcher (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDHP1</td>
+				<td>Heavy Plasma Cannon (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWDHP2</td>
+				<td>Heavy Plasma Cannon (Grizzly/Hydra)</td>
+			</tr>
+			<tr>
+				<td>UCSWACH1</td>
+				<td>20 mm Chaingun (Gargoyle)</td>
+			</tr>
+			<tr>
+				<td>UCSWACH2</td>
+				<td>20 mm Double Chaingun (Gargoyle)</td>
+			</tr>
+			<tr>
+				<td>UCSWASR1</td>
+				<td>Rocket Launcher (Gargoyle)</td>
+			</tr>
+			<tr>
+				<td>UCSWASR2</td>
+				<td>Rocket Launcher upg.1 (Gargoyle)</td>
+			</tr>
+			<tr>
+				<td>UCSWAMR1</td>
+				<td>Heavy Rocket Launcher (Bat/Dragon)</td>
+			</tr>
+			<tr>
+				<td>UCSWAMR2</td>
+				<td>Heavy Rocket Launcher upg.1 (Bat/Dragon)</td>
+			</tr>
+			<tr>
+				<td>UCSWAPB1</td>
+				<td>Bomb Bay (Bat/Dragon)</td>
+			</tr>
+			<tr>
+				<td>UCSWAPB2</td>
+				<td>Bomb Bay upg.1 (Bat/Dragon)</td>
+			</tr>
+			<tr>
+				<td>UCSWTSC1</td>
+				<td>Cannon 105mm</td>
+			</tr>
+			<tr>
+				<td>UCSWTSC2</td>
+				<td>Double Cannon 105mm</td>
+			</tr>
+			<tr>
+				<td>UCSWBHC1</td>
+				<td>Double Cannon 120mm</td>
+			</tr>
+			<tr>
+				<td>UCSWBHC2</td>
+				<td>Quad Cannon 120mm</td>
+			</tr>
+			<tr>
+				<td>UCSCAA1</td>
+				<td>AA PlasmaGun</td>
+			</tr>
+			<tr>
+				<td>UCSCAA2</td>
+				<td>AA PlasmaGun II</td>
+			</tr>
+			<tr>
+				<td>UCSWAP1</td>
+				<td>Gargoil Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>UCSWAP2</td>
+				<td>Gargoil Plasma Cannon m2</td>
+			</tr>
+			<tr>
+				<td>UCSWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>UCSWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>UCSWEQ2</td>
+				<td>Earthquake gen.upg.1</td>
+			</tr>
+			<tr>
+				<td>UCSWSHR1</td>
+				<td>Plasma warheads</td>
+			</tr>
+			<tr>
+				<td>UCSWSHR2</td>
+				<td>Plasma warheads upg.1</td>
+			</tr>
+			<tr>
+				<td>UCSCART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>UCS special equipment</b></td>
+			</tr>
+			<tr>
+				<td>UCSWSH1</td>
+				<td>Shadow Generator</td>
+			</tr>
+			<tr>
+				<td>UCSWSH2</td>
+				<td>Shadow Generator</td>
+			</tr>
+			<tr>
+				<td>UCSWSH3</td>
+				<td>Shadow Generator</td>
+			</tr>
+			<tr>
+				<td>UCSRADAR1</td>
+				<td>Radar</td>
+			</tr>
+			<tr>
+				<td>UCSREPAIR1</td>
+				<td>Repairer</td>
+			</tr>
+			<tr>
+				<td>UCSREPAIR2</td>
+				<td>Repairer upg.1</td>
+			</tr>
+			<tr>
+				<td>UCSBANNER</td>
+				<td>Banner</td>
+			</tr>
+			<tr>
+				<td>UCSSUT</td>
+				<td>Transport hook</td>
+			</tr>
+			<tr>
+				<td>UCSSBC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="LC_chassis">LC chassis</a></b></td>
+			</tr>
+			<tr>
+				<td>LCULU1</td>
+				<td>Lunar m1</td>
+			</tr>
+			<tr>
+				<td>LCULU2</td>
+				<td>Lunar m2</td>
+			</tr>
+			<tr>
+				<td>LCULU3</td>
+				<td>Lunar m3</td>
+			</tr>
+			<tr>
+				<td>LCUMO1</td>
+				<td>Moon m1</td>
+			</tr>
+			<tr>
+				<td>LCUMO2</td>
+				<td>Moon m2</td>
+			</tr>
+			<tr>
+				<td>LCUMO3</td>
+				<td>Moon m3</td>
+			</tr>
+			<tr>
+				<td>LCUCR1</td>
+				<td>Crater m1</td>
+			</tr>
+			<tr>
+				<td>LCUCR2</td>
+				<td>Crater m2</td>
+			</tr>
+			<tr>
+				<td>LCUCR3</td>
+				<td>Crater m3</td>
+			</tr>
+			<tr>
+				<td>LCUCU1</td>
+				<td>Crusher m1</td>
+			</tr>
+			<tr>
+				<td>LCUCU2</td>
+				<td>Crusher m2</td>
+			</tr>
+			<tr>
+				<td>LCUCU3</td>
+				<td>Crusher m3</td>
+			</tr>
+			<tr>
+				<td>LCUHT1</td>
+				<td>Crion</td>
+			</tr>
+			<tr>
+				<td>LCUHERO</td>
+				<td>Fang</td>
+			</tr>
+			<tr>
+				<td>LCUOB1</td>
+				<td>Phobos</td>
+			</tr>
+			<tr>
+				<td>LCUME1</td>
+				<td>Meteor m1</td>
+			</tr>
+			<tr>
+				<td>LCUME2</td>
+				<td>Meteor m2</td>
+			</tr>
+			<tr>
+				<td>LCUME3</td>
+				<td>Meteor m3</td>
+			</tr>
+			<tr>
+				<td>LCUBO1</td>
+				<td>Thunderer m1</td>
+			</tr>
+			<tr>
+				<td>LCUBO2</td>
+				<td>Thunderer m2</td>
+			</tr>
+			<tr>
+				<td>LCUAS1</td>
+				<td>Mercury</td>
+			</tr>
+			<tr>
+				<td>LCUUFO</td>
+				<td>Alien craft</td>
+			</tr>
+			<tr>
+				<td>PROTOTYPE</td>
+				<td>PROTOTYPE</td>
+			</tr>
+			<tr>
+				<td>LCUFG1</td>
+				<td>Fat Girl c2</td>
+			</tr>
+			<tr>
+				<td>LCUFG2</td>
+				<td>Fat Girl c3</td>
+			</tr>
+			<tr>
+				<td>LCUFG3</td>
+				<td>Fat Girl c4</td>
+			</tr>
+			<tr>
+				<td>LCUSF1</td>
+				<td>Super Fighter</td>
+			</tr>
+			<tr>
+				<td>LCUSF2</td>
+				<td>Super Fighter m2</td>
+			</tr>
+			<tr>
+				<td>LCUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>LCUTD</td>
+				<td>Tunnel Digger</td>
+			</tr>
+			<tr>
+				<td>LCUNH</td>
+				<td>New Hope</td>
+			</tr>
+			<tr>
+				<td>LCUCTF</td>
+				<td>CTF Flag</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>LC weapons</b></td>
+			</tr>
+			<tr>
+				<td>LCWCH1</td>
+				<td>20 mm Chaingun</td>
+			</tr>
+			<tr>
+				<td>LCWCH2</td>
+				<td>20 mm Double Chaingun</td>
+			</tr>
+			<tr>
+				<td>LCWSR1</td>
+				<td>Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>LCWSR2</td>
+				<td>Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWSR3</td>
+				<td>Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>LCWSL1</td>
+				<td>Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>LCWSL2</td>
+				<td>Electro-Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWSS1</td>
+				<td>Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>LCWSS2</td>
+				<td>Sonic Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWMR1</td>
+				<td>Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>LCWMR2</td>
+				<td>Heavy Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWMR3</td>
+				<td>Heavy Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>LCWHL1</td>
+				<td>Heavy Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>LCWHL2</td>
+				<td>Heavy Electro-Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWHS1</td>
+				<td>Heavy Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>LCWHS2</td>
+				<td>Heavy Sonic Cannon upg.1</td>
+			</tr>
+			<tr>
+				<td>LCWHC1</td>
+				<td>Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>LCWHERO</td>
+				<td>Plasma Beam Projector</td>
+			</tr>
+			<tr>
+				<td>LCWAC1</td>
+				<td>Chaingun (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAC2</td>
+				<td>Chaingun upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAR1</td>
+				<td>Rocket Launcher (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAR2</td>
+				<td>Rocket Launcher upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAMR1</td>
+				<td>Heavy Rocket Launcher (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAMR2</td>
+				<td>Heavy Rocket Launcher upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAS1</td>
+				<td>Heavy Sonic Cannon (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWAS2</td>
+				<td>Heavy Sonic Cannon upg.1 (air unit)</td>
+			</tr>
+			<tr>
+				<td>LCWUFO</td>
+				<td>Alien Weapon</td>
+			</tr>
+			<tr>
+				<td>LCCAA1</td>
+				<td>AA Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>LCWAA1</td>
+				<td>AA Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>LCWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>LCWNH</td>
+				<td>Plasma Beam</td>
+			</tr>
+			<tr>
+				<td>LCWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>LCWEQ2</td>
+				<td>Earthquake gen.upg.1</td>
+			</tr>
+			<tr>
+				<td>LCCART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>LC special equipment</b></td>
+			</tr>
+			<tr>
+				<td>LCSOB1</td>
+				<td>Detector m1</td>
+			</tr>
+			<tr>
+				<td>LCSOB2</td>
+				<td>Detector m2</td>
+			</tr>
+			<tr>
+				<td>LCSSHR2</td>
+				<td>Shield Recharger m2</td>
+			</tr>
+			<tr>
+				<td>LCSSHR3</td>
+				<td>Shield Recharger m3</td>
+			</tr>
+			<tr>
+				<td>LCSREG1</td>
+				<td>Regenerator m1</td>
+			</tr>
+			<tr>
+				<td>LCSREG2</td>
+				<td>Regenerator m2</td>
+			</tr>
+			<tr>
+				<td>LCSREG3</td>
+				<td>Regenerator m3</td>
+			</tr>
+			<tr>
+				<td>LCBANNER</td>
+				<td>Banner</td>
+			</tr>
+			<tr>
+				<td>LCSUT</td>
+				<td>Transport hook</td>
+			</tr>
+			<tr>
+				<td>LCSBC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+		</table>
+		
+		<h2><a id="Building_identifiers">Building identifiers</a></h2>
+		<p>
+			Building identifiers can be used to enable or disable build of some types of
+			buildings in mission or base by function <a href="../player/EnableBuilding.htm">player.EnableBuilding</a>.
+			Note that calling this function for some special buildings (like silos or solar
+			battery) doesn't have effect. Also AI does not takes care of this fuction so you
+			can only disable buildings for human players not for AI players.
+		</p>
+		<table>
+			<tr>
+				<td><i>Identifier</i></td>
+				<td><i>Name</i></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="ED_buildings">ED buildings</a></b></td>
+			</tr>
+			<tr>
+				<td>EDBBA</td>
+				<td>Vehicle Production Center</td>
+			</tr>
+			<tr>
+				<td>EDBFA</td>
+				<td>Weapons Production Center</td>
+			</tr>
+			<tr>
+				<td>EDBPP</td>
+				<td>Power Plant</td>
+			</tr>
+			<tr>
+				<td>EDBMI</td>
+				<td>Mine</td>
+			</tr>
+			<tr>
+				<td>EDBRE</td>
+				<td>Refinery</td>
+			</tr>
+			<tr>
+				<td>EDBTC</td>
+				<td>Transport Base</td>
+			</tr>
+			<tr>
+				<td>EDBRC</td>
+				<td>Research Center</td>
+			</tr>
+			<tr>
+				<td>EDBAB</td>
+				<td>Supply Depot</td>
+			</tr>
+			<tr>
+				<td>EDBWB</td>
+				<td>Ship Yard</td>
+			</tr>
+			<tr>
+				<td>EDBPB</td>
+				<td>Pillbox</td>
+			</tr>
+			<tr>
+				<td>EDBST</td>
+				<td>Small Tower</td>
+			</tr>
+			<tr>
+				<td>EDBBT</td>
+				<td>Large Tower</td>
+			</tr>
+			<tr>
+				<td>EDBBC</td>
+				<td>Missile Control Center</td>
+			</tr>
+			<tr>
+				<td>EDBHQ</td>
+				<td>Headquarters</td>
+			</tr>
+			<tr>
+				<td>EDBSI</td>
+				<td>Silo</td>
+			</tr>
+			<tr>
+				<td>EDBRA</td>
+				<td>Radar</td>
+			</tr>
+			<tr>
+				<td>EDBEN1</td>
+				<td>Tunnel entrance</td>
+			</tr>
+			<tr>
+				<td>EDBEN2</td>
+				<td>Tunnel entrance</td>
+			</tr>
+			<tr>
+				<td>EDBSS</td>
+				<td>Space port</td>
+			</tr>
+			<tr>
+				<td>EDBLZ</td>
+				<td>Landing Zone</td>
+			</tr>
+			<tr>
+				<td>EDBBBA</td>
+				<td>Vehicle Production Center</td>
+			</tr>
+			<tr>
+				<td>EDBBFA</td>
+				<td>Weapons Production Center</td>
+			</tr>
+			<tr>
+				<td>EDBBPP</td>
+				<td>Power Plant</td>
+			</tr>
+			<tr>
+				<td>EDBBMI</td>
+				<td>Mine</td>
+			</tr>
+			<tr>
+				<td>EDBBRE</td>
+				<td>Refinery</td>
+			</tr>
+			<tr>
+				<td>EDBBTC</td>
+				<td>Transport Base</td>
+			</tr>
+			<tr>
+				<td>EDBBRC</td>
+				<td>Research Center</td>
+			</tr>
+			<tr>
+				<td>EDBBAB</td>
+				<td>Supply Depot</td>
+			</tr>
+			<tr>
+				<td>EDBBWB</td>
+				<td>Ship yard</td>
+			</tr>
+			<tr>
+				<td>EDBBPB</td>
+				<td>Pillbox</td>
+			</tr>
+			<tr>
+				<td>EDBBST</td>
+				<td>Small Tower</td>
+			</tr>
+			<tr>
+				<td>EDBBBT</td>
+				<td>Large Tower</td>
+			</tr>
+			<tr>
+				<td>EDBBBC</td>
+				<td>Missile Control Center</td>
+			</tr>
+			<tr>
+				<td>EDBBHQ</td>
+				<td>Headquarters</td>
+			</tr>
+			<tr>
+				<td>EDBBSI</td>
+				<td>Silo</td>
+			</tr>
+			<tr>
+				<td>EDBBRA</td>
+				<td>Radar</td>
+			</tr>
+			<tr>
+				<td>EDBBEN1</td>
+				<td>Tunnel entrance (surface)</td>
+			</tr>
+			<tr>
+				<td>EDBBEN2</td>
+				<td>Tunnel entrance (tunnel)</td>
+			</tr>
+			<tr>
+				<td>EDBBSS</td>
+				<td>Space port</td>
+			</tr>
+			<tr>
+				<td>EDBBLZ</td>
+				<td>Landing Zone</td>
+			</tr>
+			<tr>
+				<td>EDBUC</td>
+				<td>Recycler</td>
+			</tr>
+			<tr>
+				<td>EDBHT</td>
+				<td>Heavy Tower</td>
+			</tr>
+			<tr>
+				<td>EDBART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="UCS_buildings">UCS buildings</a></b></td>
+			</tr>
+			<tr>
+				<td>UCSBBA</td>
+				<td>Vehicle Production Center</td>
+			</tr>
+			<tr>
+				<td>UCSBFA</td>
+				<td>Weapons Production Center</td>
+			</tr>
+			<tr>
+				<td>UCSBPP</td>
+				<td>Power Plant</td>
+			</tr>
+			<tr>
+				<td>UCSBPR</td>
+				<td>Nuclear Reactor</td>
+			</tr>
+			<tr>
+				<td>UCSBTB</td>
+				<td>Ore Transport Base</td>
+			</tr>
+			<tr>
+				<td>UCSBET</td>
+				<td>Energy Transmitter</td>
+			</tr>
+			<tr>
+				<td>UCSBRF</td>
+				<td>Refinery</td>
+			</tr>
+			<tr>
+				<td>UCSBRC</td>
+				<td>Research Center</td>
+			</tr>
+			<tr>
+				<td>UCSBAB</td>
+				<td>Aerial Supply Depot</td>
+			</tr>
+			<tr>
+				<td>UCSBWB</td>
+				<td>Ship Yard</td>
+			</tr>
+			<tr>
+				<td>UCSBFO</td>
+				<td>Fortress</td>
+			</tr>
+			<tr>
+				<td>UCSBST</td>
+				<td>Small Tower</td>
+			</tr>
+			<tr>
+				<td>UCSBBT</td>
+				<td>Large Tower</td>
+			</tr>
+			<tr>
+				<td>UCSBPB</td>
+				<td>Plasma Control Center</td>
+			</tr>
+			<tr>
+				<td>UCSBPC</td>
+				<td>Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>UCSBHQ</td>
+				<td>Headquarters</td>
+			</tr>
+			<tr>
+				<td>UCSBSD</td>
+				<td>SDI Defense Center</td>
+			</tr>
+			<tr>
+				<td>UCSBSH</td>
+				<td>Shadow Tower</td>
+			</tr>
+			<tr>
+				<td>UCSBTE</td>
+				<td>Teleport</td>
+			</tr>
+			<tr>
+				<td>UCSBEN1</td>
+				<td>Tunnel Entrance (surface)</td>
+			</tr>
+			<tr>
+				<td>UCSBEN2</td>
+				<td>Tunnel Entrance (tunnel)</td>
+			</tr>
+			<tr>
+				<td>UCSBSS</td>
+				<td>Space Port</td>
+			</tr>
+			<tr>
+				<td>UCSBLZ</td>
+				<td>Landing Zone</td>
+			</tr>
+			<tr>
+				<td>UCSBUC</td>
+				<td>Recycler</td>
+			</tr>
+			<tr>
+				<td>UCSBHT</td>
+				<td>Heavy Tower</td>
+			</tr>
+			<tr>
+				<td>UCSBART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="LC_buildings">LC buildings</a></b></td>
+			</tr>
+			<tr>
+				<td>LCBBF</td>
+				<td>Main Base</td>
+			</tr>
+			<tr>
+				<td>LCBPP</td>
+				<td>Solar Power Plant</td>
+			</tr>
+			<tr>
+				<td>LCBBA</td>
+				<td>Solar Battery</td>
+			</tr>
+			<tr>
+				<td>LCBMR</td>
+				<td>Mine</td>
+			</tr>
+			<tr>
+				<td>LCBSR</td>
+				<td>Ore Transport Refinery</td>
+			</tr>
+			<tr>
+				<td>LCBRC</td>
+				<td>Research Center</td>
+			</tr>
+			<tr>
+				<td>LCBAB</td>
+				<td>Aerial Supply Center</td>
+			</tr>
+			<tr>
+				<td>LCBGA</td>
+				<td>Guardian</td>
+			</tr>
+			<tr>
+				<td>LCBDE</td>
+				<td>Defender</td>
+			</tr>
+			<tr>
+				<td>LCBHQ</td>
+				<td>Headquarters</td>
+			</tr>
+			<tr>
+				<td>LCBSD</td>
+				<td>SDI Defense Center</td>
+			</tr>
+			<tr>
+				<td>LCBWC</td>
+				<td>Weather Control Center</td>
+			</tr>
+			<tr>
+				<td>LCBSS</td>
+				<td>Space Port</td>
+			</tr>
+			<tr>
+				<td>LCBSB</td>
+				<td>Solar Cell</td>
+			</tr>
+			<tr>
+				<td>LCBLZ</td>
+				<td>Landing Zone</td>
+			</tr>
+			<tr>
+				<td>WLASER</td>
+				<td>Laser Wall</td>
+			</tr>
+			<tr>
+				<td>LCBPP2</td>
+				<td>Plantium Power Plant</td>
+			</tr>
+			<tr>
+				<td>LCBCC</td>
+				<td>Control Center</td>
+			</tr>
+			<tr>
+				<td>LCBUC</td>
+				<td>Recycler</td>
+			</tr>
+			<tr>
+				<td>LCBNE</td>
+				<td>NEST</td>
+			</tr>
+			<tr>
+				<td>LCBART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td>LCBEN1</td>
+				<td>Tunnel entrance (surface)</td>
+			</tr>
+			<tr>
+				<td>LCBEN2</td>
+				<td>Tunnel entrance (tunnel)</td>
+			</tr>
+		</table>
+
+		<h2><a id="Research_identifiers">Research identifiers</a></h2>
+		<p>
+			Research identifiers can be used to enable or disable research
+			production (disabled research can't be researched) with function <a href="../player/EnableResearch.htm">player.EnableResearch</a>
+			and also to and researches for player (reesarch is available without
+			productioin) with function <a href="../player/AddResearch.htm">player.AddResearch</a>.
+			If you are using function AddResearch remember that researches must be add in
+			specific order: from beginning (root) of research tree. So if you want to give
+			player f.e. Kruszchev tank (research RES_ED_UHT1) add researches in following
+			order:<br />
+			rPlayer.AddResearch("RES_ED_UST2");<br />
+			rPlayer.AddResearch("RES_ED_UST3");<br />
+			rPlayer.AddResearch("RES_ED_UHT1");<br />
+			Also you should call AddResearch function only at begin of mission script (in
+			first state), and in campaign use this function combined with EnableResearch (to
+			avoid giving already produced researches).<br />
+			Neutral researches are available for all races.
+		</p>
+		<table>
+			<tr>
+				<td><i>Identifier</i></td>
+				<td><i>Name</i></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="ED_researches">ED researches</a></b></td>
+			</tr>
+			<tr>
+				<td>RES_ED_UST2</td>
+				<td>Upg: Pamir</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UST3</td>
+				<td>Upg: Pamir</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMT1</td>
+				<td>Siberia</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMT2</td>
+				<td>Upg: Siberia</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMT3</td>
+				<td>Upg: Siberia</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UOH2</td>
+				<td>ZK Taiga 2</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMI1</td>
+				<td>Mine Layer</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMI2</td>
+				<td>Upg: Mine Layer</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMW1</td>
+				<td>Caspian</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMW2</td>
+				<td>Upg: Caspian</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UMW3</td>
+				<td>Upg: Caspian</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHW1</td>
+				<td>Volga</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHW2</td>
+				<td>Upg: Volga</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHT1</td>
+				<td>Kruszchev</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHT2</td>
+				<td>Upg: Kruszchev</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHT3</td>
+				<td>Upg: Kruszchev</td>
+			</tr>
+			<tr>
+			<tr>
+				<td>RES_ED_UJP1</td>
+				<td>Rasputin [OPX]</td>
+			</tr>
+			<tr>
+			<tr>
+				<td>RES_ED_UJP2</td>
+				<td>Upg: Rasputin [OPX]</td>
+			</tr>
+			<tr>
+			<tr>
+				<td>RES_ED_UJP3</td>
+				<td>Upg: Rasputin [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UBT1</td>
+				<td>Ural</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UBT2</td>
+				<td>Upg: Ural</td>
+			</tr>
+			<tr>
+				<td>RES_ED_USS2</td>
+				<td>Upg: Irkutsk</td>
+			</tr>
+			<tr>
+				<td>RES_ED_USS3</td>
+				<td>Upg: Irkutsk</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHS1</td>
+				<td>Leviathan</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UHS2</td>
+				<td>Upg: Leviathan</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA11</td>
+				<td>Cossack</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA12</td>
+				<td>Upg: Cossack</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA21</td>
+				<td>Grozny</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA22</td>
+				<td>Upg: Grozny</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA31</td>
+				<td>Han</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA32</td>
+				<td>Upg: Han</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA41</td>
+				<td>Thor</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UA42</td>
+				<td>Upg: Thor</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WCH2</td>
+				<td>Upg: Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_ED_ACH2</td>
+				<td>Upg: Helicopter Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WCA2</td>
+				<td>Upg: Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHC1</td>
+				<td>Heavy Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHC2</td>
+				<td>Upg: Heavy Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_LRC</td>
+				<td>Longe Range Cannon [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSR1</td>
+				<td>Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSR2</td>
+				<td>Upg: Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSR3</td>
+				<td>Upg: Rocket Launcher II</td>
+			</tr>
+			<tr>
+				<td>RES_ED_ASR1</td>
+				<td>Helicopter Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_ASR2</td>
+				<td>Upg: Helicopter Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WMR1</td>
+				<td>Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WMR2</td>
+				<td>Upg: Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WMR3</td>
+				<td>Upg: Heavy Rocket Launcher II</td>
+			</tr>
+			<tr>
+				<td>RES_ED_AMR1</td>
+				<td>Helicopter Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_AMR2</td>
+				<td>Upg: Helicopter Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSO1</td>
+				<td>Stalin Orgel [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSO2</td>
+				<td>Upg: Stalin Orgel II [OPX]</td>
+			</tr>			
+			<tr>
+				<td>RES_ED_WHR1</td>
+				<td>Ballistic Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSL1</td>
+				<td>Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSL2</td>
+				<td>Upg: Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSL3</td>
+				<td>Upg: Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHL1</td>
+				<td>Heavy Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHL2</td>
+				<td>Upg: Heavy Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHL3</td>
+				<td>Upg: Heavy Laser Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_LRL</td>
+				<td>Long Range Laser [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHHLA1</td>
+				<td>Heavy Air Laser Cannon [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHHLA2</td>
+				<td>Upg: Heavy Air Laser Cannon II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHHLA3</td>
+				<td>Upg: Heavy Air Laser Cannon III [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHLA1</td>
+				<td>Heavy Air Laser Cannon [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHLA2</td>
+				<td>Upg: Heavy Air Laser Cannon II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHLA3</td>
+				<td>Upg: Heavy Air Laser Cannon III [OPX]</td>
+			</tr>
+			<!-- TODO: one of them above is small air laser cannon -->
+			<tr>
+				<td>RES_ED_WLAA1</td>
+				<td>AA Laser Cannon [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WLAA2</td>
+				<td>Upg: AA Laser Cannon II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSI1</td>
+				<td>Ion Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSI2</td>
+				<td>Upg: Ion Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHI1</td>
+				<td>Heavy Ion Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHI2</td>
+				<td>Upg: Heavy Ion Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WHI3</td>
+				<td>Upg: Heavy ION Destroyer [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_ED_AB1</td>
+				<td>Bomb Bay</td>
+			</tr>
+			<tr>
+				<td>RES_ED_AB2</td>
+				<td>Upg: Bomb Bay</td>
+			</tr>
+			<tr>
+				<td>RES_ED_BMD</td>
+				<td>Medium Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_ED_BHD</td>
+				<td>Heavy Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_ED_SGen</td>
+				<td>Power Shield Generator 600 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MGen</td>
+				<td>Power Shield Generator 1200 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_ED_HGen</td>
+				<td>Power Shield Generator 1800 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_ED_SDI</td>
+				<td>SDI</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSDI</td>
+				<td>SDI Defense Center</td>
+			</tr>
+			<!-- TODO: one of them obove is opx/2.2 -->
+			<tr>
+				<td>RES_ED_RepHand</td>
+				<td>Repairer</td>
+			</tr>
+			<tr>
+				<td>RES_ED_RepHand2</td>
+				<td>Upg: Repairer</td>
+			</tr>
+			<tr>
+				<td>RES_ED_SCR</td>
+				<td>Screamer (noise generator)</td>
+			</tr>
+			<tr>
+				<td>RES_ED_SCR2</td>
+				<td>Upg: Screamer (noise generator)</td>
+			</tr>
+			<tr>
+				<td>RES_ED_SCR3</td>
+				<td>Upg: Screamer II (noise generator)</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MSC2</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MSC3</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MSC4</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHC2</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHC3</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHC4</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHR2</td>
+				<td>Upg: Ballistic Rocket</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHR3</td>
+				<td>Upg: Ballistic Rocket</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MHR4</td>
+				<td>Nuclear Ballistic Rocket</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MB2</td>
+				<td>Upg: Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MB3</td>
+				<td>Upg: Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_ED_MB4</td>
+				<td>Nuclear Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_EDUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UAHH1</td>
+				<td>Odin</td>
+			</tr>
+			<tr>
+				<td>RES_ED_UAHH2</td>
+				<td>Upg: Odin 45Z</td>
+			</tr>
+			<tr>
+				<td>RES_EDUSTEALTH</td>
+				<td>Stealth unit</td>
+			</tr>
+			<tr>
+				<td>RES_ED_USM1</td>
+				<td>Kiev (submarine)</td>
+			</tr>
+			<tr>
+				<td>RES_ED_USM2</td>
+				<td>Upg: Kiev</td>
+			</tr>
+			<tr>
+				<td>RES_EDWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>RES_EDWAA1</td>
+				<td>AA Gun</td>
+			</tr>
+			<tr>
+				<td>RES_EDWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_EDWEQ2</td>
+				<td>Upg.Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCL1</td>
+				<td>Shockwave Generator</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCL2</td>
+				<td>Upg: Shockwave Generator II</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCL3</td>
+				<td>Upg: Shockwave Generator III</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCH1</td>
+				<td>Heavy Shockwave Generator</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCH2</td>
+				<td>Upg: Heavy Shockwave Generator II</td>
+			</tr>
+			<tr>
+				<td>RES_ED_WSCH3</td>
+				<td>Upg: Heavy Shockwave Generator III</td>
+			</tr>
+			<tr>
+				<td>RES_EDBHT</td>
+				<td>Heavy Tower</td>
+			</tr>
+			<tr>
+				<td>RES_ED_ART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_ED_BC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="UCS_researches">UCS researches</a></b></td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USL2</td>
+				<td>Upg: Tiger I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USL3</td>
+				<td>Upg: Tiger II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UML1</td>
+				<td>Spider</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UML2</td>
+				<td>Upg: Spider I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UML3</td>
+				<td>Upg: Spider II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UTAR1</td>
+				<td>Tarantula [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UTAR2</td>
+				<td>Upg: Tarantula II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UTAR3</td>
+				<td>Upg: Tarantula III [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UHL1</td>
+				<td>Panther</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UHL2</td>
+				<td>Upg: Panther I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UHL3</td>
+				<td>Upg: Panther II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_U4L1</td>
+				<td>Grizzly</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_U4L2</td>
+				<td>Upg: Grizzly</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_U4L3</td>
+				<td>Upg: Grizzly II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UBL1</td>
+				<td>Jaguar</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UBL2</td>
+				<td>Upg: Jaguar</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UMI1</td>
+				<td>Minelayer</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UMI2</td>
+				<td>Upg: Minelayer</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USS1</td>
+				<td>Shark</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USS2</td>
+				<td>Upg: Shark</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UBS1</td>
+				<td>Hydra</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UBS2</td>
+				<td>Upg: Hydra</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UBS3</td>
+				<td>Upg: Hydra II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UOH2</td>
+				<td>Upg: Harvester</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UOH3</td>
+				<td>Upg: Harvester II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UAH1</td>
+				<td>Upg: Harvester III</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UAH2</td>
+				<td>Upg: Harvester IV</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UAH3</td>
+				<td>Upg: Harvester V</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_GARG1</td>
+				<td>Gargoyle (fighter)</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_GARG2</td>
+				<td>Upg: Gargoyle</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_GARG3</td>
+				<td>Upg: Gargoyle II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UAST1</td>
+				<td>Manticore [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UAST2</td>
+				<td>Manticore II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BOMBER21</td>
+				<td>Bat</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BOMBER22</td>
+				<td>Upg: Bat</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BOMBER31</td>
+				<td>Dragon</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BOMBER32</td>
+				<td>Upg: Dragon</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WCH2</td>
+				<td>Double Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATL2</td>
+				<td>Upg: Minigun [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATH1</td>
+				<td>Heavy Minigun</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATH2</td>
+				<td>Upg: Heavy Minigun II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHMG2</td>
+				<td>Heavy Minigun Ammo I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHMG3</td>
+				<td>Heavy Minigun Ammo II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHMG4</td>
+				<td>Heavy Minigun Ammo III</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATAA1</td>
+				<td>AA Minigun</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATAA2</td>
+				<td>Upg: AA Minigun II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MCH2</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MCH3</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MCH4</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WACH2</td>
+				<td>Upg Gargoyle Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATHA1</td>
+				<td>Heavy Air Minigun</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WGATHA2</td>
+				<td>Upg: Heavy Air Minigun II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSG1</td>
+				<td>Grenade Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSG2</td>
+				<td>Upg: Grenade Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WHG1</td>
+				<td>Heavy Grenade Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WHG2</td>
+				<td>Upg: Heavy Grenade Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHG2</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHG3</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHG4</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSR1</td>
+				<td>Small Rocket Launchers</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSR2</td>
+				<td>Upg: Small Rocket Launchers I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSR3</td>
+				<td>Upg: Small Rocket Launchers II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WASR1</td>
+				<td>Gargoyle Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WASR2</td>
+				<td>Upg: Gargoyle Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WMR1</td>
+				<td>Rocket Launchers</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WMR2</td>
+				<td>Upg: Rocket Launchers I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WMR3</td>
+				<td>Upg: Rocket Launchers II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WAMR1</td>
+				<td>Bomber Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WAMR2</td>
+				<td>Upg: Bomber Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MMR2</td>
+				<td>Upg: Heavy Rocket (guided: 25%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MMR3</td>
+				<td>Upg: Heavy Rocket (guided: 50%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MMR4</td>
+				<td>Upg: Heavy Rocket (guided: 100%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSR2</td>
+				<td>Upg: Rocket (guided: 25%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSR3</td>
+				<td>Upg: Rocket (guided: 50%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSR4</td>
+				<td>Upg: Rocket (guided: 100%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSP1</td>
+				<td>Plasma Cannons</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSP2</td>
+				<td>Upg: Plasma Cannons</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WHP1</td>
+				<td>Heavy Plasma Cannons</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WHP2</td>
+				<td>Upg: Heavy Plasma Cannons I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WHP3</td>
+				<td>Upg: Heavy Plasma Cannons II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WART1</td>
+				<td>Mobile Plasma Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WART2 [OPX]</td>
+				<td>Upg: Mobile Plasma Artillery II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WAPB1</td>
+				<td>Bomb Bay</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WAPB2</td>
+				<td>Upg: Bomb Bay</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WSD</td>
+				<td>SDI Laser</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BMD</td>
+				<td>Medium Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BHD</td>
+				<td>Heavy Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_RepHand</td>
+				<td>Repairer</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_RepHand2</td>
+				<td>Upg: Repairer</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_SGen</td>
+				<td>Power Shield Generator 600 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MGen</td>
+				<td>Power Shield Generator 1200 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_HGen</td>
+				<td>Power Shield Generator 1800 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_URAD2</td>
+				<td>Upg: Radar II</td>
+			</tr>
+			<!-- TODO: 2.2 or OPX? -->
+			<tr>
+				<td>RES_UCS_SHD</td>
+				<td>Shadow Generator</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_SHD2</td>
+				<td>Upg: Shadow Generator I</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_SHD3</td>
+				<td>Upg: Shadow Generator II</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_SHD4</td>
+				<td>Upg: Shadow Generator III</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MB2</td>
+				<td>Upg: Plasma Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MB3</td>
+				<td>Upg: Plasma Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MB4</td>
+				<td>Upg: Plasma Bomb</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MG2</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MG3</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MG4</td>
+				<td>Upg: Grenade</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_PC</td>
+				<td>Offensive Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_UCSUCS</td>
+				<td>Cargo Salamander</td>
+			</tr>
+			<tr>
+				<td>RES_UCSUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USM1</td>
+				<td>Orca (submarine)</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_USM2</td>
+				<td>Upg: Orca</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_UCSUOB2</td>
+				<td>Aufklärer II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWAP1</td>
+				<td>Gargoil Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWAP2</td>
+				<td>Gargoil Plasma Cannon m2</td>
+			</tr>
+			<tr>
+				<td>RES_UCSCAA1</td>
+				<td>AA PlasmaGun</td>
+			</tr>
+			<tr>
+				<td>RES_UCSCAA2</td>
+				<td>AA PlasmaGun II</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWTSC1</td>
+				<td>Cannon 105mm</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWTSC2</td>
+				<td>Double Cannon 105mm</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWBHC1</td>
+				<td>Double Cannon 120mm</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWBHC2</td>
+				<td>Quad Cannon 120mm</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WCART1</td>
+				<td>Mobile Cannon Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WCART"</td>
+				<td>Upg: Mobile Cannon Artillery II</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_UCSWEQ2</td>
+				<td>Upg.Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_UCSBHT</td>
+				<td>Heavy Tower</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_ART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_BC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSC2</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSC3</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MSC4</td>
+				<td>Upg: 105 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHC2</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHC3</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_MHC4</td>
+				<td>Upg: 120 mm Bullet</td>
+			</tr>
+			<tr>
+				<td>RES_UCS_WFL1</td>
+				<td>Flamethrower [OPX]</td>
+			<tr>
+				<td>RES_UCS_WFL2</td>
+				<td>Upg: Flamethrower II [OPX]</td>
+			<tr>
+				<td>RES_UCS_WFLH1</td>
+				<td>Heavy Flamethrower [OPX]</td>
+			<tr>
+				<td>RES_UCS_WFLH2</td>
+				<td>Upg: Heavy Flamethrower II [OPX]</td>
+			<tr>
+				<td>RES_UCS_BFLT</td>
+				<td>Flametower [OPX]</td>
+			<tr>
+				<td>RES_UCS_FB2</td>
+				<td>Upg: Napalm BombBay Ammo II [OPX]</td>
+			<tr>
+				<td>RES_UCS_FB3</td>
+				<td>Upg: Napalm BombBay Ammo III [OPX]</td>
+			<tr>
+				<td>RES_UCS_FB4</td>
+				<td>Upg: Napalm BombBay Ammo IV [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FLH2</td>
+				<td>Upg: Black Napalm II [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FLH3</td>
+				<td>Upg: Black Napalm III [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FLH4</td>
+				<td>Upg: Black Napalm IV [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FL2</td>
+				<td>Upg: Napalm II [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FL3</td>
+				<td>Upg: Napalm III [OPX]</td>
+			<tr>
+				<td>RES_UCS_MIS_FL4</td>
+				<td>Upg: Napalm IV [OPX]</td>
+			<tr>
+				<td colspan="2"><b><a id="LC_researches">LC researches</a></b></td>
+			</tr>
+			<tr>
+				<td>RES_LC_ULU2</td>
+				<td>Upg: Lunar</td>
+			</tr>
+			<tr>
+				<td>RES_LC_ULU3</td>
+				<td>Upg: Lunar</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UMO2</td>
+				<td>Upg: Moon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UMO3</td>
+				<td>Upg: Moon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_LCSS1</td>
+				<td>Charon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCR1</td>
+				<td>Crater</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCR2</td>
+				<td>Upg: Crater</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCR3</td>
+				<td>Upg: Crater</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UHF1</td>
+				<td>Fang [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UHF2</td>
+				<td>Upg: Fang II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UHF3</td>
+				<td>Upg: Fang II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCU1</td>
+				<td>Crusher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCU2</td>
+				<td>Upg: Crusher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UCU3</td>
+				<td>Upg: Crusher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UME1</td>
+				<td>Meteor</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UME2</td>
+				<td>Upg: Meteor</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UME3</td>
+				<td>Upg: Meteor</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UBO1</td>
+				<td>Thunderer</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UBO2</td>
+				<td>Upg: Thunderer</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UAP1</td>
+				<td>Storm [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UAP2</td>
+				<td>Upg: Storm II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UAP3</td>
+				<td>Upg: Storm III [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WCH2</td>
+				<td>Upg: Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_LC_ACH2</td>
+				<td>Upg: Air Chaingun</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MCH2</td>
+				<td>Upg: 20 mm Bullets [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MCH3</td>
+				<td>Upg: 20 mm Bullets [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MCH4</td>
+				<td>Upg: 20 mm Bullets [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSR1</td>
+				<td>Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSR2</td>
+				<td>Upg: Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSR3</td>
+				<td>Upg: Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_ASR1</td>
+				<td>Air Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_ASR2</td>
+				<td>Upg: Air Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WMR1</td>
+				<td>Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WMR2</td>
+				<td>Heavy Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WMR3</td>
+				<td>Heavy Rocket Launcher upg.2</td>
+			</tr>
+			<tr>
+				<td>RES_LC_AMR1</td>
+				<td>Air Heavy Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LC_AMR2</td>
+				<td>Air Heavy Rocket Launcher upg.1</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MMR2</td>
+				<td>Electro-Upg: Heavy Rocket (guided: 25%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MMR3</td>
+				<td>Electro-Upg: Heavy Rocket (guided: 50%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MMR4</td>
+				<td>Electro-Upg: Heavy Rocket (guided: 100%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WRG2</td>
+				<td>Upg: Railgun II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHRG1</td>
+				<td>Heavy Railgun [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHRG2</td>
+				<td>Upg: Heavy Railgun II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SLP</td>
+				<td>Sunlight Project [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WAARG1</td>
+				<td>AA Railgun [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_HRG2</td>
+				<td>Ammo Heavy Railgun [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_HRG3</td>
+				<td>Upg: Ammo Heavy Railgun II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_HRG4</td>
+				<td>Upg: Ammo Heavy Railgun III [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_RG2</td>
+				<td>Ammo Railgun [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_RG3</td>
+				<td>Upg: Ammo Railgun II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MIS_RG4</td>
+				<td>Upg: Ammo Railgun III [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSL1</td>
+				<td>Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSL2</td>
+				<td>Upg: Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LCUNH1</td>
+				<td>Plasmabeam [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHERO</td>
+				<td>Plasma Beam Projector</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHERO2</td>
+				<td>Upg: Small Plasma Beam II</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHP1</td>
+				<td>Heavy Plasma Beam I</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHP2</td>
+				<td>Upg: Heavy Plasma Beam II</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHP3</td>
+				<td>Upg: Heavy Plasma Beam III</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHCART1</td>
+				<td>Plasma Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHCART2</td>
+				<td>Upg: Plasma Cannon II</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WAAE1</td>
+				<td>AA Plasma Beam Projector</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WAAE2</td>
+				<td>Upg: AA Plasma Beam Projector II</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHL1</td>
+				<td>Heavy Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHL2</td>
+				<td>Upg: Heavy Electro-Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSS1</td>
+				<td>Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WSS2</td>
+				<td>Upg: Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHS1</td>
+				<td>Heavy Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WHS2</td>
+				<td>Upg: Heavy Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WAS1</td>
+				<td>Air Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WAS2</td>
+				<td>Upg: Air Sonic Cannon</td>
+			</tr>
+			<tr>
+				<td>RES_LC_WARTILLERY</td>
+				<td>Plasma Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UHT2</td>
+				<td>Crion II</td>
+			</tr>
+			<tr>
+				<td>RES_LC_BMD</td>
+				<td>Medium Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_LC_BHD</td>
+				<td>Heavy Defense Building</td>
+			</tr>
+			<tr>
+				<td>RES_LC_BPM</td>
+				<td>Peacemaker [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_BWC</td>
+				<td>Weather Control Center</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SOB1</td>
+				<td>Detector</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SOB2</td>
+				<td>Upg: Detector</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SOB3</td>
+				<td>Upg: Detector</td>
+			</tr>
+			<tr>
+				<td>RES_LCUOB2</td>
+				<td>Upg: Detector</td>
+			</tr>
+			<!-- TODO: one of them obove is 2.2, other is OPX -->
+			<tr>
+				<td>RES_LC_UTD2</td>
+				<td>Upg: Mercury II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SHR1</td>
+				<td>Shield Recharger</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SHR2</td>
+				<td>Upg. Shield Recharger m1</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SHR3</td>
+				<td>Upg. Shield Recharger m2</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SGen</td>
+				<td>Power Shield Generator 1200 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MGen</td>
+				<td>Power Shield Generator 2400 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_LC_HGen</td>
+				<td>Power Shield Generator 3600 PSU</td>
+			</tr>
+			<tr>
+				<td>RES_LC_REG1</td>
+				<td>Regenerator</td>
+			</tr>
+			<tr>
+				<td>RES_LC_REG2</td>
+				<td>Upg. Regenerator m1</td>
+			</tr>
+			<tr>
+				<td>RES_LC_REG3</td>
+				<td>Upg. Regenerator m2</td>
+			</tr>
+			<tr>
+				<td>RES_LC_SDIDEF</td>
+				<td>SDI Defense</td>
+			</tr>
+			<tr>
+				<td>RES_LCUFG1</td>
+				<td>Fat Girl c2</td>
+			</tr>
+			<tr>
+				<td>RES_LCUFG2</td>
+				<td>Fat Girl c3</td>
+			</tr>
+			<tr>
+				<td>RES_LCUFG3</td>
+				<td>Fat Girl c4</td>
+			</tr>
+			<tr>
+				<td>RES_LCUSF1</td>
+				<td>Super Fighter</td>
+			</tr>
+			<tr>
+				<td>RES_LCUSF2</td>
+				<td>Super Fighter m2</td>
+			</tr>
+			<tr>
+				<td>RES_LCUSF3</td>
+				<td>Upg: SuperFighter III [2.2/OPX]</td> <!-- TODO -->
+			</tr>
+			<tr>
+				<td>RES_LCUNH</td>
+				<td>New Hope [2.2]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UNH1</td>
+				<td>New Hope [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_UNH2</td>
+				<td>New Hope II [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LCUUT</td>
+				<td>Unit Transporter</td>
+			</tr>
+			<tr>
+				<td>RES_LCCAA1</td>
+				<td>AA Rocket Launcher</td>
+			</tr>
+			<tr>
+				<td>RES_LCWAN1</td>
+				<td>Antirocket</td>
+			</tr>
+			<tr>
+				<td>RES_LCWAA1</td>
+				<td>AA Rocket Launcher (building)</td>
+			</tr>
+			<tr>
+				<td>RES_LCWEQ1</td>
+				<td>Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_LCWEQ2</td>
+				<td>Upg.Earthquake gen.</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MSR2</td>
+				<td>Upg: Rocket (guided: 25%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MSR3</td>
+				<td>Upg: Rocket (guided: 50%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LC_MSR4</td>
+				<td>Upg: Rocket (guided: 100%) [OPX]</td>
+			</tr>
+			<tr>
+				<td>RES_LCBPP2</td>
+				<td>Plantium Power Plant</td>
+			</tr>
+			<tr>
+				<td>NEST</td>
+				<td>Mine upg. [OPX]</td>
+			</tr>
+			<tr>
+				<td>NEST</td>
+				<td>Mine upg. [OPX]</td>
+			</tr>
+			<!-- TODO: one of them is 2.2, other is and OPX -->
+			<tr>
+				<td>RES_LCBNE</td>
+				<td>NEST</td>
+			</tr>
+			<tr>
+				<td>RES_LC_ART</td>
+				<td>Artillery</td>
+			</tr>
+			<tr>
+				<td>RES_LC_BC1</td>
+				<td>Buildings capturer</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="Neutral_researches">Neutral researches</a></b> (for all races)</td>
+			</tr>
+			<tr>
+				<td>RES_MCH2</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_MCH3</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_MCH4</td>
+				<td>Upg: 20 mm Bullets</td>
+			</tr>
+			<tr>
+				<td>RES_MSR2</td>
+				<td>Upg 1: Rocket (guided: 25%)</td>
+			</tr>
+			<tr>
+				<td>RES_MSR3</td>
+				<td>Upg 2: Rocket (guided: 50%)</td>
+			</tr>
+			<tr>
+				<td>RES_MSR4</td>
+				<td>Upg 3: Rocket (guided: 100%)</td>
+			</tr>
+			<tr>
+				<td>RES_MMR2</td>
+				<td>Upg: Heavy Rocket (guided: 25%)</td>
+			</tr>
+			<tr>
+				<td>RES_MMR3</td>
+				<td>Upg: Heavy Rocket (guided: 50%)</td>
+			</tr>
+			<tr>
+				<td>RES_MMR4</td>
+				<td>Upg: Heavy Rocket (guided: 100%)</td>
+			</tr>
+		</table>
+		
+		<h2><a id="Artifact_identifiers">Artifact identifiers</a></h2>
+		<p>
+			Artifact identifiers can be used in function <a href="../mission/CreateArtefact.htm">mission.CreateArtefact</a>
+			to create normal or special (handled by event <a href="../mission/Artefact.htm">mission.Artefact</a>)
+			artifacts.
+		</p>
+		<table>
+			<tr>
+				<td><i>Identifier</i></td>
+				<td><i>Name</i></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="Normal_artifacts">Normal artifacts</a></b></td>
+			</tr>
+			<tr>
+				<td>NEAAMMO</td>
+				<td>Ammunition</td>
+			</tr>
+			<tr>
+				<td>NEAENERGY</td>
+				<td>Energy</td>
+			</tr>
+			<tr>
+				<td>NEAGIVESHIELD</td>
+				<td>Shield generator</td>
+			</tr>
+			<tr>
+				<td>NEAMAXHP</td>
+				<td>Full repair</td>
+			</tr>
+			<tr>
+				<td>NEAGIVEMONEY</td>
+				<td>Money 10 000 CR</td>
+			</tr>
+			<tr>
+				<td>NEASHOWMAP0</td>
+				<td>Show surface map</td>
+			</tr>
+			<tr>
+				<td>NEASHOWMAP1</td>
+				<td>Show tunnel map</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b><a id="Special_artifacts">Special artifacts</a></b>(script-handled)</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL1</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL2</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL3</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL4</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL5</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL6</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL7</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL8</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL9</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL10</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL11</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL12</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASPECIAL13</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEABANNERUCS</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEABANNERED</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEABANNERLC</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEACOMPUTER</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASWITCH1</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEASWITCH2</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEAPLATE1</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEAPLATE2</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEAMONEY</td>
+				<td>Artifact</td>
+			</tr>
+			<tr>
+				<td>NEAMINE</td>
+				<td>Artifact</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,5 +1,5 @@
-rem Copyright 2009, 2010 surrim
-rem 
+rem Copyright 2009, 2010, 2011 surrim
+rem
 rem This file is part of OSMod.
 rem
 rem OSMod is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@ rem
 echo off
 rem Notice
 rem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-rem To run this build script you have to do prepare some things.
-rem The paths of 7z.exe and earthcmp have to be set in the system
-rem environment variables.
+rem To run this build script you have to set the path of 7z to the
+rem systems temp environment variable.
 rem Best regards
 rem surrim
 cls
 
+path Tools;%path%
 rd Work /s /q > nul
 del OSMod.7z > nul
 cd Scripts
@@ -84,6 +84,55 @@ earthcmp Scripts\Units\AI\Sapper.ec Work\Scripts\Units\AI\Sapper.ecoMP
 earthcmp Scripts\Units\AI\Supplier.ec Work\Scripts\Units\AI\Supplier.ecoMP
 earthcmp Scripts\Units\AI\Tank.ec Work\Scripts\Units\AI\Tank.ecoMP
 earthcmp Scripts\Units\AI\Transporter.ec Work\Scripts\Units\AI\Transporter.ecoMP
+
+earthc Work\Scripts\AIPlayers\1_Easy.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\2_Medium.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\3_Hard.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\4_Expert.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\5_TDBot.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\Single\singleDefault.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\Single\singleEasy.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\Single\singleHard.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\AIPlayers\Single\singleMedium.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Arena.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\CaptureTheFlag.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\EarnMoney.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\HarvestAndKill.ecoMP --id >> Work\Parameters\gamescripts.txt
+rem earthc Work\Scripts\GameTypes\HarvestAndKillDemo.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\UncleSam.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\_DestroyEnemyStructures.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\Arena.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\CaptureTheFlag.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\DieHard4MP.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\EarnMoney.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\HarvestAndKill.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\GameTypes\Single\UncleSam.ecoMP --id >> Work\Parameters\gamescripts.txt
+earthc Work\Scripts\Units\Builder.ecoMP --setbuilderid
+earthc Work\Scripts\Units\Carrier.ecoMP --setcarrierid
+earthc Work\Scripts\Units\Civil.ecoMP --setcivilid
+earthc Work\Scripts\Units\CivilLightsOff.ecoMP --setcivillightsoffid
+earthc Work\Scripts\Units\Harvester.ecoMP --setharvesterid
+earthc Work\Scripts\Units\Helicopter.ecoMP --sethelicopterid
+earthc Work\Scripts\Units\Platoon.ecoMP --setplatoonid
+earthc Work\Scripts\Units\Repairer.ecoMP --setrepairerid
+earthc Work\Scripts\Units\Sapper.ecoMP --setsapperid
+earthc Work\Scripts\Units\Supplier.ecoMP --setsupplierid
+earthc Work\Scripts\Units\Tank.ecoMP --settankid
+earthc Work\Scripts\Units\TankHoldPos.ecoMP --settankholdposid
+earthc Work\Scripts\Units\TankLightsOff.ecoMP --settanklightsoffid
+earthc Work\Scripts\Units\Transporter.ecoMP --settransporterid
+earthc Work\Scripts\Units\AI\Builder.ecoMP --setaibuilderid
+earthc Work\Scripts\Units\AI\Carrier.ecoMP --setaicarrierid
+earthc Work\Scripts\Units\AI\Civil.ecoMP --setaicivilid
+earthc Work\Scripts\Units\AI\CivilEmpty.ecoMP --setaicivilemptyid
+earthc Work\Scripts\Units\AI\Harvester.ecoMP --setaiharvesterid
+earthc Work\Scripts\Units\AI\Helicopter.ecoMP --setaihelicopterid
+earthc Work\Scripts\Units\AI\Platoon.ecoMP --setaiplatoonid
+earthc Work\Scripts\Units\AI\Repairer.ecoMP --setairepairerid
+earthc Work\Scripts\Units\AI\Sapper.ecoMP --setaisapperid
+earthc Work\Scripts\Units\AI\Supplier.ecoMP --setaisupplierid
+earthc Work\Scripts\Units\AI\Tank.ecoMP --setaitankid
+earthc Work\Scripts\Units\AI\Transporter.ecoMP --setaitransporterid
 
 echo.|wdcreator Work\WDFiles\OSMod.wd p "Work/Banners/BannerDef.tex"
 rem echo.|wdcreator Work\WDFiles\OSMod.wd p "Work/Interface/*.tex"

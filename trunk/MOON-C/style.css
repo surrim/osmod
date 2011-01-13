@@ -1,0 +1,53 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html, body{
+	font-family: Arial, Sans-serif;
+	color: #111;
+	background-color: #eee;
+	height: 100%;
+}
+
+body{
+	padding: 1em 3em;
+}
+
+h1{
+	font-size: 1.8em;
+	font-weight: normal;
+}
+
+h2{
+	font-size: 1.3em;
+	font-weight: normal;
+}
+
+p{
+	padding-bottom: 0.3em;
+}
+
+td, th{
+	text-align: left;
+	padding-right: 1em;
+}
+
+a{
+	color: #11e;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+.info{
+	font-weight: bold;
+	font-style: italic;
+}
+
+ul{
+	list-style-type: square;
+	margin-left: 1em;
+}
