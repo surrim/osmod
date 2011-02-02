@@ -18,7 +18,6 @@
 
 mission "translateGameTypeDestroyStructures"{
 	consts{
-		/** ScriptData Index **/
 		//Player.ScriptData indexes
 		//DISTANCE_0  =  0; //ally 0 or distance to player 0
 		//DISTANCE_14 = 14; //ally 14 or distance to player 14
@@ -37,43 +36,43 @@ mission "translateGameTypeDestroyStructures"{
 		TECHWAR_MONEY  = 1000000000;
 
 		//comboCashType
-		MINE_FOR_MONEY    = 0;
-		MINE_FOR_MONEY_XL = 1;
-		MINE_FOREVER      = 2;
-		CR15000           = 3;
-		CR20000           = 4;
-		CR25000           = 5;
-		CR30000           = 6;
-		CR40000           = 7;
-		TECHWAR           = 8;
+		CASH_TYPE_MINE_FOR_MONEY    = 0;
+		CASH_TYPE_MINE_FOR_MONEY_XL = 1;
+		CASH_TYPE_MINE_FOREVER      = 2;
+		CASH_TYPE_CR15000           = 3;
+		CASH_TYPE_CR20000           = 4;
+		CASH_TYPE_CR25000           = 5;
+		CASH_TYPE_CR30000           = 6;
+		CASH_TYPE_CR40000           = 7;
+		CASH_TYPE_TECHWAR           = 8;
 
 		//comboResearchTime
-		RESEARCH_1X      = 0;
-		RESEARCH_2X      = 1;
-		RESEARCH_4X      = 2;
-		RESEARCH_8X      = 3;
-		RESEARCH_ENDLESS = 4;
-		RESEARCH_TECHWAR = 5;
+		RESEARCH_TIME_1X      = 0;
+		RESEARCH_TIME_2X      = 1;
+		RESEARCH_TIME_4X      = 2;
+		RESEARCH_TIME_8X      = 3;
+		RESEARCH_TIME_MAX     = 4;
+		RESEARCH_TIME_TECHWAR = 5;
 
 		//comboResearchLimit
-		RESEARCH_ALL              = 0;
-		RESEARCH_NO_BOMBS         = 1;
-		RESEARCH_NO_MDW           = 2;
-		RESEARCH_NO_BOMBS_AND_MDW = 3;
+		RESEARCH_LIMIT_NONE             = 0;
+		RESEARCH_LIMIT_NO_BOMBS         = 1;
+		RESEARCH_LIMIT_NO_MDW           = 2;
+		RESEARCH_LIMIT_NO_BOMBS_AND_MDW = 3;
 
 		//comboUnitsLimit
-		UNITS_ALL         = 0;
-		UNITS_SMALL       = 1;
-		UNITS_PANZER_ONLY = 2;
-		UNITS_NO_IMBA     = 3;
+		UNITS_LIMIT_ALL         = 0;
+		UNITS_LIMIT_SMALL       = 1;
+		UNITS_LIMIT_PANZER_ONLY = 2;
+		UNITS_LIMIT_NO_IMBA     = 3;
 
 		//comboStartingUnits
-		DEFAULT      = 0;
-		BUILDER_ONLY = 1;
+		STARTING_UNITS_DEFAULT      = 0;
+		STARTING_UNITS_BUILDER_ONLY = 1;
 
 		//comboExtras
-		EXTRA_NONE          = 0;
-		EXTRA_BEAUTIFULMOON = 1;
+		EXTRAS_NONE          = 0;
+		EXTRAS_BEAUTIFULMOON = 1;
 	}
 
 	int nMaxDistance;         //max allowed distance of new building from starting point
@@ -86,58 +85,58 @@ mission "translateGameTypeDestroyStructures"{
 	int nGetBottom2;          //GetBottom()/2, better performance
 
 	enum comboCashType{
-		"translateScriptMineForMoney", //MINE_FOR_MONEY
-		"XL",                          //MINE_FOR_MONEY_XL
-		"Endless Resources",           //MINE_FOREVER
-		"15000 CR/min",                //CR15000
-		"20000 CR/min",                //CR20000
-		"25000 CR/min",                //CR25000
-		"30000 CR/min",                //CR30000
-		"40000 CR/min",                //CR40000
-		"TechWar",                     //TECHWAR
+		"translateScriptMineForMoney", //CASH_TYPE_MINE_FOR_MONEY
+		"XL",                          //CASH_TYPE_MINE_FOR_MONEY_XL
+		"Endless Resources",           //CASH_TYPE_MINE_FOREVER
+		"15000 CR/min",                //CASH_TYPE_CR15000
+		"20000 CR/min",                //CASH_TYPE_CR20000
+		"25000 CR/min",                //CASH_TYPE_CR25000
+		"30000 CR/min",                //CASH_TYPE_CR30000
+		"40000 CR/min",                //CASH_TYPE_CR40000
+		"TechWar",                     //CASH_TYPE_TECHWAR
 	multi:
 		"translateScriptGainingMoney"
 	}
 
 	enum comboResearchTime{
-		"translateScriptNormalTime", //RESEARCH_1X
-		"translateScript2xfaster",   //RESEARCH_2X
-		"translateScript4xfaster",   //RESEARCH_4X
-		"translateScript8xfaster",   //RESEARCH_8X
-		"translateEditorAliens",     //RESEARCH_ENDLESS
-		"TechWar",                   //RESEARCH_TECHWAR
+		"translateScriptNormalTime", //RESEARCH_TIME_1X
+		"translateScript2xfaster",   //RESEARCH_TIME_2X
+		"translateScript4xfaster",   //RESEARCH_TIME_4X
+		"translateScript8xfaster",   //RESEARCH_TIME_8X
+		"translateEditorAliens",     //RESEARCH_TIME_MAX
+		"TechWar",                   //RESEARCH_TIME_TECHWAR
 	multi:
 		"translateScriptResearchTime"
 	}
 
 	enum comboResearchLimit{
-		"translateScriptAllResearches",            //RESEARCH_ALL
-		"translateScriptNoBombs",                  //RESEARCH_NO_BOMBS
-		"translateScriptNoMassDestructionWeapons", //RESEARCH_NO_MDW
-		"translateScriptNoBombsAndMDW",            //RESEARCH_NO_BOMBS_AND_MDW
+		"translateScriptAllResearches",            //RESEARCH_LIMIT_NONE
+		"translateScriptNoBombs",                  //RESEARCH_LIMIT_NO_BOMBS
+		"translateScriptNoMassDestructionWeapons", //RESEARCH_LIMIT_NO_MDW
+		"translateScriptNoBombsAndMDW",            //RESEARCH_LIMIT_NO_BOMBS_AND_MDW
 	multi:
 		"translateScriptAvailableResearches"
 	}
 
 	enum comboUnitsLimit{
-		"translateGameMenuUnitsLimitNoLimit", //UNITS_ALL
-		"translateEditorNewSmall",            //UNITS_SMALL
-		"translateEDUMM41",                   //UNITS_PANZER_ONLY
-		"XL Units",                           //UNITS_NO_IMBA
+		"translateGameMenuUnitsLimitNoLimit", //UNITS_LIMIT_ALL
+		"translateEditorNewSmall",            //UNITS_LIMIT_SMALL
+		"translateEDUMM41",                   //UNITS_LIMIT_PANZER_ONLY
+		"XL Units",                           //UNITS_LIMIT_NO_IMBA
 	multi:
 		"translateGameMenuUnitsLimit"
 	}
 
 	enum comboStartingUnits{
-		"translateGameMenuStartingUnitsDefault",     //DEFAULT
-		"translateGameMenuStartingUnitsBuilderOnly", //BUILDER_ONLY
+		"translateGameMenuStartingUnitsDefault",     //STARTING_UNITS_DEFAULT
+		"translateGameMenuStartingUnitsBuilderOnly", //STARTING_UNITS_BUILDER_ONLY
 	multi:
 		"translateGameMenuStartingUnits"
 	}
 
 	enum comboExtras{
-		"translateOptionAdditionalInfoNone", //EXTRA_NONE
-		"translateNEASHOWMAP0",              //EXTRA_BEAUTIFULMOON
+		"translateOptionAdditionalInfoNone", //EXTRAS_NONE
+		"translateNEASHOWMAP0",              //EXTRAS_BEAUTIFULMOON
 	multi:
 		"Extras:"
 	}
@@ -264,7 +263,7 @@ mission "translateGameTypeDestroyStructures"{
 
 	function int EnableResearch(player rPlayer, string strResearchID, int nEnable){
 		if(nEnable){
-			if(comboResearchTime==RESEARCH_TECHWAR){
+			if(comboResearchTime==RESEARCH_TIME_TECHWAR){
 				rPlayer.AddResearch(strResearchID);
 			}
 		}else{
@@ -320,51 +319,51 @@ mission "translateGameTypeDestroyStructures"{
 		nMaxDistance=DEFAULT_DISTANCE;
 		nMaxPossibleDistance=Distance(GetLeft(), GetTop(), nGetRight, nGetBottom);
 
-		if(comboCashType==MINE_FOR_MONEY || comboCashType==MINE_FOR_MONEY_XL || comboCashType==MINE_FOREVER){
+		if(comboCashType==CASH_TYPE_MINE_FOR_MONEY || comboCashType==CASH_TYPE_MINE_FOR_MONEY_XL || comboCashType==CASH_TYPE_MINE_FOREVER){
 			bHasTrade=true;
 		}
-		if(comboResearchLimit==RESEARCH_ALL || comboResearchLimit==RESEARCH_NO_BOMBS){
+		if(comboResearchLimit==RESEARCH_LIMIT_NONE || comboResearchLimit==RESEARCH_LIMIT_NO_BOMBS){
 			bHasMDW=true;
 		}
-		if(comboResearchLimit==RESEARCH_ALL || comboResearchLimit==RESEARCH_NO_MDW){
+		if(comboResearchLimit==RESEARCH_LIMIT_NONE || comboResearchLimit==RESEARCH_LIMIT_NO_MDW){
 			bHasBombs=true;
 		}
 		bHasAir=true;
 		bHasBig=true;
 		bImba=true;
-		if(comboUnitsLimit==UNITS_PANZER_ONLY){
+		if(comboUnitsLimit==UNITS_LIMIT_PANZER_ONLY){
 			bHasAir=false;
-		}else if(comboUnitsLimit==UNITS_SMALL){
+		}else if(comboUnitsLimit==UNITS_LIMIT_SMALL){
 			bHasBig=false;
-		}else if(comboUnitsLimit==UNITS_NO_IMBA){
+		}else if(comboUnitsLimit==UNITS_LIMIT_NO_IMBA){
 			bImba=false;
 		}
 
-		if(comboCashType==MINE_FOR_MONEY){
+		if(comboCashType==CASH_TYPE_MINE_FOR_MONEY){
 			ResourcesPerContainer(2);
-		}else if(comboCashType==MINE_FOR_MONEY_XL){
+		}else if(comboCashType==CASH_TYPE_MINE_FOR_MONEY_XL){
 			ResourcesPerContainer(1);
-		}else if(comboCashType==MINE_FOREVER){
+		}else if(comboCashType==CASH_TYPE_MINE_FOREVER){
 			ResourcesPerContainer(-10);
-		}else if(comboCashType==CR15000){
+		}else if(comboCashType==CASH_TYPE_CR15000){
 			nCashRate=15000;
-		}else if(comboCashType==CR20000){
+		}else if(comboCashType==CASH_TYPE_CR20000){
 			nCashRate=20000;
-		}else if(comboCashType==CR25000){
+		}else if(comboCashType==CASH_TYPE_CR25000){
 			nCashRate=25000;
-		}else if(comboCashType==CR30000){
+		}else if(comboCashType==CASH_TYPE_CR30000){
 			nCashRate=30000;
-		}else if(comboCashType==CR40000){
+		}else if(comboCashType==CASH_TYPE_CR40000){
 			nCashRate=40000;
 		}
 
-		if(comboResearchTime==RESEARCH_2X){
+		if(comboResearchTime==RESEARCH_TIME_2X){
 			SetTimeDivider(2);
-		}else if(comboResearchTime==RESEARCH_4X){
+		}else if(comboResearchTime==RESEARCH_TIME_4X){
 			SetTimeDivider(4);
-		}else if(comboResearchTime==RESEARCH_8X){
+		}else if(comboResearchTime==RESEARCH_TIME_8X){
 			SetTimeDivider(8);
-		}else if(comboResearchTime==RESEARCH_ENDLESS){
+		}else if(comboResearchTime==RESEARCH_TIME_MAX){
 			SetTimeDivider(65535);
 		}
 
@@ -392,7 +391,7 @@ mission "translateGameTypeDestroyStructures"{
 					rPlayer.EnableBuilding("EDBLZ", false);
 					rPlayer.EnableBuilding("EDBTC", false);
 
-					if(comboResearchTime==RESEARCH_TECHWAR){
+					if(comboResearchTime==RESEARCH_TIME_TECHWAR){
 						rPlayer.EnableBuilding("EDBRC", false); //Research Center
 					}
 
@@ -524,7 +523,7 @@ mission "translateGameTypeDestroyStructures"{
 					rPlayer.EnableBuilding("LCBLZ", false);
 					rPlayer.EnableBuilding("LCBSR", false);
 
-					if(comboResearchTime==RESEARCH_TECHWAR){
+					if(comboResearchTime==RESEARCH_TIME_TECHWAR){
 						rPlayer.EnableBuilding("LCBRC", false); //Research Center
 					}
 
@@ -657,7 +656,7 @@ mission "translateGameTypeDestroyStructures"{
 					rPlayer.EnableBuilding("UCSBLZ", false);
 					rPlayer.EnableBuilding("UCSBTB", false);
 
-					if(comboResearchTime==RESEARCH_TECHWAR){
+					if(comboResearchTime==RESEARCH_TIME_TECHWAR){
 						rPlayer.EnableBuilding("UCSBRC", false); //Research Center
 					}
 
@@ -811,7 +810,7 @@ mission "translateGameTypeDestroyStructures"{
 				}
 
 				//ai features
-				if(comboResearchTime==RESEARCH_TECHWAR){
+				if(comboResearchTime==RESEARCH_TIME_TECHWAR){
 					rPlayer.EnableAIFeatures(aiBuildResearchBuildings|aiControlResearches, false);
 				}
 				if(!bHasTrade){
@@ -824,17 +823,17 @@ mission "translateGameTypeDestroyStructures"{
 					rPlayer.EnableAIFeatures(aiBuildSuperAttack, false);
 				}
 
-				if(comboCashType==TECHWAR){
+				if(comboCashType==CASH_TYPE_TECHWAR){
 					rPlayer.SetAllowGiveMoney(false);
 				}
 
 				rPlayer.EnableMilitaryUnitsLimit(false);
 				rPlayer.EnableCommand(commandSoldBuilding, true);
-				if(comboCashType==MINE_FOREVER){
+				if(comboCashType==CASH_TYPE_MINE_FOREVER){
 					rPlayer.EnableCommand(commandBuildTrench, false);
 					rPlayer.EnableCommand(commandBuildWall, false);
 				}
-				if(comboUnitsLimit==UNITS_NO_IMBA){
+				if(comboUnitsLimit==UNITS_LIMIT_NO_IMBA){
 					rPlayer.EnableCommand(commandBuildTrench, false);
 				}
 				rPlayer.EnableAIFeatures2(ai2NeutralAI|ai2ChooseEnemy, false);
@@ -855,7 +854,7 @@ mission "translateGameTypeDestroyStructures"{
 						+IsEmptyPoint(nStartingPointX-1, nStartingPointY+1)
 					)>4
 				){ //is player
-					if(comboCashType==TECHWAR){
+					if(comboCashType==CASH_TYPE_TECHWAR){
 						rPlayer.SetMoney(TECHWAR_MONEY);
 					}else{
 						rPlayer.SetMoney(DEFAULT_MONEY);
@@ -875,7 +874,7 @@ mission "translateGameTypeDestroyStructures"{
 			}
 		}
 
-		if(comboExtras==EXTRA_BEAUTIFULMOON){
+		if(comboExtras==EXTRAS_BEAUTIFULMOON){
 			ShowArea(32767, nGetRight2, nGetBottom2, 0, 256); //make everybody see everything
 		}else{
 			ShowArea(mToKill, nGetRight2, nGetBottom2, 0, 256); //make watchers see everything
@@ -913,7 +912,7 @@ mission "translateGameTypeDestroyStructures"{
 			SetTimer(3, 1200); //find new enemies
 		}
 		if(!bHasTrade){
-			if(comboCashType==TECHWAR){
+			if(comboCashType==CASH_TYPE_TECHWAR){
 				SetTimer(4, 20); //techwar money
 			}else{
 				SetTimer(5, 1200); //uncle sam money
@@ -981,7 +980,7 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	event RemoveResources(){
-		if(comboCashType!=MINE_FOR_MONEY && comboCashType!=MINE_FOR_MONEY_XL && comboCashType!=MINE_FOREVER){
+		if(comboCashType!=CASH_TYPE_MINE_FOR_MONEY && comboCashType!=CASH_TYPE_MINE_FOR_MONEY_XL && comboCashType!=CASH_TYPE_MINE_FOREVER){
 			true;
 		}else{
 			false;
@@ -989,7 +988,7 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	event RemoveUnits(){
-		if(comboStartingUnits==BUILDER_ONLY){
+		if(comboStartingUnits==STARTING_UNITS_BUILDER_ONLY){
 			true;
 		}else{
 			false;
@@ -1011,7 +1010,7 @@ mission "translateGameTypeDestroyStructures"{
 					if(bHasBuild || (!bHasBuild && !rPlayer.GetNumberOfUnits())){
 						DisablePlayer(rPlayer);
 						rPlayer.SetScriptData(DEAD, true); //add to dead
-						if(comboCashType==TECHWAR){
+						if(comboCashType==CASH_TYPE_TECHWAR){
 							rPlayer.SetMoney(0);
 						}
 						if(IsBot(rPlayer)){
@@ -1127,12 +1126,12 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	command Initialize(){
-		comboCashType      = MINE_FOR_MONEY;
-		comboResearchTime  = RESEARCH_2X;
-		comboResearchLimit = RESEARCH_ALL;
-		comboUnitsLimit    = UNITS_ALL;
-		comboStartingUnits = BUILDER_ONLY;
-		comboExtras        = EXTRA_NONE;
+		comboCashType      = CASH_TYPE_MINE_FOR_MONEY;
+		comboResearchTime  = RESEARCH_TIME_2X;
+		comboResearchLimit = RESEARCH_LIMIT_NONE;
+		comboUnitsLimit    = UNITS_LIMIT_ALL;
+		comboStartingUnits = STARTING_UNITS_BUILDER_ONLY;
+		comboExtras        = EXTRAS_NONE;
 	}
 
 	command Uninitialize(){
