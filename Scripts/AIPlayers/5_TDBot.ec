@@ -545,6 +545,7 @@ player "TD Bot"{
 		uUnit=CreateUnitEx(newoneX, newoneY, newoneZ, null, strChassis, strWeapon0, strWeapon1, strWeapon2, strWeapon3, nShieldUpdateNum);
 		if(uUnit){
 			SetScriptUnit(newoneScriptIndex, uUnit);
+			AddUnitToSpecialTab(uUnit, true, -1);
 		}
 		newoneChassis=0;
 		newoneWeapon0=0;
@@ -697,7 +698,7 @@ player "TD Bot"{
 			}else if(nReplaceWeapon==2){
 				CreateUnit(strWeapon0, strWeapon1, strReplaceWeapon, strWeapon3, -1, null);
 			}else if(nReplaceWeapon==3){
-				CreateUnit(strWeapon0, strWeapon1, strWeapon2, strReplaceWeapon,-1, null);
+				CreateUnit(strWeapon0, strWeapon1, strWeapon2, strReplaceWeapon, -1, null);
 			}
 			return;
 		}
@@ -719,7 +720,7 @@ player "TD Bot"{
 			nWeapon=newoneWeapon3;
 			newoneWeapon3=0;
 			nReplaceWeapon=3;
-		}else{ //everything is repalced
+		}else{ //everything is replaced
 			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3);
 			return;
 		}
@@ -732,299 +733,299 @@ player "TD Bot"{
 		}else if(nWeapon==EDAIRCARRIER){
 			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDSACA1");
 		}else if(nWeapon==EDANTIROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAN1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAN1");
 		}else if(nWeapon==EDARTILLERY){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWART");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWART");
 		}else if(nWeapon==EDBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDBANNER");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDBANNER");
 		}else if(nWeapon==EDBANNER2){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDBANNER2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDBANNER2");
 		}else if(nWeapon==EDBIGBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "BIGBANNERSLOTED");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "BIGBANNERSLOTED");
 		}else if(nWeapon==EDBOMBERBOMB){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAB2");
 		}else if(nWeapon==EDBOMBERROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAMR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAMR2");
 		}else if(nWeapon==EDCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHC2");
 		}else if(nWeapon==EDCARRIER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDSCA1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDSCA1");
 		}else if(nWeapon==EDEARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWEQ2");
 		}else if(nWeapon==EDHERO2CANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWHC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWHC2");
 		}else if(nWeapon==EDHERO2EARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWEQ2");
 		}else if(nWeapon==EDHERO2GRENADE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWART");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWART");
 		}else if(nWeapon==EDHERO2IONDESTROYER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWHI3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWHI3");
 		}else if(nWeapon==EDHERO2LASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWHL3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWHL3");
 		}else if(nWeapon==EDHERO2LRCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROCJP2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROCJP2");
 		}else if(nWeapon==EDHERO2LRLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWLRL1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWLRL1");
 		}else if(nWeapon==EDHERO2NUKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWHR1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWHR1");
 		}else if(nWeapon==EDHERO2ROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWMR3");
 		}else if(nWeapon==EDHERO2SHOCKWAVE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDHEROWSCH3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDHEROWSCH3");
 		}else if(nWeapon==EDIONDESTROYER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHI3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHI3");
 		}else if(nWeapon==EDLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHL3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHL3");
 		}else if(nWeapon==EDLRCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDCJP2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDCJP2");
 		}else if(nWeapon==EDLRLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWLRL1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWLRL1");
 		}else if(nWeapon==EDNUKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHR1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHR1");
 		}else if(nWeapon==EDODINLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHHLA3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHHLA3");
 		}else if(nWeapon==EDODINROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDCAMR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDCAMR2");
 		}else if(nWeapon==EDPAMIRCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWCA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWCA2");
 		}else if(nWeapon==EDPAMIRLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWPSL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWPSL2");
 		}else if(nWeapon==EDPAMIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSR3AB");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSR3AB");
 		}else if(nWeapon==EDPAMIRSHOCKWAVE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWPSCL3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWPSCL3");
 		}else if(nWeapon==EDREPAIR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDREPAIR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDREPAIR2");
 		}else if(nWeapon==EDROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWMR3");
 		}else if(nWeapon==EDSCREAMER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDSCREAMER3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDSCREAMER3");
 		}else if(nWeapon==EDSCREAMER2){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDSCREAMER2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDSCREAMER2");
 		}else if(nWeapon==EDSHOCKWAVE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSCH3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSCH3");
 		}else if(nWeapon==EDSMALLAIRAACANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAAAC1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAAAC1");
 		}else if(nWeapon==EDSMALLAIRAALASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAAAL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAAAL2");
 		}else if(nWeapon==EDSMALLAIRLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWHLA3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWHLA3");
 		}else if(nWeapon==EDSMALLAIRMG){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAC2");
 		}else if(nWeapon==EDSMALLAIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWAR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWAR2");
 		}else if(nWeapon==EDSMALLION){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSI2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSI2");
 		}else if(nWeapon==EDSMALLLASER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSL3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSL3");
 		}else if(nWeapon==EDSMALLMG){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWCH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWCH2");
 		}else if(nWeapon==EDSMALLROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSR3");
 		}else if(nWeapon==EDSMALLSHOCKWAVE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSCL3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSCL3");
 		}else if(nWeapon==EDSTALINORGEL){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDWSO2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDWSO2");
 		}else if(nWeapon==EDTRANSPORTERHOOK){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "EDSUT");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "EDSUT");
 		}else if(nWeapon==LCAIRELECTRO){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAHE2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAHE2");
 		}else if(nWeapon==LCAIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAMR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAMR2");
 		}else if(nWeapon==LCAIRSONIC){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAS2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAS2");
 		}else if(nWeapon==LCANTIROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAN1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAN1");
 		}else if(nWeapon==LCBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCBANNER");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCBANNER");
 		}else if(nWeapon==LCBANNER2){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCBANNER2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCBANNER2");
 		}else if(nWeapon==LCBIGBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "BIGBANNERSLOTLC");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "BIGBANNERSLOTLC");
 		}else if(nWeapon==LCCRATERDETECTOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSDETST2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSDETST2");
 		}else if(nWeapon==LCCRATERREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCUREGST3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCUREGST3");
 		}else if(nWeapon==LCCRATERSHIELDREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSSAKST3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSSAKST3");
 		}else if(nWeapon==LCDETECTOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSOB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSOB2");
 		}else if(nWeapon==LCEARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWEQ2");
 		}else if(nWeapon==LCELECTRO){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWHL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWHL2");
 		}else if(nWeapon==LCHERO2EARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWEQ2");
 		}else if(nWeapon==LCHERO2ELECTRO){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWHL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWHL2");
 		}else if(nWeapon==LCHERO2PLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWHP3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWHP3");
 		}else if(nWeapon==LCHERO2RAILGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWHRG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWHRG2");
 		}else if(nWeapon==LCHERO2ROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWMR3");
 		}else if(nWeapon==LCHERO2SONIC){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCHEROWHS2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCHEROWHS2");
 		}else if(nWeapon==LCLIGHTNING){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWBART2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWBART2");
 		}else if(nWeapon==LCLUNARDETECTOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSDET2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSDET2");
 		}else if(nWeapon==LCLUNARREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCUREG3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCUREG3");
 		}else if(nWeapon==LCLUNARSHIELDREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSSAK3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSSAK3");
 		}else if(nWeapon==LCPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWHP3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWHP3");
 		}else if(nWeapon==LCPLASMACANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWCART2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWCART2");
 		}else if(nWeapon==LCRAILGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWHRG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWHRG2");
 		}else if(nWeapon==LCREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSREG3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSREG3");
 		}else if(nWeapon==LCROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWMR3");
 		}else if(nWeapon==LCSHIELDREGENERATOR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSSHR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSSHR3");
 		}else if(nWeapon==LCSMALLAAPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAAE2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAAE2");
 		}else if(nWeapon==LCSMALLAARAILGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAARG1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAARG1");
 		}else if(nWeapon==LCSMALLAIRAAPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWSAAE2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWSAAE2");
 		}else if(nWeapon==LCSMALLAIRAARAILGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWSAARG1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWSAARG1");
 		}else if(nWeapon==LCSMALLAIRELECTRO){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAE2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAE2");
 		}else if(nWeapon==LCSMALLAIRMG){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAC2");
 		}else if(nWeapon==LCSMALLAIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWAR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWAR2");
 		}else if(nWeapon==LCSMALLELECTRO){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWSL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWSL2");
 		}else if(nWeapon==LCSMALLMG){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWCH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWCH2");
 		}else if(nWeapon==LCSMALLPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWHERO2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWHERO2");
 		}else if(nWeapon==LCSMALLRAILGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWRG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWRG2");
 		}else if(nWeapon==LCSMALLROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWSR3");
 		}else if(nWeapon==LCSMALLSONIC){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWSS2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWSS2");
 		}else if(nWeapon==LCSONIC){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCWHS2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCWHS2");
 		}else if(nWeapon==LCTRANSPORTERHOOK){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "LCSUT");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "LCSUT");
 		}else if(nWeapon==UCSAAMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGATAA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGATAA2");
 		}else if(nWeapon==UCSAAPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSCAA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSCAA2");
 		}else if(nWeapon==UCSAIRAAMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGATAAA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGATAAA2");
 		}else if(nWeapon==UCSAIRMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGATHA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGATHA2");
 		}else if(nWeapon==UCSAIRNAPALMBOMB){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWAFB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWAFB2");
 		}else if(nWeapon==UCSAIRPLASMABOMB){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWAPB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWAPB2");
 		}else if(nWeapon==UCSAIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWAMR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWAMR2");
 		}else if(nWeapon==UCSANTIROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWAN1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWAN1");
 		}else if(nWeapon==UCSBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSBANNER");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSBANNER");
 		}else if(nWeapon==UCSBIGBANNER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "BIGBANNERSLOTUCS");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "BIGBANNERSLOTUCS");
 		}else if(nWeapon==UCSCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTCAN2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTCAN2");
 		}else if(nWeapon==UCSCANNONARTILLERY){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWCART2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWCART2");
 		}else if(nWeapon==UCSFLAMETHROWER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWFLHB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWFLHB2");
 		}else if(nWeapon==UCSGRENADE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGT2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGT2");
 		}else if(nWeapon==UCSHERO2CANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWBHC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWBHC2");
 		}else if(nWeapon==UCSHERO2EARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWEQ2");
 		}else if(nWeapon==UCSHERO2FLAMETHROWER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWHFLT2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWHFLT2");
 		}else if(nWeapon==UCSHERO2GRENADE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWBHG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWBHG2");
 		}else if(nWeapon==UCSHERO2MINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWGATH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWGATH2");
 		}else if(nWeapon==UCSHERO2PLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWBHP3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWBHP3");
 		}else if(nWeapon==UCSHERO2ROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWBMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWBMR3");
 		}else if(nWeapon==UCSHERO2SMALLROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSHEROWBSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSHEROWBSR3");
 		}else if(nWeapon==UCSMECHCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWBHC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWBHC2");
 		}else if(nWeapon==UCSMECHEARTHQUAKE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWEQ2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWEQ2");
 		}else if(nWeapon==UCSMECHFLAMETHROWER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWHFLT2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWHFLT2");
 		}else if(nWeapon==UCSMECHGRENADE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWBHG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWBHG2");
 		}else if(nWeapon==UCSMECHMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGATH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGATH2");
 		}else if(nWeapon==UCSMECHPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWBHP3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWBHP3");
 		}else if(nWeapon==UCSMECHROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWBMR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWBMR3");
 		}else if(nWeapon==UCSMECHSMALLROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWBSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWBSR3");
 		}else if(nWeapon==UCSMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSTGATH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSTGATH2");
 		}else if(nWeapon==UCSPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSTHP3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSTHP3");
 		}else if(nWeapon==UCSPLASMAARTILLERY){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWART2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWART2");
 		}else if(nWeapon==UCSRADAR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSURAD1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSURAD1");
 		}else if(nWeapon==UCSREPAIR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSREPAIR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSREPAIR2");
 		}else if(nWeapon==UCSROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWSMR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWSMR2");
 		}else if(nWeapon==UCSSALAMANDERRADAR){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSSALAMIR1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSSALAMIR1");
 		}else if(nWeapon==UCSSALAMANDERSHADOW){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSSALAMIS1");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSSALAMIS1");
 		}else if(nWeapon==UCSSHADOW){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWSH3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWSH3");
 		}else if(nWeapon==UCSSMALLAIRAAMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWGATAAA2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWGATAAA2");
 		}else if(nWeapon==UCSSMALLAIRMG){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWACH2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWACH2");
 		}else if(nWeapon==UCSSMALLAIRPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWAP2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWAP2");
 		}else if(nWeapon==UCSSMALLAIRROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWASR2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWASR2");
 		}else if(nWeapon==UCSSMALLFLAMETHROWER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWFLLB2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWFLLB2");
 		}else if(nWeapon==UCSSMALLMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWSCH3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWSCH3");
 		}else if(nWeapon==UCSSMALLPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWSSP2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWSSP2");
 		}else if(nWeapon==UCSSMALLROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWSSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWSSR3");
 		}else if(nWeapon==UCSTARANTULAROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSTSRAK3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSTSRAK3");
 		}else if(nWeapon==UCSTIGERCANNON){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTSC2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTSC2");
 		}else if(nWeapon==UCSTIGERFLAMETHROWER){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTFL2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTFL2");
 		}else if(nWeapon==UCSTIGERGRENADE){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTSG2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTSG2");
 		}else if(nWeapon==UCSTIGERMINIGUN){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTCH3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTCH3");
 		}else if(nWeapon==UCSTIGERPLASMA){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTSP2");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTSP2");
 		}else if(nWeapon==UCSTIGERROCKET){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSWTSR3");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSWTSR3");
 		}else if(nWeapon==UCSTRANSPORTERHOOK){
-			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3 ,nReplaceWeapon, "UCSSUT");
+			CreateUnit(strWeapon0, strWeapon1, strWeapon2, strWeapon3, nReplaceWeapon, "UCSSUT");
 		}else{
 			//XXX
 			TraceD("Unknown Weapon: ");
@@ -1670,54 +1671,6 @@ player "TD Bot"{
 		wFlyingHarvester=F(1000);
 		wCondor=F(500);
 
-		//weapon weights
-		/*wAACannon=W(-1);
-		wAALaser=W(-1);
-		wAAMinigun=W(-1);
-		wAAPlasma=W(-1);
-		wAARailgun=W(-1);
-
-		wMG=W(1);
-		wRocket=W(2);
-		wCannon=W(3);
-		wLRCannon=W(4);
-		wElectro=W(3);
-		wSonic=W(1);
-		wPlasma=W(3);
-		wRailgun=W(2);
-		wMinigun=W(2);
-		wFlamethrower=W(1);
-		wLaser=W(3);
-		wGrenade=W(2);
-		wEarthquake=W(1);
-		wLRLaser=W(4);
-		wShockwave=W(1);
-		wIonDestroyer=W(2);
-		wIon=W(1);
-
-		wPlasmaBomb=W(5);
-		wNapalmBomb=W(5);
-		wAtomBomb=W(5);
-
-		wCannonArtillery=W(6);
-		wPlasmaCannon=W(6);
-		wPlasmaArtillery=W(7);
-		wLightning=W(7);
-		wStalinOrgel=W(6);
-		wNuke=W(7);
-
-		wBanner=W(2);
-		wAntirocket=W(0);
-		wDetector=W(-1);
-		wShieldRegenerator=W(0);
-		wRegenerator=W(0);
-		wShadow=W(5);
-		wRadar=W(-1);
-		wScreamer=W(6);
-		wRepair=W(0);
-		wCarrier=W(0);
-		wTransporter=W(0);*/
-
 		wAACannon=1000;
 		wAALaser=1000;
 		wAAMinigun=1000;
@@ -1736,7 +1689,7 @@ player "TD Bot"{
 		wFlamethrower=1000;
 		wLaser=1000;
 		wGrenade=1000;
-		wEarthquake=1000;
+		wEarthquake=100;
 		wLRLaser=1000;
 		wShockwave=1000;
 		wIonDestroyer=1000;
@@ -2225,6 +2178,6 @@ player "TD Bot"{
 			Respawn();
 		}
 
-		return Nothing, 300;
+		return Nothing, 240;
 	}
 }
