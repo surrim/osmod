@@ -15,6 +15,6 @@ surrim (AIPlayers, GameTypes, Units)
 
 group OSMod Information
 {
-www.surrim.de
-ask surrim@arcor.de for SVN access
+http://sourceforge.net/projects/osmod/
+http://surrim.de/
 }
