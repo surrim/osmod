@@ -64,6 +64,7 @@ mission "translateGameTypeDestroyStructures"{
 		UNITS_LIMIT_ALL         = 0;
 		UNITS_LIMIT_ONLY_SMALL  = 1;
 		UNITS_LIMIT_NO_AIR      = 2;
+		UNITS_LIMIT_OPX_IMBA    = 3;
 
 		//comboStartingUnits
 		STARTING_UNITS_DEFAULT      = 0;
@@ -118,9 +119,10 @@ mission "translateGameTypeDestroyStructures"{
 	}
 
 	enum comboUnitsLimit{
-		"translateGameMenuUnitsLimitNoLimit", //UNITS_LIMIT_ALL
-		"translateEditorNewSmall",            //UNITS_LIMIT_ONLY_SMALL
-		"translateEDUMM41",                   //UNITS_LIMIT_NO_AIR
+		"translateGameMenuUnitsLimitNoLimit",             //UNITS_LIMIT_ALL
+		"translateEditorNewSmall",                        //UNITS_LIMIT_ONLY_SMALL
+		"translateEDUMM41",                               //UNITS_LIMIT_NO_AIR
+		"No OPX IMBA (Charon, Upg LC Plasma, ED Bullet)", //UNITS_LIMIT_OPX_IMBA
 	multi:
 		"translateGameMenuUnitsLimit"
 	}
@@ -305,6 +307,7 @@ mission "translateGameTypeDestroyStructures"{
 		int bHasBombs;
 		int bHasAir;
 		int bHasBig;
+		int bHasOPXImbaStuff;
 		int bIsHuman;
 		int bHasBots;
 
@@ -327,10 +330,13 @@ mission "translateGameTypeDestroyStructures"{
 		}
 		bHasAir=true;
 		bHasBig=true;
+		bHasOPXImbaStuff=true;
 		if(comboUnitsLimit==UNITS_LIMIT_NO_AIR){
 			bHasAir=false;
 		}else if(comboUnitsLimit==UNITS_LIMIT_ONLY_SMALL){
 			bHasBig=false;
+		}else if(comboUnitsLimit==UNITS_LIMIT_OPX_IMBA){
+			bHasOPXImbaStuff=false;
 		}
 
 		if(comboCashType==CASH_TYPE_MINE_FOR_MONEY){
@@ -446,7 +452,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_MOBART", bHasBig); //Mobile Artillerie
 					EnableResearch(rPlayer, "RES_ED_MHC2", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 60)
 					EnableResearch(rPlayer, "RES_ED_MHC3", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 70)
-					EnableResearch(rPlayer, "RES_ED_MHC4", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 80)
+					EnableResearch(rPlayer, "RES_ED_MHC4", bHasBig&bHasOPXImbaStuff); //Upg: Schwere Kanonenkugel (Schaden: 80)
 					EnableResearch(rPlayer, "RES_ED_MSC2", true); //Upg: Kanonenkugel (Schaden: 35)
 					EnableResearch(rPlayer, "RES_ED_MSC3", true); //Upg: Kanonenkugel (Schaden: 40)
 					EnableResearch(rPlayer, "RES_ED_MSC4", true); //Upg: Kanonenkugel (Schaden: 45)
@@ -532,7 +538,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_UNH2", true); //New Hope II
 					EnableResearch(rPlayer, "RES_LC_UMO2", true); //Upg: Moon
 					EnableResearch(rPlayer, "RES_LC_UMO3", true); //Upg: Moon
-					EnableResearch(rPlayer, "RES_LC_LCSS1", true); //Charon
+					EnableResearch(rPlayer, "RES_LC_LCSS1", bHasOPXImbaStuff); //Charon
 					EnableResearch(rPlayer, "RES_LC_UCR1", bHasBig); //Crater
 					EnableResearch(rPlayer, "RES_LC_UCR2", bHasBig); //Upg: Crater
 					EnableResearch(rPlayer, "RES_LC_UCR3", bHasBig); //Upg: Crater
@@ -601,8 +607,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_WHERO", true); //Plasma Beam Projector
 					EnableResearch(rPlayer, "RES_LC_WHERO2", true); //Upg: Small Plasma Beam II
 					EnableResearch(rPlayer, "RES_LC_WHP1", bHasBig); //Heavy Plasma Beam I
-					EnableResearch(rPlayer, "RES_LC_WHP2", bHasBig); //Upg: Heavy Plasma Beam II
-					EnableResearch(rPlayer, "RES_LC_WHP3", bHasBig); //Upg: Heavy Plasma Beam III
+					EnableResearch(rPlayer, "RES_LC_WHP2", bHasBig&bHasOPXImbaStuff); //Upg: Heavy Plasma Beam II
+					EnableResearch(rPlayer, "RES_LC_WHP3", bHasBig&bHasOPXImbaStuff); //Upg: Heavy Plasma Beam III
 					EnableResearch(rPlayer, "RES_LC_WHCART1", true); //Plasma Cannon
 					EnableResearch(rPlayer, "RES_LC_WHCART2", true); //Upg: Plasma Cannon II
 					EnableResearch(rPlayer, "RES_LC_WAAE1", true); //AA Plasma Beam Projector
