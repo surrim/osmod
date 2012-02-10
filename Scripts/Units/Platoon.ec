@@ -49,7 +49,6 @@ platoon "translateDefaultPlatoon"{
 
 
 	int bAuto;
-	int bFindAndDestroyWalls;
 	int nKeepFormationCounter;
 
 	function int GoToPoint(){
@@ -213,7 +212,6 @@ platoon "translateDefaultPlatoon"{
 
 	command Initialize(){
 		bAuto=false;
-		bFindAndDestroyWalls=0;
 		SetCannonFireMode(-1, -1, enableFire);
 		EnableFeatures(platoonHQDefense, false);
 		EnableFeatures(platoonKeepFormation, true);
@@ -365,14 +363,6 @@ platoon "translateDefaultPlatoon"{
 		SetCannonFireMode(-1, -1, enableFire);
 		PrepareEnter(uEntrance);
 		state Entering;
-	}
-
-	command UserOneParam0(int nMode){
-		bFindAndDestroyWalls=1;
-	}
-
-	command UserOneParam1(int nMode){
-		bFindAndDestroyWalls=0;
 	}
 
 	command SpecialChangeUnitsScript() button "translateCommandChangeScript" description "translateCommandChangeScriptDescription" hotkey priority 254{
