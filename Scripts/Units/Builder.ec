@@ -16,7 +16,7 @@
  * along with OSMod.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-builder "Builder2"{
+builder "translateScriptNameConstructionVechicle"{
 	consts{
 		//comboLights
 		LIGHTS_AUTO = 0;
@@ -26,7 +26,12 @@ builder "Builder2"{
 		//nMovingReason
 		MOVING_ONLY              = 0;
 		MOVING_TO_BUILD_BUILDING = 1;
-		MOVING_TO_BUILD_ELEMENT  = 2;
+		MOVING_TO_BUILD_WALL     = 2;
+		MOVING_TO_BUILD_TERRAIN  = 3;
+
+		//nBuildingOffsetPriority
+		PRIORITY_X_FIRST = 0;
+		PRIORITY_Y_FIRST = 1;
 	}
 
 	int nMovingReason;
@@ -36,6 +41,10 @@ builder "Builder2"{
 	int nBuildingX;
 	int nBuildingY;
 	int nBuildingZ;
+	int nBuildingOffsetPriority;
+	int nBuildingOffsetX;
+	int nBuildingOffsetY;
+	unit uWall;
 
 	enum comboLights{
 		"translateCommandStateLightsAUTO", //LIGHTS_AUTO
@@ -45,40 +54,101 @@ builder "Builder2"{
 		"translateCommandStateLightsMode"
 	}
 
-	function int MoveToCurrentBuildLocationForce(int nReason){
-		nMovingReason=nReason;
-		if(!IsGoodPointForCurrentBuild(nStayX, nStayY, nStayZ)){
-			nStayX=GetCurrentBuildLocationX();
-			nStayY=GetCurrentBuildLocationY();
-			nStayZ=GetCurrentBuildLocationZ();
+	function int ABS(int n){
+		if(n>=0){
+			return n;
+		}
+		return -n;
+	}
+
+	function int Sign(int n){
+		if(n<0){
+			return -1;
+		}
+		if(n>0){
+			return 1;
+		}
+		return 0;
+	}
+
+	function int SetCurrentBuildLocationForWall(){
+		nBuildingX=GetCurrentElementX();
+		nBuildingY=GetCurrentElementY();
+		nBuildingZ=GetCurrentElementZ();
+
+		nStayZ=nBuildingZ;
+		if(nBuildingOffsetPriority==PRIORITY_X_FIRST){
+			nStayX=nBuildingX+nBuildingOffsetX;
+			nStayY=nBuildingY;
+		}else{ //nBuildingOffsetPriority==PRIORITY_Y_FIRST
+			nStayX=nBuildingX;
+			nStayY=nBuildingY+nBuildingOffsetY;
+		}
+		if(!IsGoodPointForCurrentBuild(nStayX, nStayY, nStayZ) || !IsFreePoint(nStayX, nStayY, nStayZ)){
+			if(nBuildingOffsetPriority==PRIORITY_X_FIRST){
+				nStayX=nBuildingX;
+				nStayY=nBuildingY+nBuildingOffsetY;
+			}else{ //nBuildingOffsetPriority==PRIORITY_Y_FIRST
+				nStayX=nBuildingX+nBuildingOffsetX;
+				nStayY=nBuildingY;
+			}
+		}
+	}
+
+	function int MoveToCurrentBuildLocationForce(int nNewMovingReason){
+		nMovingReason=nNewMovingReason;
+		if(nMovingReason!=MOVING_ONLY){
+			if(nMovingReason==MOVING_TO_BUILD_WALL){
+				SetCurrentBuildLocationForWall();
+			}
+			if(!IsGoodPointForCurrentBuild(nStayX, nStayY, nStayZ) || !IsFreePoint(nStayX, nStayY, nStayZ)){
+				nStayX=GetCurrentBuildLocationX();
+				nStayY=GetCurrentBuildLocationY();
+				nStayZ=GetCurrentBuildLocationZ();
+			}
 		}
 		CallMoveToPointForce(nStayX, nStayY, nStayZ);
 	}
 
+	function int SetBuildingOffset(int nX1, int nY1, int nX2, int nY2){
+		int nDeltaX;
+		int nDeltaY;
+
+		nDeltaX=nX2-nX1;
+		nDeltaY=nY2-nY1;
+		if(ABS(nDeltaX)>=ABS(nDeltaY)){
+			nBuildingOffsetPriority=PRIORITY_X_FIRST;
+		}else{
+			nBuildingOffsetPriority=PRIORITY_Y_FIRST;
+		}
+		nBuildingOffsetX=Sign(nDeltaX);
+		nBuildingOffsetY=Sign(nDeltaY);
+	}
+
+	state StartNothing;
 	state Nothing;
-	state Nothing2;
 	state StartMoving;
 	state Moving;
 	state MovingClose;
 	state Building;
 	state Froozen;
 
-	state Nothing{
+	state StartNothing{
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_OFF);
 		}
-		return Nothing2;
+		return Nothing;
 	}
 
-	state Nothing2{
-		return Nothing2;
+	state Nothing{
+		return Nothing;
 	}
 
 	state StartMoving{
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_ON);
 		}
-		if(DistanceTo(nStayX, nStayY)>4){
+		if(GetLocationX()!=nStayX || GetLocationY()!=nStayY || GetLocationZ()!=nStayX){
 			return Moving;
 		}
 		return MovingClose, 1;
@@ -88,7 +158,7 @@ builder "Builder2"{
 		if(DistanceTo(nStayX, nStayY)>4){
 			return Moving;
 		}
-		return MovingClose;
+		return MovingClose, 1;
 	}
 
 	state MovingClose{
@@ -97,45 +167,68 @@ builder "Builder2"{
 		}
 		if(nMovingReason==MOVING_ONLY){
 			NextCommand(true);
-			return Nothing;
+			return StartNothing, 1;
 		}
-		//nMovingReason==MOVING_TO_BUILD_BUILDING || nMovingReason==MOVING_TO_BUILD_ELEMENT
 		if(IsInGoodPointForCurrentBuild()){
 			if(nMovingReason==MOVING_TO_BUILD_BUILDING){
 				CallBuildBuilding();
-			}else if(nMovingReason==MOVING_TO_BUILD_ELEMENT){
+			}else{ //MOVING_TO_BUILD_WALL or MOVING_TO_BUILD_TERRAIN
 				CallBuildCurrentElement();
 			}
 			return Building, 1;
 		}
 		MoveToCurrentBuildLocationForce(nMovingReason);
+		return StartMoving, 1;
 	}
 
 	state Building{
-		if(IsBuildWorking()){
-			if(nMovingReason==MOVING_TO_BUILD_BUILDING){
-				if(IsFreePoint(nBuildingX, nBuildingY, nBuildingZ)){
-					return Building, 1;
-				}
-			}else{ //nMovingReason==MOVING_TO_BUILD_ELEMENT
+		if(nMovingReason==MOVING_TO_BUILD_TERRAIN){
+			if(IsBuildWorking()){
 				return Building, 1;
 			}
+		}else{ //MOVING_TO_BUILD_BUILDING or MOVING_TO_BUILD_WALL
+			if(IsBuildWorking()){
+				if(nMovingReason==MOVING_TO_BUILD_BUILDING){
+					if(IsFreePoint(nBuildingX, nBuildingY, nBuildingZ)){
+						return Building, 1;
+					}
+				}else{ //MOVING_TO_BUILD_WALL
+					BuildTargetsArray(findTargetWall, findNeutralUnit, findDestinationAnyUnit);
+					StartEnumTargetsArray();
+					do{
+						uWall=GetNextTarget();
+						if(
+							uWall.GetLocationX()==nBuildingX
+							&&
+							uWall.GetLocationY()==nBuildingY
+							&&
+							uWall.GetLocationZ()==nBuildingZ
+						){
+							break;
+						}
+					}while(uWall!=null);
+					EndEnumTargetsArray();
+					if(uWall==null){
+						return Building, 1;
+					}
+				}
+			}
 		}
-		if(nMovingReason==MOVING_TO_BUILD_ELEMENT){
+		if(nMovingReason!=MOVING_TO_BUILD_BUILDING){ //MOVING_TO_BUILD_WALL or MOVING_TO_BUILD_TERRAIN
 			if(NextElementPoint()){
-				MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+				MoveToCurrentBuildLocationForce(nMovingReason);
 				return StartMoving, 1;
 			}
 		}
 		NextCommand(true);
-		return Nothing;
+		return StartNothing, 1;
 	}
 
 	state Froozen{
 		if(IsFroozen()){
 			return Froozen;
 		}
-		return Nothing;
+		return StartNothing, 1;
 	}
 
 	event OnFreezeForSupplyOrRepair(int nFreezeTicks){
@@ -146,7 +239,7 @@ builder "Builder2"{
 
 	command Initialize(){
 		comboLights=LIGHTS_AUTO;
-		SetLightsMode(comboLights);
+		SetLightsMode(LIGHTS_OFF);
 	}
 
 	command BuildBuilding(int nX, int nY, int nZ, int nAlpha, int nID) hidden button "translateCommandBuilding"{
@@ -162,7 +255,7 @@ builder "Builder2"{
 	command BuildTrench(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandTrench" hotkey{
 		SetBuildTypeBuildElements(buildTrench);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -171,7 +264,7 @@ builder "Builder2"{
 	command BuildFlatTerrain(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandFlatten" hotkey{
 		SetBuildTypeBuildElements(buildFlatTerrain);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -180,7 +273,8 @@ builder "Builder2"{
 	command BuildWall(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandWall" hotkey{
 		SetBuildTypeBuildElements(buildWall);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			SetBuildingOffset(nX1, nY1, nX2, nY2);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_WALL);
 			state StartMoving;
 		}
 		true;
@@ -189,7 +283,7 @@ builder "Builder2"{
 	command BuildWideBridge(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandBridge2" hotkey{
 		SetBuildTypeBuildElements(buildWideBridge);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -198,7 +292,7 @@ builder "Builder2"{
 	command BuildNarrowBridge(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandBridge1" hotkey{
 		SetBuildTypeBuildElements(buildNarrowBridge);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -207,7 +301,7 @@ builder "Builder2"{
 	command BuildWideTunnel(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandTunnel2" hotkey{
 		SetBuildTypeBuildElements(buildWideTunnel);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -216,7 +310,7 @@ builder "Builder2"{
 	command BuildNarrowTunnel(int nX1, int nY1, int nZ1, int nX2, int nY2, int nZ2) button "translateCommandTunnel1" hotkey{
 		SetBuildTypeBuildElements(buildNarrowTunnel);
 		if(AddElementsLine(nX1, nY1, nZ1, nX2, nY2, nZ2)){
-			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_ELEMENT);
+			MoveToCurrentBuildLocationForce(MOVING_TO_BUILD_TERRAIN);
 			state StartMoving;
 		}
 		true;
@@ -233,13 +327,10 @@ builder "Builder2"{
 		if(IsMoving()){
 			CallStopMoving();
 		}
-		state Nothing;
+		state StartNothing;
 	}
 
 	command Move(int nX, int nY, int nZ) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21{
-		if(comboLights==LIGHTS_AUTO){
-			SetLightsMode(LIGHTS_ON);
-		}
 		nStayX=nX;
 		nStayY=nY;
 		nStayZ=nZ;
@@ -267,9 +358,6 @@ builder "Builder2"{
 	}
 
 	command Enter(unit uEntrance) hidden button "translateCommandEnter"{
-		if(comboLights==LIGHTS_AUTO){
-			SetLightsMode(LIGHTS_ON);
-		}
 		CallMoveInsideObject(uEntrance);
 		nMovingReason=MOVING_ONLY;
 		state StartMoving;
