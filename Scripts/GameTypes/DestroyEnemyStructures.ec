@@ -64,7 +64,6 @@ mission "translateGameTypeDestroyStructures"{
 		UNITS_LIMIT_ALL         = 0;
 		UNITS_LIMIT_ONLY_SMALL  = 1;
 		UNITS_LIMIT_NO_AIR      = 2;
-		UNITS_LIMIT_OPX_IMBA    = 3;
 
 		//comboStartingUnits
 		STARTING_UNITS_DEFAULT      = 0;
@@ -122,7 +121,6 @@ mission "translateGameTypeDestroyStructures"{
 		"translateGameMenuUnitsLimitNoLimit",             //UNITS_LIMIT_ALL
 		"translateEditorNewSmall",                        //UNITS_LIMIT_ONLY_SMALL
 		"translateEDUMM41",                               //UNITS_LIMIT_NO_AIR
-		"No OPX IMBA (Charon, Upg LC Plasma, ED Bullet)", //UNITS_LIMIT_OPX_IMBA
 	multi:
 		"translateGameMenuUnitsLimit"
 	}
@@ -307,7 +305,6 @@ mission "translateGameTypeDestroyStructures"{
 		int bHasBombs;
 		int bHasAir;
 		int bHasBig;
-		int bHasOPXImbaStuff;
 		int bIsHuman;
 		int bHasBots;
 
@@ -330,13 +327,10 @@ mission "translateGameTypeDestroyStructures"{
 		}
 		bHasAir=true;
 		bHasBig=true;
-		bHasOPXImbaStuff=true;
 		if(comboUnitsLimit==UNITS_LIMIT_NO_AIR){
 			bHasAir=false;
 		}else if(comboUnitsLimit==UNITS_LIMIT_ONLY_SMALL){
 			bHasBig=false;
-		}else if(comboUnitsLimit==UNITS_LIMIT_OPX_IMBA){
-			bHasOPXImbaStuff=false;
 		}
 
 		if(comboCashType==CASH_TYPE_MINE_FOR_MONEY){
@@ -400,6 +394,7 @@ mission "translateGameTypeDestroyStructures"{
 						rPlayer.EnableBuilding("EDBBRE", false); //Refinery
 					}
 
+					EnableResearch(rPlayer, "RES_ED_UST1", true); //Pamir
 					EnableResearch(rPlayer, "RES_ED_UST2", true); //Upg: Pamir 100
 					EnableResearch(rPlayer, "RES_ED_UST3", true); //Upg: Pamir 220
 					EnableResearch(rPlayer, "RES_ED_UHT1", bHasBig); //Kaukasus
@@ -420,6 +415,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_EDUSTEALTH", true); //Stealth Einheit
 					EnableResearch(rPlayer, "RES_ED_UHW1", bHasBig); //TL 70 Wolga
 					EnableResearch(rPlayer, "RES_ED_UHW2", bHasBig); //TL 80 Wolga
+					EnableResearch(rPlayer, "RES_ED_USS1", true); //Irkutsk
 					EnableResearch(rPlayer, "RES_ED_USS2", true); //ESS 40 Oka
 					EnableResearch(rPlayer, "RES_ED_USS3", true); //ESS 50 Oka
 					EnableResearch(rPlayer, "RES_ED_UHS1", bHasBig); //ESS 200 Baikal
@@ -433,6 +429,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_EDUUT", bHasAir&bIsHuman); //Einheitentransporter
 					EnableResearch(rPlayer, "RES_ED_UAHH1", bHasBig&bHasAir); //Odin
 					EnableResearch(rPlayer, "RES_ED_UAHH2", bHasBig&bHasAir); //Upg: Odin 45Z
+					EnableResearch(rPlayer, "RES_ED_UART1", bHasBig); //Katyusha
 					EnableResearch(rPlayer, "RES_ED_UA41", bHasBig&bHasAir); //Thor (schwerer Bomber)
 					EnableResearch(rPlayer, "RES_ED_UA42", bHasBig&bHasAir); //Upg: Thor
 					EnableResearch(rPlayer, "RES_ED_UA31", bHasBig&bHasAir); //Han (Bomber)
@@ -445,14 +442,17 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WCH2", true); //Upg: MGs
 					EnableResearch(rPlayer, "RES_EDWAA1", true); //AA Gun
 					EnableResearch(rPlayer, "RES_ED_ACH2", bHasAir); //Upg: Helikopter-MGs
+					EnableResearch(rPlayer, "RES_ED_WCA1", true); //Cannon
 					EnableResearch(rPlayer, "RES_ED_WCA2", true); //Upg: Geschütz
 					EnableResearch(rPlayer, "RES_ED_WHC1", bHasBig); //Schweres Geschütz
 					EnableResearch(rPlayer, "RES_ED_WHC2", bHasBig); //Upg: Schweres Geschütz
 					EnableResearch(rPlayer, "RES_ED_LRC", bHasBig); //Longe Range Cannon
+					EnableResearch(rPlayer, "RES_ED_LRC1", bHasBig); //Long Range Cannon upg.
 					EnableResearch(rPlayer, "RES_ED_MOBART", bHasBig); //Mobile Artillerie
+					EnableResearch(rPlayer, "RES_ED_WART", bHasBig); //Mobile Artillery
 					EnableResearch(rPlayer, "RES_ED_MHC2", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 60)
 					EnableResearch(rPlayer, "RES_ED_MHC3", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 70)
-					EnableResearch(rPlayer, "RES_ED_MHC4", bHasBig&bHasOPXImbaStuff); //Upg: Schwere Kanonenkugel (Schaden: 80)
+					EnableResearch(rPlayer, "RES_ED_MHC4", bHasBig); //Upg: Schwere Kanonenkugel (Schaden: 80)
 					EnableResearch(rPlayer, "RES_ED_MSC2", true); //Upg: Kanonenkugel (Schaden: 35)
 					EnableResearch(rPlayer, "RES_ED_MSC3", true); //Upg: Kanonenkugel (Schaden: 40)
 					EnableResearch(rPlayer, "RES_ED_MSC4", true); //Upg: Kanonenkugel (Schaden: 45)
@@ -466,12 +466,16 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_MHR2", bHasBig&bHasMDW); //Upg: ballistische Rakete (Schaden: 500)
 					EnableResearch(rPlayer, "RES_ED_MHR3", bHasBig&bHasMDW); //Upg: ballistische Rakete (Schaden: 600)
 					EnableResearch(rPlayer, "RES_ED_MHR4", bHasBig&bHasMDW); //ballistische Atomrakete (Schaden: 1000)
+					EnableResearch(rPlayer, "RES_ED_SO2", bHasBig); //Upg. Stalin Orgel Rocket (guide: 15%)
+					EnableResearch(rPlayer, "RES_ED_SO3", bHasBig); //Upg. Stalin Orgel Rocket (guide: 40%)
+					EnableResearch(rPlayer, "RES_ED_SO4", bHasBig); //Upg. Stalin Orgel Rocket (guide: 80%)
 					EnableResearch(rPlayer, "RES_ED_ASR1", bHasAir); //Helikopter-Raketenwerfer
 					EnableResearch(rPlayer, "RES_ED_ASR2", bHasAir); //Upg: Helikopter-Raketenwerfer
 					EnableResearch(rPlayer, "RES_ED_AMR1", bHasBig&bHasAir); //Schwerer Helikopter-Raketenwerfer
 					EnableResearch(rPlayer, "RES_ED_AMR2", bHasBig&bHasAir); //Upg: Schwerer Helikopter-Raketenwerfer
 					EnableResearch(rPlayer, "RES_ED_WSO1", bHasBig); //Stalin Orgel
 					EnableResearch(rPlayer, "RES_ED_WSO2", bHasBig); //Upg: Stalin Orgel II
+					EnableResearch(rPlayer, "RES_ED_WSO3", bHasBig); //Stalin Orgel Rocket Launcher III
 					EnableResearch(rPlayer, "RES_EDWAN1", bIsHuman); //AntiRakete
 					EnableResearch(rPlayer, "RES_ED_WSL1", true); //Lasergeschütz
 					EnableResearch(rPlayer, "RES_ED_WSL2", true); //Upg: Lasergeschütz
@@ -501,6 +505,10 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WSCH1", bHasBig); //Heavy Shockwave Generator
 					EnableResearch(rPlayer, "RES_ED_WSCH2", bHasBig); //Upg: Heavy Shockwave Generator II
 					EnableResearch(rPlayer, "RES_ED_WSCH3", bHasBig); //Upg: Heavy Shockwave Generator III
+					EnableResearch(rPlayer, "RES_ED_EDWSCHB1", bHasBig&bHasAir&bHasBombs); //Shockwave Bombay
+					EnableResearch(rPlayer, "RES_ED_SCHBOMB2", bHasBig&bHasAir&bHasBombs); //Upg. Bomb
+					EnableResearch(rPlayer, "RES_ED_SCHBOMB3", bHasBig&bHasAir&bHasBombs); //Upg. Bomb 2
+					EnableResearch(rPlayer, "RES_ED_SCHBOMB4", bHasBig&bHasAir&bHasBombs); //Shockwave Bomb
 					EnableResearch(rPlayer, "RES_ED_BMD", bHasBig); //Mittleres Abwehrgebäude
 					EnableResearch(rPlayer, "RES_EDBHT", bHasBig); //Schwerer Turm
 					EnableResearch(rPlayer, "RES_ED_BHD", bHasBig); //Schweres Abwehrgebäude
@@ -518,6 +526,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WSDI", bHasBig&bHasMDW&bIsHuman); //SDI Defense Center
 					EnableResearch(rPlayer, "RES_ED_UBT1", bHasBig); //Ural (Doppelgeschützpanzer)
 					EnableResearch(rPlayer, "RES_ED_UBT2", bHasBig); //Upg: HT 800 Ural
+					EnableResearch(rPlayer, "RES_ED_HERO", bHasBig); //Goliath
+					EnableResearch(rPlayer, "RES_ED_HERO2", bHasBig); //Upg: Goliath
 					EnableResearch(rPlayer, "RES_ED_EDUOB2", bIsHuman); //Upg: Aufklärer
 				}else if(rPlayer.GetRace()==raceLC){
 					rPlayer.EnableBuilding("LCBLZ", false);
@@ -536,9 +546,10 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LCUNH", true); //New Hope (2.2)
 					EnableResearch(rPlayer, "RES_LC_UNH1", true); //New Hope
 					EnableResearch(rPlayer, "RES_LC_UNH2", true); //New Hope II
+					EnableResearch(rPlayer, "RES_LC_UMO1", true); //Moon
 					EnableResearch(rPlayer, "RES_LC_UMO2", true); //Upg: Moon
 					EnableResearch(rPlayer, "RES_LC_UMO3", true); //Upg: Moon
-					EnableResearch(rPlayer, "RES_LC_LCSS1", bHasOPXImbaStuff); //Charon
+					EnableResearch(rPlayer, "RES_LC_LCSS1", true); //Charon
 					EnableResearch(rPlayer, "RES_LC_UCR1", bHasBig); //Crater
 					EnableResearch(rPlayer, "RES_LC_UCR2", bHasBig); //Upg: Crater
 					EnableResearch(rPlayer, "RES_LC_UCR3", bHasBig); //Upg: Crater
@@ -567,6 +578,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_MCH2", true); //Upg: 20 mm Bullets
 					EnableResearch(rPlayer, "RES_LC_MCH3", true); //Upg: 20 mm Bullets
 					EnableResearch(rPlayer, "RES_LC_MCH4", true); //Upg: 20 mm Bullets
+					EnableResearch(rPlayer, "RES_LC_WSR1", true); //Raketenwerfer
 					EnableResearch(rPlayer, "RES_LC_WSR2", true); //Upg: Raketenwerfer
 					EnableResearch(rPlayer, "RES_LC_WSR3", true); //Upg: Raketenwerfer
 					EnableResearch(rPlayer, "RES_LCWAN1", bIsHuman); //Antirocket
@@ -582,6 +594,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_MMR2", bHasBig); //Upg: Heavy Rocket (guided: 25%)
 					EnableResearch(rPlayer, "RES_LC_MMR3", bHasBig); //Upg: Heavy Rocket (guided: 50%)
 					EnableResearch(rPlayer, "RES_LC_MMR4", bHasBig); //Upg: Heavy Rocket (guided: 100%)
+					EnableResearch(rPlayer, "RES_LC_WRG1", true); //Railgun
 					EnableResearch(rPlayer, "RES_LC_WRG2", true); //Upg: Railgun II
 					EnableResearch(rPlayer, "RES_LC_WHRG1", bHasBig); //Heavy Railgun
 					EnableResearch(rPlayer, "RES_LC_WHRG2", bHasBig); //Upg: Heavy Railgun II
@@ -607,8 +620,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_WHERO", true); //Plasma Beam Projector
 					EnableResearch(rPlayer, "RES_LC_WHERO2", true); //Upg: Small Plasma Beam II
 					EnableResearch(rPlayer, "RES_LC_WHP1", bHasBig); //Heavy Plasma Beam I
-					EnableResearch(rPlayer, "RES_LC_WHP2", bHasBig&bHasOPXImbaStuff); //Upg: Heavy Plasma Beam II
-					EnableResearch(rPlayer, "RES_LC_WHP3", bHasBig&bHasOPXImbaStuff); //Upg: Heavy Plasma Beam III
+					EnableResearch(rPlayer, "RES_LC_WHP2", bHasBig); //Upg: Heavy Plasma Beam II
+					EnableResearch(rPlayer, "RES_LC_WHP3", bHasBig); //Upg: Heavy Plasma Beam III
 					EnableResearch(rPlayer, "RES_LC_WHCART1", true); //Plasma Cannon
 					EnableResearch(rPlayer, "RES_LC_WHCART2", true); //Upg: Plasma Cannon II
 					EnableResearch(rPlayer, "RES_LC_WAAE1", true); //AA Plasma Beam Projector
@@ -652,6 +665,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_UCU1", bHasBig); //Crusher
 					EnableResearch(rPlayer, "RES_LC_UCU2", bHasBig); //Crusher II
 					EnableResearch(rPlayer, "RES_LC_UCU3", bHasBig); //Crusher III
+					EnableResearch(rPlayer, "RES_LC_UHERO1", bHasBig); //Pluto
+					EnableResearch(rPlayer, "RES_LC_UHERO2", bHasBig); //Upg: Pluto
 				}else if(rPlayer.GetRace()==raceUCS){
 					rPlayer.EnableBuilding("UCSBLZ", false);
 					rPlayer.EnableBuilding("UCSBTB", false);
@@ -726,6 +741,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_MSR3", bHasBig); //Upg: Rocket (guided: 50%)
 					EnableResearch(rPlayer, "RES_UCS_MSR4", bHasBig); //Upg: Rocket (guided: 100%)
 					EnableResearch(rPlayer, "RES_UCSWAN1", bIsHuman); //AntiRakete
+					EnableResearch(rPlayer, "RES_UCS_WSG1", true); //Granatenwerfer
 					EnableResearch(rPlayer, "RES_UCS_WSG2", true); //Upg: Granatenwerfer
 					EnableResearch(rPlayer, "RES_UCS_WHG1", bHasBig); //Schwerer Granatenwerfer
 					EnableResearch(rPlayer, "RES_UCS_WHG2", bHasBig); //Upg: Schwerer Granatenwerfer
@@ -741,7 +757,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_WHP2", bHasBig); //Upg: Schwere Plasmageschütze I
 					EnableResearch(rPlayer, "RES_UCS_WHP3", bHasBig); //Upg: Schwere Plasmageschütze II
 					EnableResearch(rPlayer, "RES_UCS_WART1", bHasBig); //Mobile Plasma Artillery
-					EnableResearch(rPlayer, "RES_UCS_WART2", bHasBig); //Upg: Mobile Plasma Artillery II
+					EnableResearch(rPlayer, "RES_UCS_WART2", bHasBig); //Mobile Plasma Artillery II
+					EnableResearch(rPlayer, "RES_UCS_WART3", bHasBig); //Mobile Plasma Artillery III
 					EnableResearch(rPlayer, "RES_UCSWAP1", bHasAir); //Gargoil Plasma Kanone
 					EnableResearch(rPlayer, "RES_UCSWAP2", bHasAir); //Gargoil Plasma Kanone m2
 					EnableResearch(rPlayer, "RES_UCS_MB2", bHasBig&bHasAir&bHasBombs); //Upg: Plasmabombe (Schaden: 500)
@@ -757,10 +774,14 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCSWBHC1", bHasBig); //DoppelKanone 120mm
 					EnableResearch(rPlayer, "RES_UCSWBHC2", bHasBig); //Vierfach Kanone 120mm
 					EnableResearch(rPlayer, "RES_UCS_WCART1", bHasBig); //Mobile Cannon Artillery
-					EnableResearch(rPlayer, "RES_UCS_WCART2", bHasBig); //Upg: Mobile Cannon Artillery II
+					EnableResearch(rPlayer, "RES_UCS_WCART2", bHasBig); //Mobile Cannon Artillery II
+					EnableResearch(rPlayer, "RES_UCS_WCART3", bHasBig); //Mobile Cannon Artillery III
 					EnableResearch(rPlayer, "RES_UCS_MHC2", bHasBig); //Upg: 120mm Munition
 					EnableResearch(rPlayer, "RES_UCS_MHC3", bHasBig); //Upg: 120mm Munition
 					EnableResearch(rPlayer, "RES_UCS_MHC4", bHasBig); //Upg: 120mm Munition
+					EnableResearch(rPlayer, "RES_UCS_UCSRART2", bHasBig); //Upg. Artillery Rocket Launcher (guide: 15%)
+					EnableResearch(rPlayer, "RES_UCS_UCSRART3", bHasBig); //Upg. Artillery Rocket Launcher (guide: 40%)
+					EnableResearch(rPlayer, "RES_UCS_UCSRART4", bHasBig); //Upg. Artillery Rocket Launcher (guide: 80%)
 					EnableResearch(rPlayer, "RES_UCS_MSC2", true); //Upg: 105mm Munition
 					EnableResearch(rPlayer, "RES_UCS_MSC3", true); //Upg: 105mm Munition
 					EnableResearch(rPlayer, "RES_UCS_MSC4", true); //Upg: 105mm Munition
@@ -799,7 +820,11 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_U4L1", bHasBig); //Grizzly
 					EnableResearch(rPlayer, "RES_UCS_U4L2", bHasBig); //Grizzly II
 					EnableResearch(rPlayer, "RES_UCS_U4L3", bHasBig); //Grizzly III
+					EnableResearch(rPlayer, "RES_UCS_HERO", bHasBig); //Centipede
+					EnableResearch(rPlayer, "RES_UCS_HERO1", bHasBig); //Upg: Centipede
+					EnableResearch(rPlayer, "RES_UCS_UART1", bHasBig); //Lynx I
 					EnableResearch(rPlayer, "RES_UCSUCS", true); //Cargo Salamander
+					EnableResearch(rPlayer, "RES_UCS_USS1", true); //Shark I
 					EnableResearch(rPlayer, "RES_UCS_USS2", true); //Shark II
 					EnableResearch(rPlayer, "RES_UCS_UBS1", bHasBig); //Hydra I
 					EnableResearch(rPlayer, "RES_UCS_UBS2", bHasBig); //Hydra II
