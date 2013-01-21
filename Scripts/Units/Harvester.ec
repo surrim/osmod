@@ -81,7 +81,7 @@ harvester "translateScriptNameHarvester"{
 				}else{
 					nMoveToY=nMoveToY-(Rand(nLandCounter)+1);
 				}
-				nLandCounter=nLandCounter+1;
+				++nLandCounter;
 				if(IsFreePoint(nMoveToX, nMoveToY, nMoveToZ)){
 					CallMoveAndLandToPoint(nMoveToX, nMoveToY, nMoveToZ);
 				}else{
@@ -101,7 +101,6 @@ harvester "translateScriptNameHarvester"{
 		nHarvestZ=nZ;
 		bValidHarvest=true;
 		SetCurrentHarvestPoint(nHarvestX, nHarvestY, nHarvestZ);
-		return true;
 	}
 
 	function int FindNewHarvestPoint(){
@@ -161,23 +160,6 @@ harvester "translateScriptNameHarvester"{
 		int nPosX;
 		int nPosY;
 		int nPosZ;
-
-		if(IsMoving()){
-			nPosX=GetLocationX()-nHarvestX;
-			nPosY=GetLocationY()-nHarvestY;
-			nPosZ=GetLocationZ()-nHarvestZ;
-			if(!nPosZ){
-				if(nPosX<0){
-					nPosX=-nPosX;
-				}
-				if(nPosY<0){
-					nPosY=-nPosY;
-				}
-				if(nPosX<2 && nPosY<2){
-					CallStopMoving();
-				}
-			}
-		}
 
 		if(IsMoving()){
 			return MovingToHarvestPoint;
