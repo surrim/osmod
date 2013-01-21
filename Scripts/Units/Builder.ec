@@ -148,7 +148,7 @@ builder "translateScriptNameConstructionVechicle"{
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_ON);
 		}
-		if(GetLocationX()!=nStayX || GetLocationY()!=nStayY || GetLocationZ()!=nStayX){
+		if(GetLocationX()!=nStayX || GetLocationY()!=nStayY || GetLocationZ()!=nStayZ){
 			return Moving;
 		}
 		return MovingClose, 1;
