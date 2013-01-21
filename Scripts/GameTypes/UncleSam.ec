@@ -1,4 +1,4 @@
-/* Copyright 2009, 2010, 2011, 2012 surrim
+/* Copyright 2009, 2010, 2011, 2012, 2013 surrim
  *
  * This file is part of OSMod.
  *
