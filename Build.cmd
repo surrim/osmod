@@ -33,6 +33,7 @@ del /s /q *.ecoMP
 cd ..
 
 mkdir Work
+mkdir Work\WDFiles
 xcopy Base Work /s /e
 
 earthcmp Scripts\AIPlayers\1_Easy.ec Work\Scripts\AIPlayers\1_Easy.ecoMP
