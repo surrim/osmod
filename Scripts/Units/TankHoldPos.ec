@@ -540,7 +540,6 @@ tank "translateScriptNameTankStatic"{
 
 	event OnFreezeForSupplyOrRepair(int nFreezeTicks){
 		if(state!=Froozen){
-			nState=STATE_NOTHING;
 			if(state==AttackingPoint){
 				nState=STATE_ATTACKING_POINT;
 			}else if(state==Attacking){
@@ -553,6 +552,8 @@ tank "translateScriptNameTankStatic"{
 				nState=STATE_ESCORT;
 			}else if(state==InPlatoonState){
 				nState=STATE_IN_PLATOON_STATE;
+			}else{
+				nState=STATE_NOTHING;
 			}
 		}
 		CallFreeze(nFreezeTicks);
