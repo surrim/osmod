@@ -18,9 +18,16 @@
 
 harvester "translateScriptNameHarvester"{
 	consts{
+		//comboLights
 		LIGHTS_AUTO = 0;
 		LIGHTS_ON   = 1;
 		LIGHTS_OFF  = 2;
+
+		//nState
+		STATE_NOTHING                        = 0;
+		STATE_MOVING_TO_HARVEST_POINT        = 1;
+		STATE_MOVING_TO_DESTINATION_BUILDING = 2;
+		STATE_MOVING                         = 3;
 	}
 
 	int nMoveToX;
@@ -147,7 +154,7 @@ harvester "translateScriptNameHarvester"{
 		}
 		//tak dla pewnosci wywolujemy jeszcze raz Call...
 		CallMoveAndLandToPoint(nHarvestX, nHarvestY, nHarvestZ);
-		return MovingToHarvestPoint,40;
+		return MovingToHarvestPoint, 40;
 	}
 
 	state MovingToHarvestPoint{
@@ -160,8 +167,12 @@ harvester "translateScriptNameHarvester"{
 			nPosY=GetLocationY()-nHarvestY;
 			nPosZ=GetLocationZ()-nHarvestZ;
 			if(!nPosZ){
-				if(nPosX<0)nPosX=-nPosX;
-				if(nPosY<0)nPosY=-nPosY;
+				if(nPosX<0){
+					nPosX=-nPosX;
+				}
+				if(nPosY<0){
+					nPosY=-nPosY;
+				}
 				if(nPosX<2 && nPosY<2){
 					CallStopMoving();
 				}
@@ -301,15 +312,15 @@ harvester "translateScriptNameHarvester"{
 		if(IsFroozen()){
 			return Froozen;
 		}
-		if(nState==1){
+		if(nState==STATE_MOVING_TO_HARVEST_POINT){
 			CallMoveAndLandToPoint(nHarvestX, nHarvestY, nHarvestZ);
 			return MovingToHarvestPoint;
 		}
-		if(nState==2){
+		if(nState==STATE_MOVING_TO_DESTINATION_BUILDING){
 			CallMoveToPointForce(nDestinationX, nDestinationY, nDestinationZ);
 			return MovingToDestinationBuilding;
 		}
-		if(nState==3){
+		if(nState==STATE_MOVING){
 			CallMoveToPoint(nMoveToX, nMoveToY, nMoveToZ);
 			return StartMoving;
 		}
@@ -318,13 +329,14 @@ harvester "translateScriptNameHarvester"{
 
 	event OnFreezeForSupplyOrRepair(int nFreezeTicks){
 		if(state!=WaitForMovingToHarvestPoint && state!=PuttingResource && state!=Harvesting){
-			nState=0;
 			if(state==MovingToHarvestPoint){
-				nState=1;
+				nState=STATE_MOVING_TO_HARVEST_POINT;
 			}else if(state==MovingToDestinationBuilding){
-				nState=2;
+				nState=STATE_MOVING_TO_DESTINATION_BUILDING;
 			}else if(state==Moving){
-				nState=3;
+				nState=STATE_MOVING;
+			}else{
+				nState=STATE_NOTHING;
 			}
 			CallFreeze(nFreezeTicks);
 			state Froozen;
