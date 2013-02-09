@@ -78,11 +78,6 @@ harvester "translateScriptNameHarvester"{
 		SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
 	}
 
-	function int ResetHarvestPoint(){
-		InvalidateCurrentHarvestPoint();
-		bValidHarvestPoint=false;
-	}
-
 	function int FindOrSetNewHarvestPoint(){
 		int nNewHarvestPointX;
 		int nNewHarvestPointY;
@@ -216,7 +211,8 @@ TraceD("StartMovingToPoint\n");
 	}
 
 	function int StartMovingToStop(){
-		ResetHarvestPoint();
+		bValidHarvestPoint=false;
+		InvalidateCurrentHarvestPoint();
 		SetDestination(null);
 		return StartMoving(MOVING_TO_STOP);
 	}
@@ -277,7 +273,7 @@ TraceD("MovingClose\n");
 				}
 			}
 		}else if(nMovingReason==MOVING_TO_DESTINATION_BUILDING){
-			if(GetLocationX()==nDestinationX && GetLocationY()==nDestinationY && GetLocationZ()==nDestinationZ){
+			if(IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				CallPutResource();
 				return PuttingResource;
 			}
