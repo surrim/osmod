@@ -146,9 +146,9 @@ builder "translateScriptNameConstructionVechicle"{
 
 	state StartMoving{
 		if(comboLights==LIGHTS_AUTO){
-			SetLightsMode(LIGHTS_ON);
+			SetLightsMode(LIGHTS_AUTO);
 		}
-		if(GetLocationX()!=nStayX || GetLocationY()!=nStayY || GetLocationZ()!=nStayZ){
+		if(DistanceTo(nStayX, nStayY)>4){
 			return Moving;
 		}
 		return MovingClose, 1;
@@ -348,7 +348,7 @@ builder "translateScriptNameConstructionVechicle"{
 		}
 		if(comboLights==LIGHTS_AUTO){
 			if(IsMoving()){
-				SetLightsMode(LIGHTS_ON);
+				SetLightsMode(LIGHTS_AUTO);
 			}else{
 				SetLightsMode(LIGHTS_OFF);
 			}
