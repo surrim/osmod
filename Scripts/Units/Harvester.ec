@@ -130,7 +130,15 @@ TraceD("StartMoving(");
 TraceD(nNewMovingReason);
 TraceD(")\n");
 		nMovingReason=nNewMovingReason;
-		if(nMovingReason==MOVING_TO_HARVEST_POINT){
+		if(nMovingReason==MOVING_ONLY){
+			if(!IsMoving() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
+				return false;
+			}
+			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
+		}else if(nMovingReason==MOVING_TO_HARVEST_POINT){
+			if(IsPuttingResource()){
+				return false;
+			}
 			if(!bValidHarvestPoint){
 				return false;
 			}
@@ -139,13 +147,16 @@ TraceD(")\n");
 			}
 			CallMoveAndLandToPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
 		}else if(nMovingReason==MOVING_TO_DESTINATION_BUILDING){
+			if(!HaveSomeResources()){
+				return false;
+			}
+			if(IsPuttingResource() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
+				return false;
+			}
 			if(GetHarvesterBuilding()==null){
 				if(!SetDestination(FindHarvesterRefineryBuilding())){
 					return false;
 				}
-			}
-			if(IsPuttingResource() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
-				return false;
 			}
 			CallMoveToPointForce(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_LAND){
@@ -153,11 +164,6 @@ TraceD(")\n");
 				return false;
 			}
 			CallMoveAndLandToPoint(nDestinationX, nDestinationY, nDestinationZ);
-		}else if(nMovingReason==MOVING_ONLY){
-			if(!IsMoving() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
-				return false;
-			}
-			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_STOP){
 			if(!IsMoving()){
 				return false;
@@ -170,61 +176,6 @@ TraceD(")\n");
 			SetLightsMode(LIGHTS_AUTO);
 		}
 		return true;
-	}
-
-	function int StartMovingToHarvestPoint(int nX, int nY, int nZ){
-TraceD("StartMovingToHarvestPoint\n");
-		SetHarvestPoint(nX, nY, nZ);
-		SetDestination(GetHarvesterBuilding()); //TODO: optimize
-		if(HaveFullResources()){
-			return StartMoving(MOVING_TO_DESTINATION_BUILDING);
-		}
-		if(!IsPuttingResource()){
-			return StartMoving(MOVING_TO_HARVEST_POINT);
-		}
-		return false;
-	}
-
-	function int StartMovingToDestinationBuilding(unit uDestination){
-TraceD("StartMovingToDestinationBuilding\n");
-		SetDestination(uDestination);
-		if(!HaveSomeResources()){
-			return false;
-		}
-		return StartMoving(MOVING_TO_DESTINATION_BUILDING);
-	}
-
-	function int StartMovingToPoint(int nX, int nY, int nZ){
-TraceD("StartMovingToPoint\n");
-		nDestinationX=nX;
-		nDestinationY=nY;
-		nDestinationZ=nZ;
-		return StartMoving(MOVING_ONLY);
-	}
-
-	function int StartMovingToEntrance(unit uEntrance){
-		uDestination=uEntrance;
-		nDestinationX=GetEntranceX(uEntrance);
-		nDestinationY=GetEntranceY(uEntrance);
-		nDestinationZ=GetEntranceZ(uEntrance);
-		return StartMoving(MOVING_TO_ENTRANCE);
-	}
-
-	function int StartMovingToStop(){
-		bValidHarvestPoint=false;
-		InvalidateCurrentHarvestPoint();
-		SetDestination(null);
-		return StartMoving(MOVING_TO_STOP);
-	}
-
-	function int StartMovingToLand(){
-		if(IsHarvesting() || IsPuttingResource()){
-			return false;
-		}
-		nDestinationX=GetMoveLocationX();
-		nDestinationY=GetMoveLocationY();
-		nDestinationZ=GetMoveLocationZ();
-		return StartMoving(MOVING_TO_LAND);
 	}
 
 	state Nothing{
@@ -389,8 +340,16 @@ TraceD("Uninitialize\n");
 
 	command SetHarvestPoint(int nX, int nY, int nZ) hidden button "translateCommandHarvest"{
 TraceD("SetHarvestPoint\n");
-		if(StartMovingToHarvestPoint(nX, nY, nZ)){
-			state Moving;
+		SetHarvestPoint(nX, nY, nZ);
+		SetDestination(GetHarvesterBuilding()); //TODO: optimize
+		if(HaveFullResources()){
+			if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
+				state Moving;
+			}
+		}else{
+			if(StartMoving(MOVING_TO_HARVEST_POINT)){
+				state Moving;
+			}
 		}
 TraceD("SetHarvestPoint NextCommand()\n");
 		NextCommand(true);
@@ -399,7 +358,8 @@ TraceD("SetHarvestPoint NextCommand()\n");
 
 	command SetContainerDestination(unit uDestination) hidden button "translateCommandSetRefinery"{
 TraceD("SetContainerDestination\n");
-		if(StartMovingToDestinationBuilding(uDestination)){
+		SetDestination(uDestination);
+		if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
 			state Moving;
 		}
 TraceD("SetContainerDestination NextCommand()\n");
@@ -409,7 +369,10 @@ TraceD("SetContainerDestination NextCommand()\n");
 
 	command Move(int nX, int nY, int nZ) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21{
 TraceD("Move\n");
-		if(StartMovingToPoint(nX, nY, nZ)){
+		nDestinationX=nX;
+		nDestinationY=nY;
+		nDestinationZ=nZ;
+		if(StartMoving(MOVING_ONLY)){
 			state Moving;
 		}
 		true;
@@ -417,7 +380,11 @@ TraceD("Move\n");
 
 	command Enter(unit uEntrance) hidden button "translateCommandEnter"{
 TraceD("Enter\n");
-		if(StartMovingToEntrance(uEntrance)){
+		uDestination=uEntrance;
+		nDestinationX=GetEntranceX(uEntrance);
+		nDestinationY=GetEntranceY(uEntrance);
+		nDestinationZ=GetEntranceZ(uEntrance);
+		if(StartMoving(MOVING_TO_ENTRANCE)){
 			state Moving;
 		}
 		true;
@@ -425,7 +392,10 @@ TraceD("Enter\n");
 
 	command Stop() button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20{
 TraceD("Stop\n");
-		if(StartMovingToStop()){
+		bValidHarvestPoint=false;
+		InvalidateCurrentHarvestPoint();
+		SetDestination(null);
+		if(StartMoving(MOVING_TO_STOP)){
 			state Moving;
 		}
 		true;
@@ -433,7 +403,10 @@ TraceD("Stop\n");
 
    command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31{
 TraceD("Land\n");
-		if(StartMovingToLand()){
+		nDestinationX=GetMoveLocationX();
+		nDestinationY=GetMoveLocationY();
+		nDestinationZ=GetMoveLocationZ();
+		if(StartMoving(MOVING_TO_LAND)){
 			state Moving;
 		}
 		true;
