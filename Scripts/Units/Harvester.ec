@@ -34,6 +34,10 @@ harvester "translateScriptNameHarvester"{
 		MOVING_TO_LAND                 = 3;
 		MOVING_TO_STOP                 = 4;
 		MOVING_TO_ENTRANCE             = 5;
+
+		//other
+		SQRT_1 = 5741;
+		SQRT_2 = 8119;
 	}
 
 	int bValidHarvestPoint;
@@ -41,7 +45,7 @@ harvester "translateScriptNameHarvester"{
 	int nHarvestPointY;
 	int nHarvestPointZ;
 
-	unit uDestination; //destination building or entrance
+	unit uEntrance;
 	int nDestinationX;
 	int nDestinationY;
 	int nDestinationZ;
@@ -78,55 +82,66 @@ harvester "translateScriptNameHarvester"{
 		SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
 	}
 
+	function int BetterDistance(int nX1, int nY1, int nX2, int nY2){
+		int xDiff;
+		int yDiff;
+		xDiff=nX1-nX2;
+		yDiff=nY1-nY2;
+		if(xDiff<0){
+			xDiff=-xDiff;
+		}
+		if(yDiff<0){
+			yDiff=-yDiff;
+		}
+		if(xDiff<yDiff){
+			return xDiff*SQRT_2+(yDiff-xDiff)*SQRT_1;
+		}
+		return yDiff*SQRT_2+(xDiff-yDiff)*SQRT_1;
+	}
+
 	function int FindOrSetNewHarvestPoint(){
 		int nNewHarvestPointX;
 		int nNewHarvestPointY;
-		int nNewHarvestPointZ;
-		if(IsFreePoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
-			return true;
-		}
-		nNewHarvestPointX=GetLocationX();
-		nNewHarvestPointY=GetLocationY();
-		if(DistanceTo(nHarvestPointX, nHarvestPointY)<2){
-			nNewHarvestPointZ=GetLocationZ();
-			if(IsResourceInPoint(nNewHarvestPointX, nNewHarvestPointY, nNewHarvestPointZ)){
-				SetHarvestPoint(nNewHarvestPointX, nNewHarvestPointY, nNewHarvestPointZ);
-				return true;
+
+		int nBestHarvestPointX;
+		int nBestHarvestPointY;
+
+		int nBestDistance;
+		int nNewBestDistance;
+
+		if(bValidHarvestPoint){
+			nBestHarvestPointX=nHarvestPointX;
+			nBestHarvestPointY=nHarvestPointY;
+			nBestDistance=2000000000;
+			for(nNewHarvestPointX=nHarvestPointX-3;nNewHarvestPointX<=nHarvestPointX+3;++nNewHarvestPointX){
+				for(nNewHarvestPointY=nHarvestPointY-3;nNewHarvestPointY<=nHarvestPointY+3;++nNewHarvestPointY){
+					if(IsResourceInPoint(nNewHarvestPointX, nNewHarvestPointY, nHarvestPointZ) && IsFreePoint(nNewHarvestPointX, nNewHarvestPointY, nHarvestPointZ)){
+						nNewBestDistance=BetterDistance(nHarvestPointX, nHarvestPointY, nNewHarvestPointX, nNewHarvestPointY);
+						if(nNewBestDistance<nBestDistance){
+							nBestHarvestPointX=nNewHarvestPointX;
+							nBestHarvestPointY=nNewHarvestPointY;
+							nBestDistance=nNewBestDistance;
+						}
+					}
+				}
 			}
-		}
-		if(FindResource()){
-			nNewHarvestPointX=GetFoundResourceX();
-			nNewHarvestPointY=GetFoundResourceY();
-			if(Distance(nHarvestPointX, nHarvestPointY, nNewHarvestPointX, nNewHarvestPointY)>4){
-				return false;
-			}
-			SetHarvestPoint(nNewHarvestPointX, nNewHarvestPointY, GetFoundResourceZ());
+			nHarvestPointX=nBestHarvestPointX;
+			nHarvestPointY=nBestHarvestPointY;
+			SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
 			return true;
 		}
 		return false;
 	}
 
-	function int SetDestination(unit uNewDestination){
-		if(SetHarvesterBuilding(uNewDestination)){
-			uDestination=uNewDestination;
-			nDestinationX=GetHarvesterBuildingPutLocationX();
-			nDestinationY=GetHarvesterBuildingPutLocationY();
-			nDestinationZ=GetHarvesterBuildingPutLocationZ();
-			return true;
-		}
-		uDestination=null;
-		return false;
-	}
-
-	function int StartNothing(){
-TraceD("StartNothing\n");
+	function int SwitchLightsOff(){
+TraceD("SwitchLightsOff\n");
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_OFF);
 		}
 	}
 
-	function int StartMoving(int nNewMovingReason){
-TraceD("StartMoving(");
+	function int SwitchLightsOn(int nNewMovingReason){
+TraceD("SwitchLightsOn(");
 TraceD(nNewMovingReason);
 TraceD(")\n");
 		nMovingReason=nNewMovingReason;
@@ -136,25 +151,29 @@ TraceD(")\n");
 			}
 			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_HARVEST_POINT){
-			if(IsPuttingResource()){
+			if(HaveFullResources()){
+				return SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING);
+			}
+			if(!bValidHarvestPoint || IsPuttingResource() || (IsHarvesting() && IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ))){
 				return false;
 			}
-			if(!bValidHarvestPoint){
-				return false;
-			}
-			if(IsHarvesting() && IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
-				return false;
-			}
-			CallMoveAndLandToPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
+			CallMoveToPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
 		}else if(nMovingReason==MOVING_TO_DESTINATION_BUILDING){
 			if(!HaveSomeResources()){
+				if(bValidHarvestPoint){
+					return SwitchLightsOn(MOVING_TO_HARVEST_POINT);
+				}
 				return false;
 			}
 			if(IsPuttingResource() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				return false;
 			}
 			if(GetHarvesterBuilding()==null){
-				if(!SetDestination(FindHarvesterRefineryBuilding())){
+				if(SetHarvesterBuilding(FindHarvesterRefineryBuilding())){
+					nDestinationX=GetHarvesterBuildingPutLocationX();
+					nDestinationY=GetHarvesterBuildingPutLocationY();
+					nDestinationZ=GetHarvesterBuildingPutLocationZ();
+				}else{
 					return false;
 				}
 			}
@@ -163,14 +182,14 @@ TraceD(")\n");
 			if(IsOnGround()){
 				return false;
 			}
-			CallMoveAndLandToPoint(nDestinationX, nDestinationY, nDestinationZ);
+			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_STOP){
 			if(!IsMoving()){
 				return false;
 			}
 			CallStopMoving();
 		}else if(nMovingReason==MOVING_TO_ENTRANCE){
-			CallMoveInsideObject(uDestination);
+			CallMoveInsideObject(uEntrance);
 		}
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_AUTO);
@@ -193,7 +212,7 @@ TraceD("Moving\n");
 				if(DistanceTo(nHarvestPointX, nHarvestPointY)>4){
 					return Moving;
 				}
-			}else{ //nMovingReason==MOVING_TO_DESTINATION_BUILDING|MOVING_ONLY
+			}else{
 				if(DistanceTo(nDestinationX, nDestinationY)>4){
 					return Moving;
 				}
@@ -205,21 +224,31 @@ TraceD("Moving\n");
 	state MovingClose{
 TraceD("MovingClose\n");
 		if(IsMoving()){
-			if(nMovingReason==MOVING_TO_LAND){
-				if(IsFreePoint(nDestinationX, nDestinationY, nDestinationZ)){
-					return MovingClose, 1;
-				}
-			}else{
+			return MovingClose, 1;
+		}
+/*		if(nMovingReason==MOVING_TO_HARVEST_POINT){
+			if(!IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+				return MovingClose, 1;
+			}
+		}else{
+			if(!IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				return MovingClose, 1;
 			}
 		}
-		if(nMovingReason==MOVING_TO_HARVEST_POINT){
-			if(IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ) && IsResourceInPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ) && IsOnGround()){
-				CallHarvest();
-				return Harvesting;
+*/		if(nMovingReason==MOVING_TO_HARVEST_POINT){
+			if(IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ) && IsResourceInPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+				if(IsOnGround()){
+					CallHarvest();
+					SwitchLightsOff();
+					return Harvesting;
+				}
+				if(IsFreePoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+					CallLand();
+					return MovingClose, 1;
+				}
 			}
 			if(FindOrSetNewHarvestPoint()){
-				if(StartMoving(MOVING_TO_HARVEST_POINT)){
+				if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
 					return Moving;
 				}
 			}
@@ -228,23 +257,29 @@ TraceD("MovingClose\n");
 				CallPutResource();
 				return PuttingResource;
 			}
-			if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
+			if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 				return Moving;
 			}
 		}else if(nMovingReason==MOVING_TO_LAND){
-			if(!IsAt(nDestinationX, nDestinationY, nDestinationZ) || !IsOnGround()){
-				while(!IsFreePoint(nDestinationX, nDestinationY, nDestinationZ)){
-					nDestinationX=nDestinationX+Rand(5)-2;
-					nDestinationY=nDestinationY+Rand(5)-2;
-				}
-				if(StartMoving(MOVING_TO_LAND)){
-					return Moving;
+			if(IsAt(nDestinationX, nDestinationY, nDestinationZ)){
+				if(!IsOnGround()){
+					if(IsFreePoint(nDestinationX, nDestinationY, nDestinationZ)){
+						CallLand();
+						return MovingClose, 1;
+					}
+					while(!IsFreePoint(nDestinationX, nDestinationY, nDestinationZ)){
+						nDestinationX=nDestinationX+Rand(5)-2;
+						nDestinationY=nDestinationY+Rand(5)-2;
+					}
+					if(SwitchLightsOn(MOVING_TO_LAND)){
+						return Moving;
+					}
 				}
 			}
 		}
 TraceD("MovingClose NextCommand()\n");
 		NextCommand(true);
-		StartNothing();
+		SwitchLightsOff();
 		return Nothing;
 	}
 
@@ -254,20 +289,21 @@ TraceD("Harvesting\n");
 			return Harvesting;
 		}
 		if(HaveFullResources()){
-			if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
+			if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 				return Moving;
 			}
 		}else if(FindOrSetNewHarvestPoint()){
-			if(StartMoving(MOVING_TO_HARVEST_POINT)){
+			if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
 				return Moving;
 			}
 		}else if(HaveSomeResources()){
-			if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
+			if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 				return Moving;
 			}
 		}
+TraceD("Harvesting NextCommand\n");
 		NextCommand(true);
-		StartNothing();
+		SwitchLightsOff();
 		return Nothing;
 	}
 
@@ -276,23 +312,15 @@ TraceD("PuttingResource\n");
 		if(IsPuttingResource()){
 			return PuttingResource;
 		}
-		if(HaveSomeResources()){
-			if(SetDestination(FindHarvesterRefineryBuilding())){
-				if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
-					return Moving;
-				}
-			}
-		}else if(bValidHarvestPoint){
-			if(StartMoving(MOVING_TO_HARVEST_POINT)){
-				return Moving;
-			}
-		}else if(FindOrSetNewHarvestPoint()){
-			if(StartMoving(MOVING_TO_HARVEST_POINT)){
-				return Moving;
-			}
+		if(HaveSomeResources() && SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
+			return Moving;
 		}
+		if(bValidHarvestPoint && SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
+			return Moving;
+		}
+TraceD("PuttingResource NextCommand\n");
 		NextCommand(true);
-		StartNothing();
+		SwitchLightsOff();
 		return Nothing;
 	}
 
@@ -301,24 +329,22 @@ TraceD("Froozen\n");
 		if(IsFroozen()){
 			return Froozen;
 		}
-		if(nState==STATE_MOVING){
-			if(StartMoving(nMovingReason)){
-				return Moving;
-			}
+		if(nState==STATE_MOVING && SwitchLightsOn(nMovingReason)){
+			return Moving;
 		}
-		StartNothing();
+		SwitchLightsOff();
 		return Nothing;
 	}
 
 	event OnFreezeForSupplyOrRepair(int nFreezeTicks){
 TraceD("OnFreezeForSupplyOrRepair\n");
-		if(state==Moving || state==MovingClose){
-			nState=STATE_MOVING;
+		if(state==Nothing){
+			nState=STATE_NOTHING;
 			CallFreeze(nFreezeTicks);
 			state Froozen;
 			true;
-		}else if(state==Nothing){
-			nState=STATE_NOTHING;
+		}else if(state==Moving || state==MovingClose){
+			nState=STATE_MOVING;
 			CallFreeze(nFreezeTicks);
 			state Froozen;
 			true;
@@ -328,28 +354,24 @@ TraceD("OnFreezeForSupplyOrRepair\n");
 
 	command Initialize(){
 TraceD("Initialize\n");
-		StartNothing();
+		SwitchLightsOff();
 	}
 
 	command Uninitialize(){
 TraceD("Uninitialize\n");
 		InvalidateCurrentHarvestPoint();
 		SetHarvesterBuilding(null);
-		uDestination=null;
+		uEntrance=null;
 	}
 
 	command SetHarvestPoint(int nX, int nY, int nZ) hidden button "translateCommandHarvest"{
 TraceD("SetHarvestPoint\n");
 		SetHarvestPoint(nX, nY, nZ);
-		SetDestination(GetHarvesterBuilding()); //TODO: optimize
-		if(HaveFullResources()){
-			if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
-				state Moving;
-			}
-		}else{
-			if(StartMoving(MOVING_TO_HARVEST_POINT)){
-				state Moving;
-			}
+		nDestinationX=GetHarvesterBuildingPutLocationX();
+		nDestinationY=GetHarvesterBuildingPutLocationY();
+		nDestinationZ=GetHarvesterBuildingPutLocationZ();
+		if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
+			state Moving;
 		}
 TraceD("SetHarvestPoint NextCommand()\n");
 		NextCommand(true);
@@ -358,8 +380,11 @@ TraceD("SetHarvestPoint NextCommand()\n");
 
 	command SetContainerDestination(unit uDestination) hidden button "translateCommandSetRefinery"{
 TraceD("SetContainerDestination\n");
-		SetDestination(uDestination);
-		if(StartMoving(MOVING_TO_DESTINATION_BUILDING)){
+		SetHarvesterBuilding(uDestination);
+		nDestinationX=GetHarvesterBuildingPutLocationX();
+		nDestinationY=GetHarvesterBuildingPutLocationY();
+		nDestinationZ=GetHarvesterBuildingPutLocationZ();
+		if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 			state Moving;
 		}
 TraceD("SetContainerDestination NextCommand()\n");
@@ -372,19 +397,19 @@ TraceD("Move\n");
 		nDestinationX=nX;
 		nDestinationY=nY;
 		nDestinationZ=nZ;
-		if(StartMoving(MOVING_ONLY)){
+		if(SwitchLightsOn(MOVING_ONLY)){
 			state Moving;
 		}
 		true;
 	}
 
-	command Enter(unit uEntrance) hidden button "translateCommandEnter"{
+	command Enter(unit uNewEntrance) hidden button "translateCommandEnter"{
 TraceD("Enter\n");
-		uDestination=uEntrance;
+		uEntrance=uNewEntrance;
 		nDestinationX=GetEntranceX(uEntrance);
 		nDestinationY=GetEntranceY(uEntrance);
 		nDestinationZ=GetEntranceZ(uEntrance);
-		if(StartMoving(MOVING_TO_ENTRANCE)){
+		if(SwitchLightsOn(MOVING_TO_ENTRANCE)){
 			state Moving;
 		}
 		true;
@@ -394,8 +419,8 @@ TraceD("Enter\n");
 TraceD("Stop\n");
 		bValidHarvestPoint=false;
 		InvalidateCurrentHarvestPoint();
-		SetDestination(null);
-		if(StartMoving(MOVING_TO_STOP)){
+		SetHarvesterBuilding(null);
+		if(SwitchLightsOn(MOVING_TO_STOP)){
 			state Moving;
 		}
 		true;
@@ -406,7 +431,7 @@ TraceD("Land\n");
 		nDestinationX=GetMoveLocationX();
 		nDestinationY=GetMoveLocationY();
 		nDestinationZ=GetMoveLocationZ();
-		if(StartMoving(MOVING_TO_LAND)){
+		if(SwitchLightsOn(MOVING_TO_LAND)){
 			state Moving;
 		}
 		true;
