@@ -36,14 +36,13 @@ harvester "translateScriptNameHarvester"{
 		MOVING_TO_ENTRANCE             = 5;
 
 		//other
-		SQRT_1 = 5741;
-		SQRT_2 = 8119;
+		SQRT_1 = 29;
+		SQRT_2 = 41;
 	}
 
-	int bValidHarvestPoint;
+	int bHarvestPointWasSet;
 	int nHarvestPointX;
 	int nHarvestPointY;
-	int nHarvestPointZ;
 
 	unit uEntrance;
 	int nDestinationX;
@@ -74,24 +73,18 @@ harvester "translateScriptNameHarvester"{
 		return false;
 	}
 
-	function int SetHarvestPoint(int nX, int nY, int nZ){
-		nHarvestPointX=nX;
-		nHarvestPointY=nY;
-		nHarvestPointZ=nZ;
-		bValidHarvestPoint=true;
-		SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
-	}
-
 	function int BetterDistance(int nX1, int nY1, int nX2, int nY2){
 		int xDiff;
 		int yDiff;
-		xDiff=nX1-nX2;
-		yDiff=nY1-nY2;
-		if(xDiff<0){
-			xDiff=-xDiff;
+		if(nX1<nX2){
+			xDiff=nX2-nX1;
+		}else{
+			xDiff=nX1-nX2;
 		}
-		if(yDiff<0){
-			yDiff=-yDiff;
+		if(nY1<nY2){
+			yDiff=nY2-nY1;
+		}else{
+			yDiff=nY1-nY2;
 		}
 		if(xDiff<yDiff){
 			return xDiff*SQRT_2+(yDiff-xDiff)*SQRT_1;
@@ -99,24 +92,42 @@ harvester "translateScriptNameHarvester"{
 		return yDiff*SQRT_2+(xDiff-yDiff)*SQRT_1;
 	}
 
-	function int FindOrSetNewHarvestPoint(){
+	function int SetNewHarvestPoint(){
 		int nNewHarvestPointX;
 		int nNewHarvestPointY;
 
 		int nBestHarvestPointX;
 		int nBestHarvestPointY;
 
+		int nLocationX;
+		int nLocationY;
+
 		int nBestDistance;
 		int nNewBestDistance;
+//TraceD("SetNewHarvestPoint()\n");
 
-		if(bValidHarvestPoint){
+		if(bHarvestPointWasSet){
+			nLocationX=GetLocationX();
+			nLocationY=GetLocationY();
 			nBestHarvestPointX=nHarvestPointX;
 			nBestHarvestPointY=nHarvestPointY;
 			nBestDistance=2000000000;
 			for(nNewHarvestPointX=nHarvestPointX-3;nNewHarvestPointX<=nHarvestPointX+3;++nNewHarvestPointX){
 				for(nNewHarvestPointY=nHarvestPointY-3;nNewHarvestPointY<=nHarvestPointY+3;++nNewHarvestPointY){
-					if(IsResourceInPoint(nNewHarvestPointX, nNewHarvestPointY, nHarvestPointZ) && IsFreePoint(nNewHarvestPointX, nNewHarvestPointY, nHarvestPointZ)){
-						nNewBestDistance=BetterDistance(nHarvestPointX, nHarvestPointY, nNewHarvestPointX, nNewHarvestPointY);
+					if(
+							IsResourceInPoint(nNewHarvestPointX, nNewHarvestPointY, 0)
+							&&
+							(
+								IsFreePoint(nNewHarvestPointX, nNewHarvestPointY, 0)
+								||
+								(
+									IsAt(nNewHarvestPointX, nNewHarvestPointY, 0)
+									&&
+									IsOnGround()
+								)
+							)
+					){
+						nNewBestDistance=16*BetterDistance(nHarvestPointX, nHarvestPointY, nNewHarvestPointX, nNewHarvestPointY)+BetterDistance(nLocationX, nLocationY, nNewHarvestPointX, nNewHarvestPointY);
 						if(nNewBestDistance<nBestDistance){
 							nBestHarvestPointX=nNewHarvestPointX;
 							nBestHarvestPointY=nNewHarvestPointY;
@@ -125,47 +136,66 @@ harvester "translateScriptNameHarvester"{
 					}
 				}
 			}
-			nHarvestPointX=nBestHarvestPointX;
-			nHarvestPointY=nBestHarvestPointY;
-			SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
-			return true;
+			if(nBestDistance!=2000000000){
+				nHarvestPointX=nBestHarvestPointX;
+				nHarvestPointY=nBestHarvestPointY;
+				SetCurrentHarvestPoint(nHarvestPointX, nHarvestPointY, 0);
+			}
 		}
-		return false;
 	}
 
 	function int SwitchLightsOff(){
-TraceD("SwitchLightsOff\n");
+//TraceD("SwitchLightsOff()\n");
 		if(comboLights==LIGHTS_AUTO){
 			SetLightsMode(LIGHTS_OFF);
 		}
 	}
 
 	function int SwitchLightsOn(int nNewMovingReason){
-TraceD("SwitchLightsOn(");
-TraceD(nNewMovingReason);
-TraceD(")\n");
+//TraceD("SwitchLightsOn(");
+//TraceD(nNewMovingReason);
+//TraceD(")\n");
 		nMovingReason=nNewMovingReason;
 		if(nMovingReason==MOVING_ONLY){
 			if(!IsMoving() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				return false;
 			}
+//TraceD("CallMoveToPoint(");
+//TraceD(nDestinationX);
+//TraceD(", ");
+//TraceD(nDestinationY);
+//TraceD(", ");
+//TraceD(nDestinationZ);
+//TraceD(")\n");
 			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_HARVEST_POINT){
 			if(HaveFullResources()){
 				return SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING);
 			}
-			if(!bValidHarvestPoint || IsPuttingResource() || (IsHarvesting() && IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ))){
+			if(
+					!bHarvestPointWasSet
+					||
+					(state==Harvesting && IsAt(nHarvestPointX, nHarvestPointY, 0))
+			){
 				return false;
 			}
-			CallMoveToPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ);
+			SetNewHarvestPoint();
+//TraceD("CallMoveToPoint(");
+//TraceD(nHarvestPointX);
+//TraceD(", ");
+//TraceD(nHarvestPointY);
+//TraceD(", ");
+//TraceD(0);
+//TraceD(")\n");
+			CallMoveToPoint(nHarvestPointX, nHarvestPointY, 0);
 		}else if(nMovingReason==MOVING_TO_DESTINATION_BUILDING){
 			if(!HaveSomeResources()){
-				if(bValidHarvestPoint){
+				if(bHarvestPointWasSet){
 					return SwitchLightsOn(MOVING_TO_HARVEST_POINT);
 				}
 				return false;
 			}
-			if(IsPuttingResource() && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
+			if(state==PuttingResource && IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				return false;
 			}
 			if(GetHarvesterBuilding()==null){
@@ -177,18 +207,38 @@ TraceD(")\n");
 					return false;
 				}
 			}
+//TraceD("CallMoveToPointForce(");
+//TraceD(nDestinationX);
+//TraceD(", ");
+//TraceD(nDestinationY);
+//TraceD(", ");
+//TraceD(nDestinationZ);
+//TraceD(")\n");
 			CallMoveToPointForce(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_LAND){
 			if(IsOnGround()){
 				return false;
 			}
+//TraceD("CallMoveToPoint(");
+//TraceD(nDestinationX);
+//TraceD(", ");
+//TraceD(nDestinationY);
+//TraceD(", ");
+//TraceD(nDestinationZ);
+//TraceD(")\n");
 			CallMoveToPoint(nDestinationX, nDestinationY, nDestinationZ);
 		}else if(nMovingReason==MOVING_TO_STOP){
 			if(!IsMoving()){
 				return false;
 			}
+//TraceD("CallStopMoving()\n");
 			CallStopMoving();
 		}else if(nMovingReason==MOVING_TO_ENTRANCE){
+//TraceD("CallMoveInsideObject(@{");
+//TraceD(uEntrance.GetLocationX());
+//TraceD(", ");
+//TraceD(uEntrance.GetLocationY());
+//TraceD("})\n");
 			CallMoveInsideObject(uEntrance);
 		}
 		if(comboLights==LIGHTS_AUTO){
@@ -198,12 +248,12 @@ TraceD(")\n");
 	}
 
 	state Nothing{
-TraceD("Nothing\n");
+//TraceD("Nothing\n");
 		return Nothing;
 	}
 
 	state Moving{
-TraceD("Moving\n");
+//TraceD("Moving\n");
 		if(IsHarvesting() || IsPuttingResource()){
 			return Moving;
 		}
@@ -222,38 +272,45 @@ TraceD("Moving\n");
 	}
 
 	state MovingClose{
-TraceD("MovingClose\n");
+//TraceD("MovingClose\n");
 		if(IsMoving()){
-			return MovingClose, 1;
-		}
-/*		if(nMovingReason==MOVING_TO_HARVEST_POINT){
-			if(!IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+			if(
+					IsOnGround()
+					||
+					!IsAt(nHarvestPointX, nHarvestPointY, 0)
+					||
+					IsFreePoint(nHarvestPointX, nHarvestPointY, 0)
+			){
 				return MovingClose, 1;
 			}
-		}else{
-			if(!IsAt(nDestinationX, nDestinationY, nDestinationZ)){
-				return MovingClose, 1;
-			}
 		}
-*/		if(nMovingReason==MOVING_TO_HARVEST_POINT){
-			if(IsAt(nHarvestPointX, nHarvestPointY, nHarvestPointZ) && IsResourceInPoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+		if(nMovingReason==MOVING_TO_HARVEST_POINT){
+			if(
+					IsAt(nHarvestPointX, nHarvestPointY, 0)
+					&&
+					IsResourceInPoint(nHarvestPointX, nHarvestPointY, 0)
+			){
 				if(IsOnGround()){
+//TraceD("CallHarvest()\n");
 					CallHarvest();
 					SwitchLightsOff();
 					return Harvesting;
 				}
-				if(IsFreePoint(nHarvestPointX, nHarvestPointY, nHarvestPointZ)){
+				if(IsFreePoint(nHarvestPointX, nHarvestPointY, 0)){
+//TraceD("CallLand()\n");
 					CallLand();
 					return MovingClose, 1;
 				}
 			}
-			if(FindOrSetNewHarvestPoint()){
+			if(bHarvestPointWasSet){
+				SetNewHarvestPoint();
 				if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
 					return Moving;
 				}
 			}
 		}else if(nMovingReason==MOVING_TO_DESTINATION_BUILDING){
 			if(IsAt(nDestinationX, nDestinationY, nDestinationZ)){
+//TraceD("CallPutResource()\n");
 				CallPutResource();
 				return PuttingResource;
 			}
@@ -264,6 +321,7 @@ TraceD("MovingClose\n");
 			if(IsAt(nDestinationX, nDestinationY, nDestinationZ)){
 				if(!IsOnGround()){
 					if(IsFreePoint(nDestinationX, nDestinationY, nDestinationZ)){
+//TraceD("CallLand()\n");
 						CallLand();
 						return MovingClose, 1;
 					}
@@ -277,14 +335,14 @@ TraceD("MovingClose\n");
 				}
 			}
 		}
-TraceD("MovingClose NextCommand()\n");
+//TraceD("MovingClose NextCommand()\n");
 		NextCommand(true);
 		SwitchLightsOff();
 		return Nothing;
 	}
 
 	state Harvesting{
-TraceD("Harvesting\n");
+//TraceD("Harvesting\n");
 		if(IsHarvesting()){
 			return Harvesting;
 		}
@@ -292,40 +350,57 @@ TraceD("Harvesting\n");
 			if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 				return Moving;
 			}
-		}else if(FindOrSetNewHarvestPoint()){
-			if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
-				return Moving;
-			}
+		}else if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
+			return Moving;
 		}else if(HaveSomeResources()){
 			if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 				return Moving;
 			}
 		}
-TraceD("Harvesting NextCommand\n");
+//TraceD("Harvesting NextCommand\n");
 		NextCommand(true);
 		SwitchLightsOff();
 		return Nothing;
 	}
 
 	state PuttingResource{
-TraceD("PuttingResource\n");
+//TraceD("PuttingResource\n");
 		if(IsPuttingResource()){
 			return PuttingResource;
 		}
-		if(HaveSomeResources() && SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
+		if(
+				(HaveSomeResources() && SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING))
+				||
+				(bHarvestPointWasSet && SwitchLightsOn(MOVING_TO_HARVEST_POINT))
+		){
 			return Moving;
 		}
-		if(bValidHarvestPoint && SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
+		if(Rand(2)){
+			if(Rand(2)){
+				nDestinationX=nDestinationX+3;
+			}else{
+				nDestinationX=nDestinationX-3;
+			}
+			nDestinationY=nDestinationY+Rand(6)-3;
+		}else{
+			if(Rand(2)){
+				nDestinationY=nDestinationY+3;
+			}else{
+				nDestinationY=nDestinationY-3;
+			}
+			nDestinationX=nDestinationX+Rand(6)-3;
+		}
+		if(SwitchLightsOn(MOVING_ONLY)){
 			return Moving;
 		}
-TraceD("PuttingResource NextCommand\n");
+//TraceD("PuttingResource NextCommand\n");
 		NextCommand(true);
 		SwitchLightsOff();
 		return Nothing;
 	}
 
 	state Froozen{
-TraceD("Froozen\n");
+//TraceD("Froozen\n");
 		if(IsFroozen()){
 			return Froozen;
 		}
@@ -337,14 +412,22 @@ TraceD("Froozen\n");
 	}
 
 	event OnFreezeForSupplyOrRepair(int nFreezeTicks){
-TraceD("OnFreezeForSupplyOrRepair\n");
+//TraceD("OnFreezeForSupplyOrRepair(");
+//TraceD(nFreezeTicks);
+//TraceD(")\n");
 		if(state==Nothing){
 			nState=STATE_NOTHING;
+//TraceD("CallFreeze(");
+//TraceD(nFreezeTicks);
+//TraceD(")\n");
 			CallFreeze(nFreezeTicks);
 			state Froozen;
 			true;
 		}else if(state==Moving || state==MovingClose){
 			nState=STATE_MOVING;
+//TraceD("CallFreeze(");
+//TraceD(nFreezeTicks);
+//TraceD(")\n");
 			CallFreeze(nFreezeTicks);
 			state Froozen;
 			true;
@@ -353,33 +436,46 @@ TraceD("OnFreezeForSupplyOrRepair\n");
 	}
 
 	command Initialize(){
-TraceD("Initialize\n");
+//TraceD("Initialize()\n");
 		SwitchLightsOff();
 	}
 
 	command Uninitialize(){
-TraceD("Uninitialize\n");
+//TraceD("Uninitialize()\n");
 		InvalidateCurrentHarvestPoint();
 		SetHarvesterBuilding(null);
 		uEntrance=null;
 	}
 
 	command SetHarvestPoint(int nX, int nY, int nZ) hidden button "translateCommandHarvest"{
-TraceD("SetHarvestPoint\n");
-		SetHarvestPoint(nX, nY, nZ);
+//TraceD("SetHarvestPoint(");
+//TraceD(nX);
+//TraceD(", ");
+//TraceD(nY);
+//TraceD(", ");
+//TraceD(nZ);
+//TraceD(")\n");
+		nHarvestPointX=nX;
+		nHarvestPointY=nY;
+		bHarvestPointWasSet=true;
+		SetNewHarvestPoint();
 		nDestinationX=GetHarvesterBuildingPutLocationX();
 		nDestinationY=GetHarvesterBuildingPutLocationY();
 		nDestinationZ=GetHarvesterBuildingPutLocationZ();
 		if(SwitchLightsOn(MOVING_TO_HARVEST_POINT)){
 			state Moving;
 		}
-TraceD("SetHarvestPoint NextCommand()\n");
+//TraceD("SetHarvestPoint NextCommand()\n");
 		NextCommand(true);
 		true;
 	}
 
 	command SetContainerDestination(unit uDestination) hidden button "translateCommandSetRefinery"{
-TraceD("SetContainerDestination\n");
+//TraceD("SetContainerDestination(@{");
+//TraceD(uDestination.GetLocationX());
+//TraceD(", ");
+//TraceD(uDestination.GetLocationY());
+//TraceD("})\n");
 		SetHarvesterBuilding(uDestination);
 		nDestinationX=GetHarvesterBuildingPutLocationX();
 		nDestinationY=GetHarvesterBuildingPutLocationY();
@@ -387,13 +483,19 @@ TraceD("SetContainerDestination\n");
 		if(SwitchLightsOn(MOVING_TO_DESTINATION_BUILDING)){
 			state Moving;
 		}
-TraceD("SetContainerDestination NextCommand()\n");
+//TraceD("SetContainerDestination NextCommand()\n");
 		NextCommand(true);
 		true;
 	}
 
 	command Move(int nX, int nY, int nZ) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21{
-TraceD("Move\n");
+//TraceD("Move(");
+//TraceD(nX);
+//TraceD(", ");
+//TraceD(nY);
+//TraceD(", ");
+//TraceD(nZ);
+//TraceD(")\n");
 		nDestinationX=nX;
 		nDestinationY=nY;
 		nDestinationZ=nZ;
@@ -404,7 +506,11 @@ TraceD("Move\n");
 	}
 
 	command Enter(unit uNewEntrance) hidden button "translateCommandEnter"{
-TraceD("Enter\n");
+//TraceD("Enter(@{");
+//TraceD(uNewEntrance.GetLocationX());
+//TraceD(", ");
+//TraceD(uNewEntrance.GetLocationY());
+//TraceD("})\n");
 		uEntrance=uNewEntrance;
 		nDestinationX=GetEntranceX(uEntrance);
 		nDestinationY=GetEntranceY(uEntrance);
@@ -416,8 +522,8 @@ TraceD("Enter\n");
 	}
 
 	command Stop() button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20{
-TraceD("Stop\n");
-		bValidHarvestPoint=false;
+//TraceD("Stop()\n");
+		bHarvestPointWasSet=false;
 		InvalidateCurrentHarvestPoint();
 		SetHarvesterBuilding(null);
 		if(SwitchLightsOn(MOVING_TO_STOP)){
@@ -427,7 +533,7 @@ TraceD("Stop\n");
 	}
 
    command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31{
-TraceD("Land\n");
+//TraceD("Land()\n");
 		nDestinationX=GetMoveLocationX();
 		nDestinationY=GetMoveLocationY();
 		nDestinationZ=GetMoveLocationZ();
@@ -438,7 +544,9 @@ TraceD("Land\n");
 	}
 
 	command SetLights(int nMode) button comboLights description "translateCommandStateLightsModeDescription" hotkey priority 204{
-TraceD("SetLights\n");
+//TraceD("SetLights(");
+//TraceD(nMode);
+//TraceD(")\n");
 		if(nMode==-1){
 			comboLights=(comboLights+1)%3;
 		}else{
@@ -456,6 +564,7 @@ TraceD("SetLights\n");
 	}
 
 	command SpecialChangeUnitsScript() button "translateCommandChangeScript" description "translateCommandChangeScriptDescription" hotkey priority 254{
+//TraceD("SpecialChangeUnitsScript()\n");
 		//special command, no implementation
 	}
 }
