@@ -40,7 +40,7 @@ repairer "translateScriptNameRepairer"
     int  m_nStayY;
     int  m_nStayZ;
 
-    enum lights/* Copyright 2009-2014 surrim
+    enum lights/* Copyright 2009-2016 surrim
  *
  * This file is part of OSMod.
  *
