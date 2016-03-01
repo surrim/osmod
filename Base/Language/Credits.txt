@@ -15,6 +15,6 @@ surrim (AIPlayers, GameTypes, Units)
 
 group OSMod Information
 {
-http://sourceforge.net/projects/osmod/
+https://github.com/surrim/osmod/
 http://surrim.de/
 }
