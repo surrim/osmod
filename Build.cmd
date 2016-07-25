@@ -17,13 +17,9 @@ rem along with OSMod.  If not, see <http://www.gnu.org/licenses/>.
 rem
 
 echo off
-rem Notice
-rem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-rem To run this build script you have to set the path of 7z to the
-rem systems temp environment variable.
-rem Best regards
-rem surrim
-cls
+rem To run this script you have to add the 7z folder to your
+rem rem "PATH" environment variable.
+rem cls
 
 path Tools;%path%
 rd Work /s /q > nul
