@@ -1819,9 +1819,9 @@ player "TD Bot"{
 			AddResearch("RES_MCH2"); //Upg: MG-Kugeln(Schaden: 20)
 			AddResearch("RES_MCH3"); //Upg: MG-Kugeln(Schaden: 25)
 			AddResearch("RES_MCH4"); //Upg: MG-Kugeln(Schaden: 30)
-			AddResearch("RES_ED_WCA2"); //Upg: Gesch�tz
-			AddResearch("RES_ED_WHC1"); //Schweres Gesch�tz
-			AddResearch("RES_ED_WHC2"); //Upg: Schweres Gesch�tz
+			AddResearch("RES_ED_WCA2"); //Upg: Geschütz
+			AddResearch("RES_ED_WHC1"); //Schweres Geschütz
+			AddResearch("RES_ED_WHC2"); //Upg: Schweres Geschütz
 			AddResearch("RES_ED_LRC"); //Longe Range Cannon
 			AddResearch("RES_ED_MOBART"); //Mobile Artillerie
 			AddResearch("RES_ED_MHC2"); //Upg: Schwere Kanonenkugel(Schaden: 60)
@@ -1853,12 +1853,12 @@ player "TD Bot"{
 			AddResearch("RES_MSR3"); //Upg: Rakete(Schaden: 30)
 			AddResearch("RES_MSR4"); //Upg: Rakete(Schaden: 35)
 			AddResearch("RES_EDWAN1"); //AntiRakete
-			AddResearch("RES_ED_WSL1"); //Lasergesch�tz
-			AddResearch("RES_ED_WSL2"); //Upg: Lasergesch�tz
-			AddResearch("RES_ED_WSL3"); //Upg: Lasergesch�tz
-			AddResearch("RES_ED_WHL1"); //Schweres Lasergesch�tz
-			AddResearch("RES_ED_WHL2"); //Upg: Schweres Lasergesch�tz
-			AddResearch("RES_ED_WHL3"); //Upg: Schweres Lasergesch�tz
+			AddResearch("RES_ED_WSL1"); //Lasergeschütz
+			AddResearch("RES_ED_WSL2"); //Upg: Lasergeschütz
+			AddResearch("RES_ED_WSL3"); //Upg: Lasergeschütz
+			AddResearch("RES_ED_WHL1"); //Schweres Lasergeschütz
+			AddResearch("RES_ED_WHL2"); //Upg: Schweres Lasergeschütz
+			AddResearch("RES_ED_WHL3"); //Upg: Schweres Lasergeschütz
 			AddResearch("RES_ED_LRL"); //Long Range Laser
 			AddResearch("RES_ED_WHHLA1"); //Heavy Air Laser Cannon
 			AddResearch("RES_ED_WHHLA2"); //Upg: Heavy Air Laser Cannon II
@@ -1868,10 +1868,10 @@ player "TD Bot"{
 			AddResearch("RES_ED_WHLA3"); //Upg: Heavy Air Laser Cannon III
 			AddResearch("RES_ED_WLAA1"); //AA Laser Cannon
 			AddResearch("RES_ED_WLAA2"); //Upg: AA Laser Cannon II
-			AddResearch("RES_ED_WSI1"); //Ionengesch�tz
-			AddResearch("RES_ED_WSI2"); //Upg: Ionengesch�tz
-			AddResearch("RES_ED_WHI1"); //Schweres Ionengesch�tz
-			AddResearch("RES_ED_WHI2"); //Upg: Schweres Ionengesch�tz
+			AddResearch("RES_ED_WSI1"); //Ionengeschütz
+			AddResearch("RES_ED_WSI2"); //Upg: Ionengeschütz
+			AddResearch("RES_ED_WHI1"); //Schweres Ionengeschütz
+			AddResearch("RES_ED_WHI2"); //Upg: Schweres Ionengeschütz
 			AddResearch("RES_ED_WHI3"); //Upg: Heavy ION Destroyer
 			AddResearch("RES_EDWEQ1"); //Erdbebengenerator
 			AddResearch("RES_EDWEQ2"); //Upg.Erdbebengenerator
@@ -1881,13 +1881,13 @@ player "TD Bot"{
 			AddResearch("RES_ED_WSCH1"); //Heavy Shockwave Generator
 			AddResearch("RES_ED_WSCH2"); //Upg: Heavy Shockwave Generator II
 			AddResearch("RES_ED_WSCH3"); //Upg: Heavy Shockwave Generator III
-			AddResearch("RES_ED_BMD"); //Mittleres Abwehrgeb�ude
+			AddResearch("RES_ED_BMD"); //Mittleres Abwehrgebäude
 			AddResearch("RES_EDBHT"); //Schwerer Turm
-			AddResearch("RES_ED_BHD"); //Schweres Abwehrgeb�ude
+			AddResearch("RES_ED_BHD"); //Schweres Abwehrgebäude
 			AddResearch("RES_ED_ART"); //Artillerie
 			AddResearch("RES_ED_RepHand"); //RepTure-Einheit
 			AddResearch("RES_ED_RepHand2"); //Upg: RepTure-Einheit
-			AddResearch("RES_ED_BC1"); //Geb�udest�rmer
+			AddResearch("RES_ED_BC1"); //Gebäudestürmer
 			AddResearch("RES_ED_SCR"); //Upg: Radar
 			AddResearch("RES_ED_SCR2"); //Upg: Screamer
 			AddResearch("RES_ED_SCR3"); //Upg: Screamer II
@@ -1896,9 +1896,9 @@ player "TD Bot"{
 			AddResearch("RES_ED_HGen"); //Upg. Energieschild-Generator
 			AddResearch("RES_ED_SDI"); //SDI
 			AddResearch("RES_ED_WSDI"); //SDI Defense Center
-			AddResearch("RES_ED_UBT1"); //Ural(Doppelgesch�tzpanzer)
+			AddResearch("RES_ED_UBT1"); //Ural(Doppelgeschützpanzer)
 			AddResearch("RES_ED_UBT2"); //Upg: HT 800 Ural
-			AddResearch("RES_ED_EDUOB2"); //Upg: Aufkl�rer
+			AddResearch("RES_ED_EDUOB2"); //Upg: Aufklärer
 		}else if(nGetRace==raceLC){
 			AddResearch("RES_LC_ULU2"); //Upg: Lunar
 			AddResearch("RES_LC_ULU3"); //Upg: Lunar
@@ -1962,8 +1962,12 @@ player "TD Bot"{
 			AddResearch("RES_LC_MIS_RG2"); //Ammo Railgun
 			AddResearch("RES_LC_MIS_RG3"); //Upg: Ammo Railgun II
 			AddResearch("RES_LC_MIS_RG4"); //Upg: Ammo Railgun III
-			AddResearch("RES_LC_WSL1"); //Elektrogesch�		AddResearch("RES_LC_WSL2"); //Upg: Elektrogesch�		AddResearch("RES_LCUNH1"); //Plasmastrahl (2.2)
-			AddResearch("RES_LC_WHL1"); //Schweres Elektrogesch�		AddResearch("RES_LC_WHL2"); //Upg: Schweres Elektrogesch�		AddResearch("RES_LC_WBART1"); //Mobile Lightning Generator
+			AddResearch("RES_LC_WSL1"); //Elektrogeschütz
+			AddResearch("RES_LC_WSL2"); //Upg: Elektrogeschütz
+			AddResearch("RES_LCUNH1"); //Plasmastrahl (2.2)
+			AddResearch("RES_LC_WHL1"); //Schweres Elektrogeschütz
+			AddResearch("RES_LC_WHL2"); //Upg: Schweres Elektrogeschütz
+			AddResearch("RES_LC_WBART1"); //Mobile Lightning Generator
 			AddResearch("RES_LC_WBART2"); //Upg: Mobile Lightning Generator II
 			AddResearch("RES_LC_WAHE1"); //Heavy Air Electro-Cannon
 			AddResearch("RES_LC_WAHE2"); //Upg: Heavy Air Electro-Cannon II
@@ -1990,8 +1994,8 @@ player "TD Bot"{
 			AddResearch("RES_LC_MSR3"); //Upg: Rocket (guided: 50%)
 			AddResearch("RES_LC_MSR4"); //Upg: Rocket (guided: 100%)
 			AddResearch("RES_LCBNE"); //NEST
-			AddResearch("RES_LC_BMD"); //Mittleres Abwehrgeb㴤e
-			AddResearch("RES_LC_BHD"); //Schweres Abwehrgeb㴤e
+			AddResearch("RES_LC_BMD"); //Mittleres Abwehrgebäude
+			AddResearch("RES_LC_BHD"); //Schweres Abwehrgebäude
 			AddResearch("RES_LC_BPM"); //Peacemaker
 			AddResearch("RES_LC_BWC"); //Wetterkontrollzentrum
 			AddResearch("RES_LC_ART"); //Artillerie
@@ -2008,7 +2012,7 @@ player "TD Bot"{
 			AddResearch("RES_LC_REG1"); //Regenerator
 			AddResearch("RES_LC_REG2"); //Upg: Regenerator I
 			AddResearch("RES_LC_REG3"); //Upg: Regenerator II
-			AddResearch("RES_LC_BC1"); //Geb㴤est�
+			AddResearch("RES_LC_BC1"); //Gebäudestürmer
 			AddResearch("RES_LC_SOB1"); //Detektor
 			AddResearch("RES_LC_SOB2"); //Upg: Detektor
 			AddResearch("RES_LC_SOB3"); //Detektor II (2.2)
@@ -2089,9 +2093,11 @@ player "TD Bot"{
 			AddResearch("RES_UCS_MG2"); //Upg: Granate (Schaden: 35)
 			AddResearch("RES_UCS_MG3"); //Upg: Granate (Schaden: 40)
 			AddResearch("RES_UCS_MG4"); //Upg: Granate (Schaden: 45)
-			AddResearch("RES_UCS_WSP1"); //Plasmagesch�			AddResearch("RES_UCS_WSP2"); //Upg: Plasma Cannon II
-			AddResearch("RES_UCS_WHP1"); //Schwere Plasmagesch�			AddResearch("RES_UCS_WHP2"); //Upg: Schwere Plasmagesch�
-			AddResearch("RES_UCS_WHP3"); //Upg: Schwere Plasmagesch�I
+			AddResearch("RES_UCS_WSP1"); //Plasmageschütz
+			AddResearch("RES_UCS_WSP2"); //Upg: Plasma Cannon II
+			AddResearch("RES_UCS_WHP1"); //Schwere Plasmageschütze
+			AddResearch("RES_UCS_WHP2"); //Upg: Schwere Plasmageschütze I
+			AddResearch("RES_UCS_WHP3"); //Upg: Schwere Plasmageschütze II
 			AddResearch("RES_UCS_WART1"); //Mobile Plasma Artillery
 			AddResearch("RES_UCS_WART2"); //Upg: Mobile Plasma Artillery II
 			AddResearch("RES_UCSWAP1"); //Gargoil Plasma Kanone
@@ -2130,14 +2136,14 @@ player "TD Bot"{
 			AddResearch("RES_UCS_MIS_FL2"); //Upg: Napalm II
 			AddResearch("RES_UCS_MIS_FL3"); //Upg: Napalm III
 			AddResearch("RES_UCS_MIS_FL4"); //Upg: Napalm IV
-			AddResearch("RES_UCS_BMD"); //Mittleres Abwehrgeb㴤e
+			AddResearch("RES_UCS_BMD"); //Mittleres Abwehrgebäude
 			AddResearch("RES_UCSBHT"); //Schwerer Turm
-			AddResearch("RES_UCS_BHD"); //Schweres Abwehrgeb㴤e
+			AddResearch("RES_UCS_BHD"); //Schweres Abwehrgebäude
 			AddResearch("RES_UCS_ART"); //Artillerie
 			AddResearch("RES_UCS_WSD"); //SDI-Laser
 			AddResearch("RES_UCS_RepHand"); //RepTure-Einheit
 			AddResearch("RES_UCS_RepHand2"); //Upg: RepTure-Einheit
-			AddResearch("RES_UCS_BC1"); //Geb㴤est�
+			AddResearch("RES_UCS_BC1"); //Gebäudestürmer
 			AddResearch("RES_UCS_SGen"); //Schildgenerator
 			AddResearch("RES_UCS_MGen"); //Upg. Schildgenerator
 			AddResearch("RES_UCS_HGen"); //Upg. Schildgenerator
@@ -2158,7 +2164,7 @@ player "TD Bot"{
 			AddResearch("RES_UCS_UBS3"); //Hydra III
 			AddResearch("RES_UCS_USM1"); //Orca I
 			AddResearch("RES_UCS_USM2"); //Orca II
-			AddResearch("RES_UCS_UCSUOB2"); //Aufkl㱥r II
+			AddResearch("RES_UCS_UCSUOB2"); //Aufklärer II
 		}
 
 		return Nothing;

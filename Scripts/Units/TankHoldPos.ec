@@ -162,7 +162,7 @@ tank "translateScriptNameTankStatic"{
 		if(nRangeMode==inRangeBadAngleBeta){ //e.g. plane too high
 			if(nDistance<3){ //move away
 				CallMoveToPoint(2*GetLocationX()-uTarget.GetLocationX(), 2*GetLocationY()-uTarget.GetLocationY(), uTarget.GetLocationZ());
-			}else{ //going to point, simple cornor (90°)
+			}else{ //going to point, simple cornor (90Â°)
 				nTargetX=uTarget.GetLocationX();
 				nTargetY=uTarget.GetLocationY();
 				nTargetZ=uTarget.GetLocationZ();
@@ -173,7 +173,7 @@ tank "translateScriptNameTankStatic"{
 		//nRangeMode==inRangeBadHit, in range but there is something between us
 		if(nDistance<3){ //move away
 			CallMoveToPoint(2*GetLocationX()-uTarget.GetLocationX(), 2*GetLocationY()-uTarget.GetLocationY(), uTarget.GetLocationZ());
-		}else{ //going to point, simple cornor (90°)
+		}else{ //going to point, simple cornor (90Â°)
 			CallMoveToPoint(uTarget.GetLocationX(), uTarget.GetLocationY(), uTarget.GetLocationZ());
 		}
 		return true;

@@ -455,7 +455,7 @@ multi:
         {
             if (CanBeConverted(m_uCurrTarget))
             {
-                //z jakiegos powodu jeszcze go nie skonvertowaliœmy - odjechal ?
+                //z jakiegos powodu jeszcze go nie skonvertowaliÂœmy - odjechal ?
                 m_nMoveToX = GetOperateOnTargetLocationX(m_uCurrTarget);
                 m_nMoveToY = GetOperateOnTargetLocationY(m_uCurrTarget);
                 m_nMoveToZ = GetOperateOnTargetLocationZ(m_uCurrTarget);

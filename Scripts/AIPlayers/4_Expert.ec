@@ -69,7 +69,7 @@ player "translateAIPlayerExpert"{
 			EnableResearch("RES_EDWAN1", false); //AntiRakete
 			EnableResearch("RES_EDWEQ1", false); //Erdbebengenerator
 			EnableResearch("RES_EDWEQ2", false); //Upg.Erdbebengenerator
-			EnableResearch("RES_ED_BC1", false); //Geb‰udest¸rmer
+			EnableResearch("RES_ED_BC1", false); //Geb√§udest√ºrmer
 			EnableResearch("RES_ED_SDI", false); //SDI
 			EnableResearch("RES_ED_WSDI", false); //SDI Defense Center
 
@@ -101,7 +101,7 @@ player "translateAIPlayerExpert"{
 			EnableResearch("RES_LC_LCBMR2", false); //Mine upg.
 			EnableResearch("RES_LC_LCBMR2", false); //Mine upg.
 			EnableResearch("RES_LC_SDIDEF", false); //SDI-Laser
-			EnableResearch("RES_LC_BC1", false); //Geb‰udest¸rmer
+			EnableResearch("RES_LC_BC1", false); //Geb√§udest√ºrmer
 
 			AddResearch("RES_LC_ULU2");
 			AddResearch("RES_LC_ULU3");
@@ -114,8 +114,8 @@ player "translateAIPlayerExpert"{
 			EnableResearch("RES_UCSWEQ1", false); //Erdbebengenerator
 			EnableResearch("RES_UCSWEQ2", false); //Upg.Erdbebengenerator
 			EnableResearch("RES_UCS_WSD", false); //SDI-Laser
-			EnableResearch("RES_UCS_BC1", false); //Geb‰udest¸rmer
-			EnableResearch("RES_UCS_UCSUOB2", false); //Aufkl‰rer II
+			EnableResearch("RES_UCS_BC1", false); //Geb√§udest√ºrmer
+			EnableResearch("RES_UCS_UCSUOB2", false); //Aufkl√§rer II
 
 			AddResearch("RES_UCS_UOH2");
 			AddResearch("RES_UCS_UOH3");

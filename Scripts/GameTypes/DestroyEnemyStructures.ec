@@ -443,9 +443,9 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_EDWAA1", true); //AA Gun
 					EnableResearch(rPlayer, "RES_ED_ACH2", bHasAir); //Upg: Helikopter-MGs
 					EnableResearch(rPlayer, "RES_ED_WCA1", true); //Cannon
-					EnableResearch(rPlayer, "RES_ED_WCA2", true); //Upg: Geschütz
-					EnableResearch(rPlayer, "RES_ED_WHC1", bHasBig); //Schweres Geschütz
-					EnableResearch(rPlayer, "RES_ED_WHC2", bHasBig); //Upg: Schweres Geschütz
+					EnableResearch(rPlayer, "RES_ED_WCA2", true); //Upg: GeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHC1", bHasBig); //Schweres GeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHC2", bHasBig); //Upg: Schweres GeschÃ¼tz
 					EnableResearch(rPlayer, "RES_ED_LRC", bHasBig); //Longe Range Cannon
 					EnableResearch(rPlayer, "RES_ED_LRC1", bHasBig); //Long Range Cannon upg.
 					EnableResearch(rPlayer, "RES_ED_MOBART", bHasBig); //Mobile Artillerie
@@ -477,12 +477,12 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WSO2", bHasBig); //Upg: Stalin Orgel II
 					EnableResearch(rPlayer, "RES_ED_WSO3", bHasBig); //Stalin Orgel Rocket Launcher III
 					EnableResearch(rPlayer, "RES_EDWAN1", bIsHuman); //AntiRakete
-					EnableResearch(rPlayer, "RES_ED_WSL1", true); //Lasergeschütz
-					EnableResearch(rPlayer, "RES_ED_WSL2", true); //Upg: Lasergeschütz
-					EnableResearch(rPlayer, "RES_ED_WSL3", true); //Upg: Lasergeschütz
-					EnableResearch(rPlayer, "RES_ED_WHL1", bHasBig); //Schweres Lasergeschütz
-					EnableResearch(rPlayer, "RES_ED_WHL2", bHasBig); //Upg: Schweres Lasergeschütz
-					EnableResearch(rPlayer, "RES_ED_WHL3", bHasBig); //Upg: Schweres Lasergeschütz
+					EnableResearch(rPlayer, "RES_ED_WSL1", true); //LasergeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WSL2", true); //Upg: LasergeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WSL3", true); //Upg: LasergeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHL1", bHasBig); //Schweres LasergeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHL2", bHasBig); //Upg: Schweres LasergeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHL3", bHasBig); //Upg: Schweres LasergeschÃ¼tz
 					EnableResearch(rPlayer, "RES_ED_LRL", bHasBig); //Long Range Laser
 					EnableResearch(rPlayer, "RES_ED_WHHLA1", bHasBig&bHasAir); //Heavy Air Laser Cannon
 					EnableResearch(rPlayer, "RES_ED_WHHLA2", bHasBig&bHasAir); //Upg: Heavy Air Laser Cannon II
@@ -492,10 +492,10 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_WHLA3", bHasAir); //Upg: Air Laser Cannon III
 					EnableResearch(rPlayer, "RES_ED_WLAA1", true); //AA Laser Cannon
 					EnableResearch(rPlayer, "RES_ED_WLAA2", true); //Upg: AA Laser Cannon II
-					EnableResearch(rPlayer, "RES_ED_WSI1", true); //Ionengeschütz
-					EnableResearch(rPlayer, "RES_ED_WSI2", true); //Upg: Ionengeschütz
-					EnableResearch(rPlayer, "RES_ED_WHI1", bHasBig); //Schweres Ionengeschütz
-					EnableResearch(rPlayer, "RES_ED_WHI2", bHasBig); //Upg: Schweres Ionengeschütz
+					EnableResearch(rPlayer, "RES_ED_WSI1", true); //IonengeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WSI2", true); //Upg: IonengeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHI1", bHasBig); //Schweres IonengeschÃ¼tz
+					EnableResearch(rPlayer, "RES_ED_WHI2", bHasBig); //Upg: Schweres IonengeschÃ¼tz
 					EnableResearch(rPlayer, "RES_ED_WHI3", bHasBig); //Upg: Heavy ION Destroyer
 					EnableResearch(rPlayer, "RES_EDWEQ1", bHasBig&bIsHuman); //Erdbebengenerator
 					EnableResearch(rPlayer, "RES_EDWEQ2", bHasBig&bIsHuman); //Upg.Erdbebengenerator
@@ -509,13 +509,13 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_SCHBOMB2", bHasBig&bHasAir&bHasBombs); //Upg. Bomb
 					EnableResearch(rPlayer, "RES_ED_SCHBOMB3", bHasBig&bHasAir&bHasBombs); //Upg. Bomb 2
 					EnableResearch(rPlayer, "RES_ED_SCHBOMB4", bHasBig&bHasAir&bHasBombs); //Shockwave Bomb
-					EnableResearch(rPlayer, "RES_ED_BMD", bHasBig); //Mittleres Abwehrgebäude
+					EnableResearch(rPlayer, "RES_ED_BMD", bHasBig); //Mittleres AbwehrgebÃ¤ude
 					EnableResearch(rPlayer, "RES_EDBHT", bHasBig); //Schwerer Turm
-					EnableResearch(rPlayer, "RES_ED_BHD", bHasBig); //Schweres Abwehrgebäude
+					EnableResearch(rPlayer, "RES_ED_BHD", bHasBig); //Schweres AbwehrgebÃ¤ude
 					EnableResearch(rPlayer, "RES_ED_ART", bHasBig); //Artillerie
 					EnableResearch(rPlayer, "RES_ED_RepHand", true); //RepTure-Einheit
 					EnableResearch(rPlayer, "RES_ED_RepHand2", true); //Upg: RepTure-Einheit
-					EnableResearch(rPlayer, "RES_ED_BC1", bIsHuman); //Gebäudestürmer
+					EnableResearch(rPlayer, "RES_ED_BC1", bIsHuman); //GebÃ¤udestÃ¼rmer
 					EnableResearch(rPlayer, "RES_ED_SCR", true); //Upg: Radar
 					EnableResearch(rPlayer, "RES_ED_SCR2", true); //Upg: Screamer
 					EnableResearch(rPlayer, "RES_ED_SCR3", true); //Upg: Screamer II
@@ -524,11 +524,11 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_ED_HGen", true); //Upg. Energieschild-Generator
 					EnableResearch(rPlayer, "RES_ED_SDI", bHasBig&bHasMDW&bIsHuman); //SDI
 					EnableResearch(rPlayer, "RES_ED_WSDI", bHasBig&bHasMDW&bIsHuman); //SDI Defense Center
-					EnableResearch(rPlayer, "RES_ED_UBT1", bHasBig); //Ural (Doppelgeschützpanzer)
+					EnableResearch(rPlayer, "RES_ED_UBT1", bHasBig); //Ural (DoppelgeschÃ¼tzpanzer)
 					EnableResearch(rPlayer, "RES_ED_UBT2", bHasBig); //Upg: HT 800 Ural
 					EnableResearch(rPlayer, "RES_ED_HERO", bHasBig); //Goliath
 					EnableResearch(rPlayer, "RES_ED_HERO2", bHasBig); //Upg: Goliath
-					EnableResearch(rPlayer, "RES_ED_EDUOB2", bIsHuman); //Upg: Aufklärer
+					EnableResearch(rPlayer, "RES_ED_EDUOB2", bIsHuman); //Upg: AufklÃ¤rer
 				}else if(rPlayer.GetRace()==raceLC){
 					rPlayer.EnableBuilding("LCBLZ", false);
 					rPlayer.EnableBuilding("LCBSR", false);
@@ -606,11 +606,11 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_MIS_RG2", true); //Ammo Railgun
 					EnableResearch(rPlayer, "RES_LC_MIS_RG3", true); //Upg: Ammo Railgun II
 					EnableResearch(rPlayer, "RES_LC_MIS_RG4", true); //Upg: Ammo Railgun III
-					EnableResearch(rPlayer, "RES_LC_WSL1", true); //Elektrogeschütz
-					EnableResearch(rPlayer, "RES_LC_WSL2", true); //Upg: Elektrogeschütz
+					EnableResearch(rPlayer, "RES_LC_WSL1", true); //ElektrogeschÃ¼tz
+					EnableResearch(rPlayer, "RES_LC_WSL2", true); //Upg: ElektrogeschÃ¼tz
 					EnableResearch(rPlayer, "RES_LCUNH1", true); //Plasmastrahl (2.2)
-					EnableResearch(rPlayer, "RES_LC_WHL1", bHasBig); //Schweres Elektrogeschütz
-					EnableResearch(rPlayer, "RES_LC_WHL2", bHasBig); //Upg: Schweres Elektrogeschütz
+					EnableResearch(rPlayer, "RES_LC_WHL1", bHasBig); //Schweres ElektrogeschÃ¼tz
+					EnableResearch(rPlayer, "RES_LC_WHL2", bHasBig); //Upg: Schweres ElektrogeschÃ¼tz
 					EnableResearch(rPlayer, "RES_LC_WBART1", bHasBig); //Mobile Lightning Generator
 					EnableResearch(rPlayer, "RES_LC_WBART2", bHasBig); //Upg: Mobile Lightning Generator II
 					EnableResearch(rPlayer, "RES_LC_WAHE1", bHasBig&bHasAir); //Heavy Air Electro-Cannon
@@ -638,8 +638,8 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_MSR3", true); //Upg: Rocket (guided: 50%)
 					EnableResearch(rPlayer, "RES_LC_MSR4", true); //Upg: Rocket (guided: 100%)
 					EnableResearch(rPlayer, "RES_LCBNE", true); //NEST
-					EnableResearch(rPlayer, "RES_LC_BMD", true); //Mittleres Abwehrgebäude
-					EnableResearch(rPlayer, "RES_LC_BHD", bHasBig); //Schweres Abwehrgebäude
+					EnableResearch(rPlayer, "RES_LC_BMD", true); //Mittleres AbwehrgebÃ¤ude
+					EnableResearch(rPlayer, "RES_LC_BHD", bHasBig); //Schweres AbwehrgebÃ¤ude
 					EnableResearch(rPlayer, "RES_LC_BPM", bHasBig); //Peacemaker
 					EnableResearch(rPlayer, "RES_LC_BWC", bHasBig&bHasMDW); //Wetterkontrollzentrum
 					EnableResearch(rPlayer, "RES_LC_ART", bHasBig); //Artillerie
@@ -656,7 +656,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_LC_REG1", true); //Regenerator
 					EnableResearch(rPlayer, "RES_LC_REG2", true); //Upg: Regenerator I
 					EnableResearch(rPlayer, "RES_LC_REG3", true); //Upg: Regenerator II
-					EnableResearch(rPlayer, "RES_LC_BC1", bIsHuman); //Gebäudestürmer
+					EnableResearch(rPlayer, "RES_LC_BC1", bIsHuman); //GebÃ¤udestÃ¼rmer
 					EnableResearch(rPlayer, "RES_LC_SOB1", true); //Detektor
 					EnableResearch(rPlayer, "RES_LC_SOB2", true); //Upg: Detektor
 					EnableResearch(rPlayer, "RES_LC_SOB3", true); //Detektor II (2.2)
@@ -751,11 +751,11 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_MG2", true); //Upg: Granate (Schaden: 35)
 					EnableResearch(rPlayer, "RES_UCS_MG3", true); //Upg: Granate (Schaden: 40)
 					EnableResearch(rPlayer, "RES_UCS_MG4", true); //Upg: Granate (Schaden: 45)
-					EnableResearch(rPlayer, "RES_UCS_WSP1", true); //Plasmageschütze
+					EnableResearch(rPlayer, "RES_UCS_WSP1", true); //PlasmageschÃ¼tze
 					EnableResearch(rPlayer, "RES_UCS_WSP2", true); //Upg: Plasma Cannon II
-					EnableResearch(rPlayer, "RES_UCS_WHP1", bHasBig); //Schwere Plasmageschütze
-					EnableResearch(rPlayer, "RES_UCS_WHP2", bHasBig); //Upg: Schwere Plasmageschütze I
-					EnableResearch(rPlayer, "RES_UCS_WHP3", bHasBig); //Upg: Schwere Plasmageschütze II
+					EnableResearch(rPlayer, "RES_UCS_WHP1", bHasBig); //Schwere PlasmageschÃ¼tze
+					EnableResearch(rPlayer, "RES_UCS_WHP2", bHasBig); //Upg: Schwere PlasmageschÃ¼tze I
+					EnableResearch(rPlayer, "RES_UCS_WHP3", bHasBig); //Upg: Schwere PlasmageschÃ¼tze II
 					EnableResearch(rPlayer, "RES_UCS_WART1", bHasBig); //Mobile Plasma Artillery
 					EnableResearch(rPlayer, "RES_UCS_WART2", bHasBig); //Mobile Plasma Artillery II
 					EnableResearch(rPlayer, "RES_UCS_WART3", bHasBig); //Mobile Plasma Artillery III
@@ -799,14 +799,14 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_MIS_FL2", true); //Upg: Napalm II
 					EnableResearch(rPlayer, "RES_UCS_MIS_FL3", true); //Upg: Napalm III
 					EnableResearch(rPlayer, "RES_UCS_MIS_FL4", true); //Upg: Napalm IV
-					EnableResearch(rPlayer, "RES_UCS_BMD", bHasBig); //Mittleres Abwehrgebäude
+					EnableResearch(rPlayer, "RES_UCS_BMD", bHasBig); //Mittleres AbwehrgebÃ¤ude
 					EnableResearch(rPlayer, "RES_UCSBHT", bHasBig); //Schwerer Turm
-					EnableResearch(rPlayer, "RES_UCS_BHD", bHasBig); //Schweres Abwehrgebäude
+					EnableResearch(rPlayer, "RES_UCS_BHD", bHasBig); //Schweres AbwehrgebÃ¤ude
 					EnableResearch(rPlayer, "RES_UCS_ART", bHasBig); //Artillerie
 					EnableResearch(rPlayer, "RES_UCS_WSD", bHasBig&bHasMDW&bIsHuman); //SDI-Laser
 					EnableResearch(rPlayer, "RES_UCS_RepHand", true); //RepTure-Einheit
 					EnableResearch(rPlayer, "RES_UCS_RepHand2", true); //Upg: RepTure-Einheit
-					EnableResearch(rPlayer, "RES_UCS_BC1", bIsHuman); //Gebäudestürmer
+					EnableResearch(rPlayer, "RES_UCS_BC1", bIsHuman); //GebÃ¤udestÃ¼rmer
 					EnableResearch(rPlayer, "RES_UCS_SGen", true); //Schildgenerator
 					EnableResearch(rPlayer, "RES_UCS_MGen", true); //Upg. Schildgenerator
 					EnableResearch(rPlayer, "RES_UCS_HGen", true); //Upg. Schildgenerator
@@ -831,7 +831,7 @@ mission "translateGameTypeDestroyStructures"{
 					EnableResearch(rPlayer, "RES_UCS_UBS3", bHasBig); //Hydra III
 					EnableResearch(rPlayer, "RES_UCS_USM1", bHasBig); //Orca I
 					EnableResearch(rPlayer, "RES_UCS_USM2", bHasBig); //Orca II
-					EnableResearch(rPlayer, "RES_UCS_UCSUOB2", bIsHuman); //Aufklärer II
+					EnableResearch(rPlayer, "RES_UCS_UCSUOB2", bIsHuman); //AufklÃ¤rer II
 				}
 
 				//ai features
