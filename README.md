@@ -82,5 +82,5 @@ Pressing enter on the main menu leads to multiplayer and accepts ally requests b
 
 You can create new issues here, write me a mail, chat with me or publish pull requests. See [surrim.de][hp] for further details.
 
-[1v1v1]: https://surrim.de/bytes/bilder/moon%20project/1v1v1%20botmatch.jpg
+[1v1v1]: http://surrim.de/bytes/bilder/moon%20project/1v1v1%20botmatch.jpg
 [hp]: http://surrim.de/
