@@ -1,4 +1,4 @@
-/* Copyright 2009-2016 surrim
+/* Copyright 2009-2017 surrim
  *
  * This file is part of OSMod.
  *
