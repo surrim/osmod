@@ -1,4 +1,4 @@
-rem Copyright 2009-2017 surrim
+rem Copyright 2009-2023 surrim
 rem
 rem This file is part of OSMod.
 rem
